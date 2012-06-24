@@ -1,1 +1,1 @@
-Install-ChocolateyPackage 'RDCMan' 'msi' '/quiet' 'http://download.microsoft.com/download/5/2/8/5282718D-87FE-4A4F-9226-789ACF368DB1/RDCMan.msi' -validExitCodes @(0)
+Install-ChocolateyPackage 'rdcman.install' 'msi' '/quiet' 'http://download.microsoft.com/download/5/2/8/5282718D-87FE-4A4F-9226-789ACF368DB1/RDCMan.msi' -validExitCodes @(0)
