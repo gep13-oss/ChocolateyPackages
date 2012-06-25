@@ -1,16 +1,15 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>rdcman.install</id>
-    <title>RDCMan (Install)</title>
+    <id>rdcman</id>
+    <title>RDCMan</title>
     <version>2.2</version>
     <authors>Julian Burger</authors>
     <owners>Gary Ewan Park</owners>
     <summary>RDCMan - Remote Desktop Connection Manager - manages multiple remote desktop connections</summary>
-    <description>RDCMan manages multiple remote desktop connections. It is useful for managing server labs or large server farms where you need regular access to each machine such as automated checkin systems and data centers. It is similar to the built-in MMC Remote Desktops snap-in, but more flexible.
-    | Please install with chocolatey (http://nuget.org/List/Packages/chocolatey).</description>
+    <description>RDCMan manages multiple remote desktop connections. It is useful for managing server labs or large server farms where you need regular access to each machine such as automated checkin systems and data centers. It is similar to the built-in MMC Remote Desktops snap-in, but more flexible.</description>
     <projectUrl>http://www.microsoft.com/en-us/download/details.aspx?id=21101</projectUrl>
-    <tags>RDCMan mstsc Remote Desktop chocolatey admin</tags>
+    <tags>RDCMan mstsc Remote Desktop admin</tags>
     <!--<copyright></copyright>-->
     <licenseUrl>https://github.com/gep13/ChocolateyPackages/RDCMan/license.txt</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
