@@ -13,7 +13,7 @@
     <copyright>2003-2011 by NewsGator Technologies, Inc.</copyright>
     <!--<licenseUrl></licenseUrl>-->
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <!--<iconUrl>https://github.com/gep13/ChocolateyPackages/feeddemon.install/FeedDemon.gif</iconUrl>-->
+    <iconUrl>https://github.com/gep13/ChocolateyPackages/FeedDemon/flameball-sm.png</iconUrl>
     <releaseNotes>
     - Removed: Sharing features that relied on Google Reader
     - Added: "Most Visited" and "Recently Closed" added to new tab page
