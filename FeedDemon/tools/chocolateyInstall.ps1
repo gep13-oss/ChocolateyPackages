@@ -1,1 +1,1 @@
-Install-ChocolateyPackage 'feeddemon.install' 'exe' '/S' 'bradsoft.com/download/FeedDemonInstall.exe'  -validExitCodes @(0)
+Install-ChocolateyPackage 'feeddemon' 'exe' '/S' 'http://bradsoft.com/download/FeedDemonInstall.exe'  -validExitCodes @(0)

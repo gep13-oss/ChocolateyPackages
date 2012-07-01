@@ -6,11 +6,11 @@
     <version>4.1.0.0</version>
     <authors>Nick Bradbury</authors>
     <owners>Gary Ewan Park</owners>
-    <summary>FeedDemon is the most popular RSS reader for Windows.</summary>
-    <description>feeddemon.install</description>
+    <summary>FeedDemon - RSS reader for Windows.</summary>
+    <description>FeedDemon is the most popular RSS reader for Windows, with an easy-to-use interface that makes it a snap to stay informed with the latest news and information.</description>
     <projectUrl>http://www.feeddemon.com</projectUrl>
-    <tags>feeddemon.install RSS Reader chocolatey admin</tags>
-    <copyright>3003-2011 by NewsGator Technologies, Inc.</copyright>
+    <tags>feeddemon RSS Reader admin</tags>
+    <copyright>2003-2011 by NewsGator Technologies, Inc.</copyright>
     <!--<licenseUrl></licenseUrl>-->
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <!--<iconUrl>https://github.com/gep13/ChocolateyPackages/feeddemon.install/FeedDemon.gif</iconUrl>-->
