@@ -3,20 +3,38 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>0.8.32</version>
+    <version>0.8.59</version>
     <authors>Kovid Goyal</authors>
-    <owners>Anthony Mastrean</owners>
+    <owners>Gary Ewan Park</owners>
+    <summary>calibre is the one stop solution to all your e-book needs.</summary>
     <description>calibre is a free and open source e-book library management application developed by users of e-books for users of e-books.</description>
     <projectUrl>http://calibre-ebook.com/</projectUrl>
-    <tags>ebook</tags>
+    <tags>ebook library management</tags>
+    <copyright>Kovid Goyal</copyright>
     <licenseUrl>http://www.gnu.org/licenses/gpl.html</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <iconUrl>https://github.com/AnthonyMastrean/nugetpackages/raw/calibre/calibre/calibre.ico</iconUrl>
-    <!--<dependencies>
-      <dependency id="" version="" />
-    </dependencies>-->
+    <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/calibre/calibre.ico</iconUrl>
+    <releaseNotes>
+    - New: Drivers for Samsung SGH-T989 and Sony Ericsson Sola.
+    - New: Conversion pipeline: When removing the first image, also remove the html file the image is found in, if that file has no other content. Allows this option to be used to remove covers from EPUB files without leaving behind a blank page.
+    - New: Content server: Add a navigation panel at the bottom of each page.
+    - New: calibredb: Add a backup_metadata command to manually run the backup to opf from the command line
+    - New: User defined driver: Add option to swap main memory and card a.
+    - New: Add new option to the series_index_auto_increment tweak, no_change, that causes calibre not to change the series_index when the series is changed
+    - Fixed: PDF Output: Resize large images so that they do not get off at the right edge of the page.
+    - Fixed: On linux ensure that WM_CLASS for the main calibre GUI is set to 'calibre-gui' to match the name of the calibre-gui.desktop file. This is apparently required by the GNOME 3 shell.
+    - Fixed: Update ICU in all builds to version 49.1
+    - Fixed: Tag browser: Fix regression that broke drag and drop between user categories in the tag browser
+    - Fixed: When copying to library and deleting after copy, do not place deleted files in recycle bin, as this is redundant and slow (they have already been copied into another library)
+    - Fixed: Fix yes/no fields with value of No not showing up in the book details panel
+    - Fixed: Catalogs: Better sorting for non English languages
+    - Fixed: Get Books: Fix Foyles UK, Weightless books, ebooks.com and ozon.ru
+    - Fixed: CHM Input: Fix handling of chm files that split their html into multiple sub-directories.
+    - New News Source: CATO Institute and Heritage Foundation by _reader
+    - Improved News Source: FHM UK
+    - Improved News Source: The Age
+    - Improved News Source: weblogs_ssl
+    - Improved News Source: Heraldo.es
+    </releaseNotes>
   </metadata>
-  <files>
-    <file src="tools\chocolateyInstall.ps1" target="tools\chocolateyInstall.ps1" />
-  </files>
 </package>
