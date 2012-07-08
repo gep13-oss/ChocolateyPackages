@@ -1,4 +1,4 @@
 $name = 'calibre'
-$url  = 'http://sourceforge.net/projects/calibre/files/0.8.32/calibre-0.8.32.msi/download?use_mirror=freefr'
+$url  = 'http://status.calibre-ebook.com/dist/win32'
 
 Install-ChocolateyPackage $name 'MSI' '/quiet' $url -validExitCodes @(0)
