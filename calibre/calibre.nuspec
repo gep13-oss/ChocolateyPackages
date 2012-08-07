@@ -3,7 +3,7 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>0.8.59</version>
+    <version>0.8.63</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -13,28 +13,26 @@
     <copyright>Kovid Goyal</copyright>
     <licenseUrl>http://www.gnu.org/licenses/gpl.html</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/calibre/calibre.ico</iconUrl>
+    <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
     <releaseNotes>
-    - New: Drivers for Samsung SGH-T989 and Sony Ericsson Sola.
-    - New: Conversion pipeline: When removing the first image, also remove the html file the image is found in, if that file has no other content. Allows this option to be used to remove covers from EPUB files without leaving behind a blank page.
-    - New: Content server: Add a navigation panel at the bottom of each page.
-    - New: calibredb: Add a backup_metadata command to manually run the backup to opf from the command line
-    - New: User defined driver: Add option to swap main memory and card a.
-    - New: Add new option to the series_index_auto_increment tweak, no_change, that causes calibre not to change the series_index when the series is changed
-    - Fixed: PDF Output: Resize large images so that they do not get off at the right edge of the page.
-    - Fixed: On linux ensure that WM_CLASS for the main calibre GUI is set to 'calibre-gui' to match the name of the calibre-gui.desktop file. This is apparently required by the GNOME 3 shell.
-    - Fixed: Update ICU in all builds to version 49.1
-    - Fixed: Tag browser: Fix regression that broke drag and drop between user categories in the tag browser
-    - Fixed: When copying to library and deleting after copy, do not place deleted files in recycle bin, as this is redundant and slow (they have already been copied into another library)
-    - Fixed: Fix yes/no fields with value of No not showing up in the book details panel
-    - Fixed: Catalogs: Better sorting for non English languages
-    - Fixed: Get Books: Fix Foyles UK, Weightless books, ebooks.com and ozon.ru
-    - Fixed: CHM Input: Fix handling of chm files that split their html into multiple sub-directories.
-    - New News Source: CATO Institute and Heritage Foundation by _reader
-    - Improved News Source: FHM UK
-    - Improved News Source: The Age
-    - Improved News Source: weblogs_ssl
-    - Improved News Source: Heraldo.es
+    - New: E-book viewer: Allow quick saving and loading of viewer settings as 'themes'.    
+    - New: Ebook-viewer: Add a restore defaults button to the viewer preferences dialog
+    - New: E-book viewer: Add simple settings for text and background colors
+    - New: Add an entry to save to disk when right clicking a format in the book details panel
+    - New: ODT metadata: Read first image as the metadata cover from ODT files. Also allow ODT authors to set custom properties for extended metadata.
+    - New: E-book viewer and PDF Output: Resize images that are longer than the page to fit onto a single page
+    - Fixed: KF8 Output: Fix bug where some calibre generated KF8 files would cause the Amazon KF8 viewer on the Touch to go to into an infinite loop when using the next page function
+    - Fixed: News download: Add support for <img> tags that link to SVG images.
+    - Fixed: Update podofo to 0.9.1 in all binary builds, to fix corruption of some PDFs when updating metadata.
+    - Fixed: Catalog generation: Handle authors whose last name is a number.
+    - Fixed: KF8 Input: Handle html entities in the NCX toc entries correctly
+    - Fixed: Fix a calibre crash that affected some windows installs
+    - Fixed: MOBI Output: Normalize unicode strings before writing to file, to workaround lack of support for non-normal unicode in Amazon's MOBI renderer.
+    - Fixed: EPUB Input: Handle files that have duplicate entries in the spine
+    - Fixed: Fix regression in Kobo driver that caused the on device column to not be updated after deleting books
+    - New News Source: Dziennik Polski by Gregorz Maj
+    - New News Source: High Country Blogs by Armin Geller
+    - New News Source: Philosophy Now by Rick Shang
     </releaseNotes>
   </metadata>
 </package>
