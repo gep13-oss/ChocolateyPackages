@@ -22,7 +22,7 @@
     - New: ODT metadata: Read first image as the metadata cover from ODT files. Also allow ODT authors to set custom properties for extended metadata.
     - New: E-book viewer and PDF Output: Resize images that are longer than the page to fit onto a single page
     - Fixed: KF8 Output: Fix bug where some calibre generated KF8 files would cause the Amazon KF8 viewer on the Touch to go to into an infinite loop when using the next page function
-    - Fixed: News download: Add support for <img> tags that link to SVG images.
+    - Fixed: News download: Add support for img tags that link to SVG images.
     - Fixed: Update podofo to 0.9.1 in all binary builds, to fix corruption of some PDFs when updating metadata.
     - Fixed: Catalog generation: Handle authors whose last name is a number.
     - Fixed: KF8 Input: Handle html entities in the NCX toc entries correctly
