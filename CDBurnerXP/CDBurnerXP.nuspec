@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>cdburnerxp</id>
+    <title>CDBurnerXP</title>
+    <version>4.4.1.3243</version>
+    <authors>__REPLACE__</authors>
+    <owners>Rob Reynolds</owners>
+    <summary>CDBurnerXP</summary>
+    <description>CDBurnerXP</description>
+    <projectUrl>__REPLACE__</projectUrl>
+    <tags>CDBurnerXP admin</tags>
+    <copyright></copyright>
+    <licenseUrl>__REPLACE__</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <!--<iconUrl>https://github.com/ferventcoder/nugetpackages/raw/master/CDBurnerXP/CDBurnerXP.gif</iconUrl>-->
+    <!--<dependencies>
+      <dependency id="" version="" />
+    </dependencies>-->
+    <releaseNotes></releaseNotes>
+  </metadata>
+</package>
