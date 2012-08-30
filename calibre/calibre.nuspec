@@ -3,7 +3,7 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>0.8.64</version>
+    <version>0.8.66</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -15,27 +15,16 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
     <releaseNotes>
-    - New: E-book viewer: Allow viewing images in the book in a separate pop-up window by right clicking on the image. Useful if you want to keep some image, like a map to the side while reading the book.
-    - New: Catalogs: Allow generation of catalogs in AZW3 format. Also add more powerful configuration options to exclude books and set prefixes. See http://www.mobileread.com/forums/showthread.php?t=187298 for details.
-    - New: Generate a PDF version of the User Manual    
-    - Fixed: News download: Fix broken handling of nesting for HTML 5 tags when parsing with BeautifulSoup
-    - Fixed: EPUB: Handle files in the EPUB that have semi-colons in their file names. This means in particular using URL escaping when creating the NCX as ADE cannot handle unescaped semi-colons in the NCX.
-    - Fixed: Conversion pipeline: Ignore unparseable CSS instead of erroring out on it.
-    - Fixed: When setting up a column coloring rule based on the languages column, allow entry of localized language names instead of only ISO codes
-    - Fixed: Catalogs: Generate cover for mobi/azw3 catalogs
-    - Fixed: Update the last modified column record of a book, whenever a format is added to the book.
-    - Fixed: E-book viewer: Fix line scrolling stops at breaks option not working in paged mode
-    - Fixed: MOBI Output: Fix ToC at start option having no effect when converting some input documents that have an out-of-spine ToC.
-    - Fixed: Catalog Generation: When generating EPUB/MOBI catalogs add more flexible rules for excluding books. Also add rules to customize the prefix characters used.
-    - Fixed: Make setting published date using metadata search/replace more robust.
-    - Fixed: Tag Browser: Flatten the display of sub-groups when sort by is not set to 'name'.
-    - Fixed: Fix isbn:false not matching if other identifiers are attached to the book.
-    - New News Source: eKundelek.pl by Artur Stachecki
-    - New News Source: Sueddeutsche Mobil by Andreas Zeiser
-    - Improved News Source: The New Republic
-    - Improved News Source: XDNet
-    - Improved News Source: Metro UK
-    - Improved News Source: FHM UK
+    - New: E-book viewer: Support the display of mathematics in e-books. Supports both embedded TeX and MathML.  The calibre ebook viewer can now display embedded mathematics (symbols, equations, fractions, matrices, etc.) in EPUB and HTML ebooks. For details, see: http://manual.calibre-ebook.com/typesetting_math.html 
+    - New: Drivers for SONY PRS-T2, Freelander PD10 and Coolreader Tablet
+    - New: Wireless device connections: Use a streamed mode for improved networking performance leading to much less time spent sending metadata to/from the device. Also make it easier to specify a fixed port directly in the dialog used to start the connection.
+    - New: Get books: Add ebooksgratuitis.com
+    - Fixed: PDF Output: Handle input epub documents with filenames starting with a dot. Also do not hang if there is an unhandled error.
+    - Fixed: Get Books: Update B&N plugin to handle changes to the B&N website.  Content server: Fix regression that caused the port being advertised via BonJour to be incorrect if the user changed the port for the server.
+    - New News Source: Le Monde subscription version by Remi Vanicat
+    - New News Source: Brecha Digital by Darko Miletic
+    - Improved News Source: Variety
+    - Improved News Source: The Times UK
     </releaseNotes>
   </metadata>
 </package>
