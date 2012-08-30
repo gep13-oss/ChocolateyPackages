@@ -20,7 +20,7 @@
     - New: Wireless device connections: Use a streamed mode for improved networking performance leading to much less time spent sending metadata to/from the device. Also make it easier to specify a fixed port directly in the dialog used to start the connection.
     - New: Get books: Add ebooksgratuitis.com
     - Fixed: PDF Output: Handle input epub documents with filenames starting with a dot. Also do not hang if there is an unhandled error.
-    - Fixed: Get Books: Update B and N plugin to handle changes to the B&N website.  Content server: Fix regression that caused the port being advertised via BonJour to be incorrect if the user changed the port for the server.
+    - Fixed: Get Books: Update B and N plugin to handle changes to the B and N website.  Content server: Fix regression that caused the port being advertised via BonJour to be incorrect if the user changed the port for the server.
     - New News Source: Le Monde subscription version by Remi Vanicat
     - New News Source: Brecha Digital by Darko Miletic
     - Improved News Source: Variety
