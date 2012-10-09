@@ -3,7 +3,7 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>0.9.0</version>
+    <version>0.9.1</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -15,24 +15,29 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
     <releaseNotes>
-    - New: For a summary of the major changes in calibre between 0.8 and 0.9, see http://calibre-ebook.com/new-in/nine
-    - Fixed: KF8 Output: Fix handling of &amp; &lt; and &gt; entities in the text. They were sometimes being incorrectly unescaped.
-    - Fixed: Calibre portable: Add a manifest to the portable installer exe to prevent the application compatibility wizard from warning about a possible failed installation on windows 7. Also fixes installer requiring admin privileges on some computers
-    - Fixed: EPUB metadata: Fix book producer not being set when updating EPUB metadata
-    - Fixed: EPUB metadata: Fix incorrect namespace on the role attribute of <dc:creator> tags when updating the metadata in EPUB
-    - Fixed: Get Books: Fix incorrect price retrieval from ebooks.com.
-    - Fixed: MTP windows driver: Fix main memory and storage card sometimes swapped
-    - Fixed: PDF Output: On windows, remove any embedded fonts before generating the PDF as on windows, Qt generates image based PDFs when embedded fonts are present.
-    - Fixed: MTP windows driver: Do not try to connect to unsuitable devices such as the iPhone.
-    - Fixed: KF8 Input: Handle files that use non ascii paths/anchor names in the guide entries.
-    - New News Source: Pubblico Giornale by iusvar
-    - Improved News Source: Monitor Online
-    - Improved News Source: El Pais
-    - Improved News Source: Chronicle of Higher Education
-    - Improved News Source: Baltimore Sun
-    - Improved News Source: Mac World
-    - Improved News Source: Maximum PC
-    - Improved News Source: Financial Times UK
+    - New: New driver for the Kobo Touch version 2.0+ firmware and Kobo Glo and Mini. See http://www.mobileread.com/forums/showthread.php?t=192863  for details
+    - New: Driver for Motorola Defy XT
+    - New: Wireless driver: Always use automatic metadata management, regardless of the setting in Preferences->Devices
+    - New: Sending books by email: Allow sending to multiple email addresses at once separated by commas.
+    - New: KF8 Output: Add the css passed in through the extra css conversion option to the generated inline ToC.
+    - New: Windows: No longer use fontconfig to scan the system for available fonts. Instead use the Windows API. Should fix crashes/instability caused by fonts that fontconfig cannot handle
+    - New: When editing a blank (undefined) published date in the edit metadata dialog, have the calendar popup jump to the current date instead of the date 1-1-101
+    - New: FB2 Input: Add support for th, code and strikethrough tags and also rowspan, colspan and align attributes.
+    - Fixed: Get Books: Update Woblink
+    - Fixed: Position the next selected book better after deleting multiple books from the library view
+    - Fixed: Allow using the Enter key to select the cover in the metadata download dialog
+    - Fixed: PDF Output: Handle embedded fonts better on linux
+    - Fixed: HTML Input: Guess mimetype correctly for references to image files without file extensions.
+    - Fixed: Catalog generation: Workaround for bug in the ICU library on older OS X systems that caused catalog generation to fail when certain non-ascii characters are present in the metadata.
+    - Fixed: Wireless driver: Do not abort if BonJour registration fails, as we can still use broadcast to connect
+    - Fixed: KF8 Output: Fix invalid output being generated for some files with very large blocks of contiguous non-ascii text
+    - New News Source: IOL News and The New Age by Darko Miletic
+    - Improved News Source: FC Knudde
+    - Improved News Source: Stamgaten
+    - Improved News Source: Foreign Policy
+    - Improved News Source: Washington Post
+    - Improved News Source: Twitch Films
+    - Improved News Source: Nature News
     </releaseNotes>
   </metadata>
 </package>
