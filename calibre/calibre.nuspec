@@ -3,7 +3,7 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>0.8.69</version>
+    <version>0.8.70</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -15,24 +15,29 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
     <releaseNotes>
-    - New: E-book viewer: Add a button to the toolbar to switch themes easily
-    - New: When downloading metadata for many books, if some of them fail, add an option to the downloaded message to show the failed books in the main book list, so that they can be individually processed easily
-    - New: Remember last used window size of the conversion dialogs.
-    - New: Kindle driver: Turn on sending of azw3 files to kindles by default, since the KK now has azw3 support
-    - New: Conversion: Add support for CSS pseudo classes :hover, :link, :visited, :first-line, :focus, :active, :first-letter
-    - New: Wireless device driver: Make the default save template not use folders    
-    - Fixed: Fix a regression in th previous release that broke sending of books to the second SD card in SONY readers
-    - Fixed: Fix a memory leak when scanning for devices in windows
-    - Fixed: Ebook-viewer: When displaying mathematics, reflow equations that dont fit on a single line
-    - Fixed: Catalogs: Do not mark the AZW3 catalog as a periodical, as most Kindle devices cannot handle AZW3 periodicals
-    - Fixed: Content server: When using a custom IP address to listen on via Preferences->Tweaks advertise that IP address via BonJour.
-    - Fixed: Fix ebook catalog generation on linux systems where the encoding is not UTF-8.
-    - New News Source: History Today by Rick Shang
-    - Improved News Source: De Volksrant
-    - Improved News Source: Metro UK
-    - Improved News Source: Countryfile
-    - Improved News Source: Die Zeit (subscription)
-    - Improved News Source: Birmingham post
+    - New: Support for connecting MTP (non disk based) devices via USB, such as the Nexus 7 and the Kindle Fire HD (Windows Vista and newer and Linux only)
+    - New: Calibre Portable: Create a new installer that does not require manually unzipping the Calibre Portable folder. Instead just run the installer and point it to the location you want to install to.
+    - New: Calibre Portable: Add support for multiple libraries created inside the 'Calibre Portable' folder.
+    - New: In the main book list when editing a blank published date, use a default value of Jan 2000 so that changing the date it easier
+    - New: Template language: Add function approximate_formats() to get list of formats saved in the db for a book as opposed to the formats that actually exist on disk
+    - New: Template language: Add a couple of new functions to get the path to individual book formats and the calibre library as a whole
+    - New: Drivers for HTC Flyer and Trekstor 4ink
+    - Fixed: Conversion: Do not error out when tags have unparseable color attributes.
+    - Fixed: AZW3 Output: Do not error out if the input document contains embedded fonts of less than 1040 bytes.
+    - Fixed: Catalogs: Fix AZW3 output not properly indexed
+    - Fixed: Get Books: Remove Beam Books due to lack of response to issues with the store.
+    - Fixed: Windows: Ignore drives A: and B: when scanning for the drives belonging to a device
+    - Fixed: Kindle driver: Fix generation of apnx files for newer kindle firmware.
+    - Fixed: News download: If the output format is set to azw3, generate periodicals in mobi format as amazon does not support azw3 periodicals
+    - New News Source: Various Hungarian recipes by laca
+    - New News Source: NSFW Corp by Darko Miletic.
+    - New News Source: FC Knudde and Stamgasten by drMerry
+    - Improved News Source: Indian Express
+    - Improved News Source: Anadtech
+    - Improved News Source: London Review of Books (subscrption version)
+    - Improved News Source: Livemint
+    - Improved News Source: xkcd
+    - Improved News Source: Doghouse Diaries
     </releaseNotes>
   </metadata>
 </package>
