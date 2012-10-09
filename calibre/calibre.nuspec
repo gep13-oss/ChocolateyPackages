@@ -3,7 +3,7 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>0.8.70</version>
+    <version>0.9.0</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -15,29 +15,24 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
     <releaseNotes>
-    - New: Support for connecting MTP (non disk based) devices via USB, such as the Nexus 7 and the Kindle Fire HD (Windows Vista and newer and Linux only)
-    - New: Calibre Portable: Create a new installer that does not require manually unzipping the Calibre Portable folder. Instead just run the installer and point it to the location you want to install to.
-    - New: Calibre Portable: Add support for multiple libraries created inside the 'Calibre Portable' folder.
-    - New: In the main book list when editing a blank published date, use a default value of Jan 2000 so that changing the date it easier
-    - New: Template language: Add function approximate_formats() to get list of formats saved in the db for a book as opposed to the formats that actually exist on disk
-    - New: Template language: Add a couple of new functions to get the path to individual book formats and the calibre library as a whole
-    - New: Drivers for HTC Flyer and Trekstor 4ink
-    - Fixed: Conversion: Do not error out when tags have unparseable color attributes.
-    - Fixed: AZW3 Output: Do not error out if the input document contains embedded fonts of less than 1040 bytes.
-    - Fixed: Catalogs: Fix AZW3 output not properly indexed
-    - Fixed: Get Books: Remove Beam Books due to lack of response to issues with the store.
-    - Fixed: Windows: Ignore drives A: and B: when scanning for the drives belonging to a device
-    - Fixed: Kindle driver: Fix generation of apnx files for newer kindle firmware.
-    - Fixed: News download: If the output format is set to azw3, generate periodicals in mobi format as amazon does not support azw3 periodicals
-    - New News Source: Various Hungarian recipes by laca
-    - New News Source: NSFW Corp by Darko Miletic.
-    - New News Source: FC Knudde and Stamgasten by drMerry
-    - Improved News Source: Indian Express
-    - Improved News Source: Anadtech
-    - Improved News Source: London Review of Books (subscrption version)
-    - Improved News Source: Livemint
-    - Improved News Source: xkcd
-    - Improved News Source: Doghouse Diaries
+    - New: For a summary of the major changes in calibre between 0.8 and 0.9, see http://calibre-ebook.com/new-in/nine
+    - Fixed: KF8 Output: Fix handling of &amp; &lt; and &gt; entities in the text. They were sometimes being incorrectly unescaped.
+    - Fixed: Calibre portable: Add a manifest to the portable installer exe to prevent the application compatibility wizard from warning about a possible failed installation on windows 7. Also fixes installer requiring admin privileges on some computers
+    - Fixed: EPUB metadata: Fix book producer not being set when updating EPUB metadata
+    - Fixed: EPUB metadata: Fix incorrect namespace on the role attribute of <dc:creator> tags when updating the metadata in EPUB
+    - Fixed: Get Books: Fix incorrect price retrieval from ebooks.com.
+    - Fixed: MTP windows driver: Fix main memory and storage card sometimes swapped
+    - Fixed: PDF Output: On windows, remove any embedded fonts before generating the PDF as on windows, Qt generates image based PDFs when embedded fonts are present.
+    - Fixed: MTP windows driver: Do not try to connect to unsuitable devices such as the iPhone.
+    - Fixed: KF8 Input: Handle files that use non ascii paths/anchor names in the guide entries.
+    - New News Source: Pubblico Giornale by iusvar
+    - Improved News Source: Monitor Online
+    - Improved News Source: El Pais
+    - Improved News Source: Chronicle of Higher Education
+    - Improved News Source: Baltimore Sun
+    - Improved News Source: Mac World
+    - Improved News Source: Maximum PC
+    - Improved News Source: Financial Times UK
     </releaseNotes>
   </metadata>
 </package>
