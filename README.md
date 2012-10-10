@@ -9,5 +9,6 @@ The following applications are maintained by me as Chocolatey packages.
 - FeedDemon
 - RDCMan
 - calibre
+- PowerISO
 
 If I miss an update for one of these packages, feel free to get in touch and I will get it updated.
