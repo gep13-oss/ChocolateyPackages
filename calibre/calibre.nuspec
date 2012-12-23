@@ -18,7 +18,7 @@
     - New: Merry Christmas and Happy Holidays to all
     - New: When connecting to MTP devices such as the Kindle Fire HD or the Nook HD, speed up the process by ignoring some folders.
     - New: Allow changing the icons for categories in the Tag Browser. Right click on a category and choose 'Change category icon'.
-    - New: Allow setting the color of all columns with a single rule in Preferences->Look & Feel->Column Coloring
+    - New: Allow setting the color of all columns with a single rule in Preferences->Look and Feel->Column Coloring
     - New: MOBI: When reading metadata from mobi files, put the contents of the ASIN field into an identifier named mobi-asin. Note that this value is not used when downloading metadata as it is not possible to know which (country specific) amazon website the ASIN comes from.
     - Fixed: Windows build: Fix a regression in 0.9.9 that caused calibre to not start on some windows system that were missing the VC.90 dlls (some older XP systems)
     - Fixed: Kobo driver: Workaround for invalid shelves created by bugs in the Kobo server
