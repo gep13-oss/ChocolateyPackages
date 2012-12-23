@@ -3,7 +3,7 @@
   <metadata>
     <id>poweriso</id>
     <title>PowerISO</title>
-    <version>5.4</version>
+    <version>5.5</version>
     <authors>Power Software Ltd</authors>
     <owners>Gary Ewan Park</owners>
     <summary>PowerISO - All in one solution</summary>
@@ -15,7 +15,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/PowerISO/PowerISO.png</iconUrl>
     <releaseNotes>
-    - New: Improve Blu-ray disc burning
+    - New: Improve DVD and Bluray disc burning.
     - Fixed: Some minor bug fixes and enhancements.
     </releaseNotes>
   </metadata>
