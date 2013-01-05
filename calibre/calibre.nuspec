@@ -3,7 +3,7 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>0.9.11</version>
+    <version>0.9.12</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -15,22 +15,22 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
     <releaseNotes>
-    - New: Merry Christmas and Happy Holidays to all
-    - New: When connecting to MTP devices such as the Kindle Fire HD or the Nook HD, speed up the process by ignoring some folders.
-    - New: Allow changing the icons for categories in the Tag Browser. Right click on a category and choose 'Change category icon'.
-    - New: Allow setting the color of all columns with a single rule in Preferences->Look and Feel->Column Coloring
-    - New: MOBI: When reading metadata from mobi files, put the contents of the ASIN field into an identifier named mobi-asin. Note that this value is not used when downloading metadata as it is not possible to know which (country specific) amazon website the ASIN comes from.
-    - Fixed: Windows build: Fix a regression in 0.9.9 that caused calibre to not start on some windows system that were missing the VC.90 dlls (some older XP systems)
-    - Fixed: Kobo driver: Workaround for invalid shelves created by bugs in the Kobo server
-    - Fixed: Metadata download: Fix cover downloading from non-US amazon sites broken by a website change.
-    - New News Source: MobileBulgaria by Martin Tsanchev
-    - New News Source: Various Polish news sources by fenuks
-    - Improved News Source: Le Devoir
-    - Improved News Source: Nin online
-    - Improved News Source: countryfile
-    - Improved News Source: Birmingham Post
-    - Improved News Source: The Independent
-    - Improved News Source: Various Polish news sources
+    - New: Drivers for Kibano e-reader and Slick ER-700-2
+    - New: Add support for downloading metadata from Amazon Brazil.
+    - New: Copy to library: Allow specifying the destination library by path.
+    - New: When adding empty books, allow setting of the series for the new books. Also select the newly added book records after adding.
+    - New: PDF Output: Add a checkbox to override the page size defined by the output profile. This allows you to specify a custom page size even if the output profile is not set to default.
+    - New: Add usb ids for newer kindle fire to the linux mtp driver
+    - Fixed: Linux: Temporarily redirect stdout to get rid of the annoying and pointless message about mtpz during libmtp initialization
+    - Fixed: Fix multiple 'All column' coloring rules not being applied
+    - Fixed: Use custom icons in the content server as well.
+    - New News Source: Various Ukranian news sources by rpalyvoda
+    - Improved News Source: La Voce
+    - Improved News Source: Harpers Magazine (printed edition)
+    - Improved News Source: Pajamas Media
+    - Improved News Source: NSFW corp
+    - Improved News Source: The Hindu
+    - Improved News Source: Nikkei News
     </releaseNotes>
   </metadata>
 </package>
