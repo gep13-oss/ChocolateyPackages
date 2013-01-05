@@ -3,7 +3,7 @@
   <metadata>
     <id>cdburnerxp</id>
     <title>CDBurnerXP</title>
-    <version>4.5.0.3685</version>
+    <version>4.5.0.3717</version>
     <authors>Canneverbe Limited</authors>
     <owners>Gary Ewan Park</owners>
     <summary>CDBurnerXP - burn CDs and DVDs for free!</summary>
@@ -15,12 +15,15 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/CDBurnerXP/CDBurnerXP.png</iconUrl>
     <releaseNotes>
-    - Fixed: Fixed problems with canelling the burning process
-    - Fixed: Assume lower DVD-R disc size for disc spanning (practice has shown that theoretical size might not be available)
-    - Fixed: Disc spanning not showing progress properly
-    - Fixed: Some columns in details view might be shown more than once
-    - Fixed: Copy to HDD selects wrong image type
-    - Fixed: Disc label value might not be shortened
+    - Changed/Improved Feature: More details on file system restrictions (length limit)
+    - Changed/Improved Feature: Property dialog now works recursively if multiple files/folders are selected
+    - Fixed: COMException
+    - Fixed: Release all locked files immediately if compilation is closed
+    - Fixed: Upgrade code for x64 bit MSI packages
+    - Fixed: Do not allow creating new folders when file with same name already exists
+    - Fixed: Possible COMExceptions when deleting files
+    - Fixed: Prevent adding files with file names longer than technically possible (should probably be changed later so that files are renamed before the burning process starts)
+    - Fixed: Caching options don't work
     </releaseNotes>
   </metadata>
 </package>
