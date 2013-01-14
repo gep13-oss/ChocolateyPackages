@@ -1,4 +1,5 @@
 $name = 'calibre'
-$url  = 'http://status.calibre-ebook.com/dist/win32'
+$32BitUrl  = 'http://status.calibre-ebook.com/dist/win32'
+$64BitUrl  = 'http://status.calibre-ebook.com/dist/win64'
 
-Install-ChocolateyPackage $name 'MSI' '/quiet' $url -validExitCodes @(0)
+Install-ChocolateyPackage $name 'MSI' '/quiet' $32BitUrl $64BitUrl -validExitCodes @(0)
