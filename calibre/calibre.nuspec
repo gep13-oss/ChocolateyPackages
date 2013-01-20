@@ -3,7 +3,7 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>0.9.14</version>
+    <version>0.9.15</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -15,30 +15,36 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
     <releaseNotes>
-    - New: When adding multiple books and duplicates are found, allow the user to select which of the duplicate books will be added anyway.
-    - New: Device drivers for Kobo Arc on linux, Polaroid Android tablet
-    - New: When sorting by series, use the language of the book to decide what leading articles to remove, just as is done for sorting by title
-    - Fixed: PDF Output: Do not error out when the input document contains links with anchors not present in the document.
-    - Fixed: Add support for upgraded db on newest Kobo firmware
-    - Fixed: PDF Output: Fix typo that broke use of custom paper sizes.
-    - Fixed: PDF Output: Handle empty anchors present at the end of a page
-    - Fixed: PDF Output: Fix side margins of last page in a flow being incorrect when large side margins are used.
-    - Fixed: Edit metadata dialog: Allow setting the series number for custom series type columns to zero
-    - Fixed: When bulk editing custom series-type columns and not provding a series number use 1 as the default, instead of None
-    - Fixed: Catalogs: Fix issue with catalog generation using Hungarian UI and author_sort beginning with multiple letter groups.
-	- Fixed: PDF Output: Dont error out on files that have invalid font-family declarations.
-	- Fixed: Do not load QRawFont at global level, to allow calibre installation on systems with missing dependencies
-	- Fixed: PDF Output: Fix cover not present in generated PDF files
-    - New News Source: Spectator Magazine, Oxford Mail and Outside Magazine by Krittika Goyal
-	- New News Source: Libartes by Darko Miletic
-	- New News Source: El Diplo by Tomas De Domenico
-	- Improved News Source: Sueddeutsche Zeitung mobil
-    - Improved News Source: Boerse Online
-    - Improved News Source: TidBits
-    - Improved News Source: New York Review of Books
-    - Improved News Source: Fleshbot
-    - Improved News Source: Il Messaggero
-    - Improved News Source: Libero
+    - New: Linux MTP driver: Detect devices that have MTP interfaces even if their USB ids are not known
+    - New: Content server: Allow picking a random book by clicking the 'Random book' link on the start page. You can also refresh the random book page to get a new random book
+    - New: E-book viewer: Add an option to hide the toolbars in the viewer window (Preferences->Miscellaneous->Show controls in the viewr preferences). You can unhide them by right clicking in the viewer window.
+	- New: Kobo driver: Speedup initial connect by avoiding unnecessary update of series metadata in some situations.
+	- New: Get Books: Allow the store plugins to be dynamically loaded so that future website changes of a store dont require a calibre update to fix Get Books.
+	- New: Wireless driver: Always replace file when resending a previously sent book to the device, even if the title/author have changed.
+	- New: Add PocketBook Pro 912 driver.
+	- New: When creating/exporting epub and mobi files, add the calibre book identifier as a special field in the book's metadata. This allows third party tools to identify the book record in calibre to which the file belongs.
+	- New: Wireless driver: Add support for using the book uuid as the filename
+	- New: Remove the experimental tag from the subset fonts feature, since there has been only one reported problem (now fixed) with it in the two months since it was released
+    - Fixed: Get Books: Update the amazon, waterstones and libri.de plugins to account for website changes
+    - Fixed: MOBI Input: Do not choke on MOBI files with incorrectly encoded titles.
+    - Fixed: Font subsetting: Fix a bug in the parsing of the GSUB table that could cause some ligatures to not be included in the subset font
+    - Fixed: E-book-viewer: Fix TOC links without anchors not scrolling to the top of the current flow
+    - Fixed: LIT Input: Handle lit files that set an incorrect XML mimetype for their text.
+    - Fixed: Catalogs: Fix 'X' being droppen from isbns on export
+    - Fixed: Fix an error when editing date in the main book list and all visible dates are blank.
+    - Fixed: Fix calibre-smtp using incorrect escaping for non-ascii attachment filenames
+	- Fixed: Conversion: When subsetting fonts, handle multiple @font-face rules referring to the same physical font
+	- Fixed: Content server: Update metadata when serving azw3 files
+	- Fixed: CHM Input: Handle chm files that contain files with url unsafe filenames.
+	- Fixed: Content server: Fix custom icons for top level categories incorrect.
+	- Fixed: Kobo driver: When resending a file to the device, update the filesize in the Kobo db to prevent the device from deleting the file.
+	- New News Source: Asco de Vida by Krittika Goyal
+	- New News Source: Schattenblick by ThB
+    - Improved News Source: The Chronicle of Higher Education
+    - Improved News Source: Smithsonian Magazine
+    - Improved News Source: Philosophy Now
+    - Improved News Source: The Economist
+    - Improved News Source: Business Week Magazine
     </releaseNotes>
   </metadata>
 </package>
