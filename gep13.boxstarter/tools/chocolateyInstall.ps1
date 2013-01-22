@@ -3,9 +3,11 @@ if($helperDir.Count -gt 1){$helperDir = $helperDir[-1]}
 import-module $helperDir\boxstarter.helpers.psm1
 
 try {
-	Set-TaskbarSmall
-}
+    # Disable-UAC
+
+    Set-TaskbarSmall
+} 
 catch {
-    Write-ChocolateyFailure 'jivkok.BoxStarter1' $($_.Exception.Message)
+    Write-ChocolateyFailure 'gep13.boxstarter' $($_.Exception.Message)
     throw 
 }
