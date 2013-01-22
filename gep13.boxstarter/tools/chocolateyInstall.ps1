@@ -4,6 +4,7 @@ import-module $helperDir\boxstarter.helpers.psm1
 
 try {
 	Set-TaskbarSmall
+}
 catch {
     Write-ChocolateyFailure 'jivkok.BoxStarter1' $($_.Exception.Message)
     throw 
