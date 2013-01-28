@@ -3,7 +3,7 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>0.9.15</version>
+    <version>0.9.16</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -15,36 +15,29 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
     <releaseNotes>
-    - New: Linux MTP driver: Detect devices that have MTP interfaces even if their USB ids are not known
-    - New: Content server: Allow picking a random book by clicking the 'Random book' link on the start page. You can also refresh the random book page to get a new random book
-    - New: E-book viewer: Add an option to hide the toolbars in the viewer window (Preferences->Miscellaneous->Show controls in the viewr preferences). You can unhide them by right clicking in the viewer window.
-	- New: Kobo driver: Speedup initial connect by avoiding unnecessary update of series metadata in some situations.
-	- New: Get Books: Allow the store plugins to be dynamically loaded so that future website changes of a store dont require a calibre update to fix Get Books.
-	- New: Wireless driver: Always replace file when resending a previously sent book to the device, even if the title/author have changed.
-	- New: Add PocketBook Pro 912 driver.
-	- New: When creating/exporting epub and mobi files, add the calibre book identifier as a special field in the book's metadata. This allows third party tools to identify the book record in calibre to which the file belongs.
-	- New: Wireless driver: Add support for using the book uuid as the filename
-	- New: Remove the experimental tag from the subset fonts feature, since there has been only one reported problem (now fixed) with it in the two months since it was released
-    - Fixed: Get Books: Update the amazon, waterstones and libri.de plugins to account for website changes
-    - Fixed: MOBI Input: Do not choke on MOBI files with incorrectly encoded titles.
-    - Fixed: Font subsetting: Fix a bug in the parsing of the GSUB table that could cause some ligatures to not be included in the subset font
-    - Fixed: E-book-viewer: Fix TOC links without anchors not scrolling to the top of the current flow
-    - Fixed: LIT Input: Handle lit files that set an incorrect XML mimetype for their text.
-    - Fixed: Catalogs: Fix 'X' being droppen from isbns on export
-    - Fixed: Fix an error when editing date in the main book list and all visible dates are blank.
-    - Fixed: Fix calibre-smtp using incorrect escaping for non-ascii attachment filenames
-	- Fixed: Conversion: When subsetting fonts, handle multiple @font-face rules referring to the same physical font
-	- Fixed: Content server: Update metadata when serving azw3 files
-	- Fixed: CHM Input: Handle chm files that contain files with url unsafe filenames.
-	- Fixed: Content server: Fix custom icons for top level categories incorrect.
-	- Fixed: Kobo driver: When resending a file to the device, update the filesize in the Kobo db to prevent the device from deleting the file.
-	- New News Source: Asco de Vida by Krittika Goyal
-	- New News Source: Schattenblick by ThB
-    - Improved News Source: The Chronicle of Higher Education
-    - Improved News Source: Smithsonian Magazine
-    - Improved News Source: Philosophy Now
-    - Improved News Source: The Economist
-    - Improved News Source: Business Week Magazine
+    - New: News download: Add support for logging in to sites that require javascript for their logins.
+    - New: News download: Do not convert all downloaded images to JPG format. This fixes the problem of PNG images with transparent backgrounds being rendered with black backgrounds
+    - New: CHM Input: Support hierarchical table of contents. Do not generate an inline table of contents when a metadata table of contents is present. Also correctly decode the text in the table of contents
+	- New: Get Books: Add the beam-ebooks.de store
+	- New: Make custom yes/no columns using icons put text values under the icons.
+	- New: Driver for LG E400 and SayCoolA710
+	- New: Speed up device connection when there are lots of books on the device by not generating cover thumbnails unless they are actually needed.
+	- New: Have the metadata download dialog remember its last used size.
+    - Fixed: Fix deleting a custom column that was used in a column coloring rule makes the column coloring preferences panel unusable
+    - Fixed: Store caches outside the config directory for non-portable calibre installs
+    - Fixed: PDF Output: Dont crash if the user has a font on his system that is missing the OS/2 table
+    - Fixed: Conversion: Do not error out because of an error in user supplied search replace rules.
+    - Fixed: Conversion: Replace all non-ascii characters in CSS class names, as they cause problems with some broken EPUB renderers.
+    - Fixed: Do not choke when reading metadata from MOBI files with incorrectly encoded metadata fields
+    - Fixed: Conversion: Preserve ToC entries that point nowhere instead of causing them to point to a non-existent file
+    - Fixed: E-book viewer: Allow entries in the Table of Contents that do not point anywhere, instead of just ignoring them.
+	- Fixed: Content server: Fix the 'Previous' link in the mobile version of the content server webpage skipping an entry
+	- New News Source: Contemporary Argentine Writers by Darko Miletic
+    - Improved News Source: TSN
+    - Improved News Source: St. Louis Post Dispatch
+    - Improved News Source: Metro UK
+    - Improved News Source: Michelle Malkin
+    - Improved News Source: Barrons
     </releaseNotes>
   </metadata>
 </package>
