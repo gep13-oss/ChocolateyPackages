@@ -17,7 +17,7 @@
     <releaseNotes>
     - New: Allow adding user specified icons to the main book list for books whose metadata matches specific criteria. Go to Preferences->Look and Feel->Column icons to setup these icons. They work in the same way as the column coloring rules.
     - New: Allow choosing which page of a PDF to use as the cover.
-    - New: Add option to turn off reflections in the cover browser (Preferences->Look & Feel->Cover Browser)
+    - New: Add option to turn off reflections in the cover browser (Preferences->Look and Feel->Cover Browser)
 	- New: PDF Output: Add an option to add page numbers to the bottom of every page in the generated PDF file (look in the PDF Output section of the conversion dialog)
 	- New: Add the full item name to the tool tip of a leaf item displayed in the tag browser.
     - Fixed: Fix out-of-bounds data causing errors in the Tag Browser
