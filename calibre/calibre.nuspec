@@ -24,7 +24,7 @@
     - Fixed: Conversion: When transliterating unicode characters, handle « and » correctly.
     - Fixed: Fix adding books from multiple directories with multiple books per directory treating opf files as an ebook
     - Fixed: Fix download metadata window not resizable on smaller screens
-    - Fixed: Tweak Book: When rebuilding azw3 files handle <a> tags that have name but not id attribute, these are apparently produced by kindlegen.
+    - Fixed: Tweak Book: When rebuilding azw3 files handle anchor tags that have name but not id attribute, these are apparently produced by kindlegen.
 	- Fixed: Fix regression in advanced column color rules.
 	- New News Source: VICE Magazine Deutschland by Alex
 	- New News Source: Libertad Digital by Darko Miletic
