@@ -3,7 +3,7 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>0.9.17</version>
+    <version>0.9.18</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -15,23 +15,26 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
     <releaseNotes>
-    - New: Allow adding user specified icons to the main book list for books whose metadata matches specific criteria. Go to Preferences->Look and Feel->Column icons to setup these icons. They work in the same way as the column coloring rules.
-    - New: Allow choosing which page of a PDF to use as the cover.
-    - New: Add option to turn off reflections in the cover browser (Preferences->Look and Feel->Cover Browser)
-	- New: PDF Output: Add an option to add page numbers to the bottom of every page in the generated PDF file (look in the PDF Output section of the conversion dialog)
-	- New: Add the full item name to the tool tip of a leaf item displayed in the tag browser.
-    - Fixed: Fix out-of-bounds data causing errors in the Tag Browser
-    - Fixed: Conversion: Handle input documents that use multiple prefixes referring to the XHTML namespace correctly.
-    - Fixed: PDF Output: Fix regression that caused some svg images to be rendered as black rectangles.
-    - Fixed: Metadata download: Only normalize title case if the result has no language set or its language is English
-	- New News Source: Dob NeviNosti by Darko Miletic
-	- New News Source: La Nacion (CR) by Douglas Delgado
-    - Improved News Source: Baltimore Sun
-    - Improved News Source: Harvard Business Review
-    - Improved News Source: Victoria Times
-    - Improved News Source: South China Morning Post
-    - Improved News Source: Volksrant
-	- Improved News Source: Seattle Times
+    - New: New metadata source: Edelweiss, a catalog of books that is updated directly by publishers. To enable it, go to Preferences->Metadata download and enable the Edelweiss plugin.
+    - New: Add an option to add extra spacing between rows in the book list. (Preferences->Look and Feel)
+    - New: Column coloring/icons: Add a 'days ago' condition, useable with columns that store dates to set colors/icons based on the number of days before today
+	- New: E-book viewer: Add shortcuts Ctrl+= and Ctrl+- to increase/decrease text size.
+	- New: When showing possible duplicates after adding books, also show the file formats.
+	- New: Driver for Trekstor Ventos Tablet
+    - Fixed: Conversion: When transliterating unicode characters, handle « and » correctly.
+    - Fixed: Fix adding books from multiple directories with multiple books per directory treating opf files as an ebook
+    - Fixed: Fix download metadata window not resizable on smaller screens
+    - Fixed: Tweak Book: When rebuilding azw3 files handle <a> tags that have name but not id attribute, these are apparently produced by kindlegen.
+	- Fixed: Fix regression in advanced column color rules.
+	- New News Source: VICE Magazine Deutschland by Alex
+	- New News Source: Libertad Digital by Darko Miletic
+    - Improved News Source: El Mundo today
+    - Improved News Source: fluter.de
+    - Improved News Source: Birmingham Post
+    - Improved News Source: Japan Times
+    - Improved News Source: The Toronto Star
+	- Improved News Source: Le Monde (subscription version)
+	- Improved News Source: Globe and Mail
     </releaseNotes>
   </metadata>
 </package>
