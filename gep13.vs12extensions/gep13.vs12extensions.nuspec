@@ -3,7 +3,7 @@
   <metadata>
     <id>gep13.vs12extensions</id>
     <title>gep13's preferred Visual Studio 2012 Extensions</title>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <authors>Gary Ewan Park</authors>
     <owners>Gary Ewan Park</owners>
     <summary>A package to install the Visual Studio 2012 Extensions that I always use by default.</summary>
@@ -18,6 +18,7 @@
       VsCommands
       SpellChecker
       DevColor
+	  MultiEditing
     </description>
     <!--<projectUrl>__REPLACE__</projectUrl>-->
     <tags>Visual Studio 2012 Extensions</tags>
