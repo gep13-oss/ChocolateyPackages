@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <version>4.0.30319</version>
+    <version>4.0.30319.20130215</version>
     <authors>Microsoft</authors>
     <owners>Gary Ewan Park</owners>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/DotNet4.0/dotnet.png</iconUrl>
