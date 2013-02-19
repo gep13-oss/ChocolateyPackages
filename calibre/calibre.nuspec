@@ -3,7 +3,7 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>0.9.18</version>
+    <version>0.9.19</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -15,26 +15,22 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
     <releaseNotes>
-    - New: New metadata source: Edelweiss, a catalog of books that is updated directly by publishers. To enable it, go to Preferences->Metadata download and enable the Edelweiss plugin.
-    - New: Add an option to add extra spacing between rows in the book list. (Preferences->Look and Feel)
-    - New: Column coloring/icons: Add a 'days ago' condition, useable with columns that store dates to set colors/icons based on the number of days before today
-	- New: E-book viewer: Add shortcuts Ctrl+= and Ctrl+- to increase/decrease text size.
-	- New: When showing possible duplicates after adding books, also show the file formats.
-	- New: Driver for Trekstor Ventos Tablet
-    - Fixed: Conversion: When transliterating unicode characters, handle « and » correctly.
-    - Fixed: Fix adding books from multiple directories with multiple books per directory treating opf files as an ebook
-    - Fixed: Fix download metadata window not resizable on smaller screens
-    - Fixed: Tweak Book: When rebuilding azw3 files handle anchor tags that have name but not id attribute, these are apparently produced by kindlegen.
-	- Fixed: Fix regression in advanced column color rules.
-	- New News Source: VICE Magazine Deutschland by Alex
-	- New News Source: Libertad Digital by Darko Miletic
-    - Improved News Source: El Mundo today
-    - Improved News Source: fluter.de
-    - Improved News Source: Birmingham Post
-    - Improved News Source: Japan Times
-    - Improved News Source: The Toronto Star
-	- Improved News Source: Le Monde (subscription version)
-	- Improved News Source: Globe and Mail
+    - New: Polish books that allows you to perform various automated cleanup actions on EPUB and AZW3 files without doing a full conversion.
+    - New: Driver for the Trekstor Pyrus Mini.
+    - New: E-book viewer: Add an option to change the minimum font size.
+	- New: PDF Output: Add support for converting documents with math typesetting.
+	- New: Column coloring/icons: Add more conditions when using date based columns with reference to 'today'.
+    - Fixed: Dont ignore file open events that occur before the GUI is initialized on OS X
+    - Fixed: Dont ignore file open events that occur before the GUI is initialized on OS X
+    - Fixed: News download: Handle feeds that have entries with empty ids
+    - Fixed: Fix a regression that broke using the template editor
+	- Fixed: Do not block startup while scanning the computer for available network interfaces. Speeds up startup time on some windows computers with lots of spurious network interfaces.
+	- New News Source: Navegalo by Douglas Delgado
+	- New News Source: El Guardian and More Intelligent Life by Darko Miletic
+    - Improved News Source: New Yorker
+    - Improved News Source: Kommersant
+    - Improved News Source: Le Monde (Subscription version)
+    - Improved News Source: NZ Herald
     </releaseNotes>
   </metadata>
 </package>
