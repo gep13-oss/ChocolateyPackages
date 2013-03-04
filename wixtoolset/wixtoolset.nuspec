@@ -3,7 +3,7 @@
   <metadata>
     <id>wixtoolset</id>
     <title>WiX Toolset</title>
-    <version>3.7.1224.0</version>
+    <version>3.7.1224.20134003</version>
     <authors>Rob Mensching</authors>
     <owners>Gary Ewan Park</owners>
     <summary>The most powerful set of tools available to create your Windows installation experience. Free and Open Source since 2004!</summary>
@@ -13,7 +13,7 @@
     <copyright>2009 - 2013 RobMensching.com LLC.</copyright>
     <licenseUrl>http://wix.codeplex.com/license</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/wixtoolest/wix.gif</iconUrl>
+    <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/wixtoolset/wix.gif</iconUrl>
     <!--<dependencies>
       <dependency id="" version="" />
     </dependencies>-->
