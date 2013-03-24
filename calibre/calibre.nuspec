@@ -3,7 +3,7 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>0.9.22</version>
+    <version>0.9.24</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -15,27 +15,26 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
     <releaseNotes>
-    - New: Linux driver for the Tolino ebook reader.
-    - New: Kobo driver: Add support for the new 'Archived' collections in Kobo firmware 2.4.0 and improve handling recommendations and previews.
-    - New: Metadata search and replace: Allow replacing the entire set of identifiers instead of only a specific identifier when doing a search and replace. To do this, choose a source field other than identifiers and set the destination identifier type to: *
-	- New: Show a brief description of every action when customizing toolbars in Preferences - Toolbars
-	- New: Allow drag and drop of books from the calibre book list onto the button for Convert book, Edit metadata, Remove Book, Tweak Book, Polish books, etc.
-    - Fixed: CHM Input: Fix incorrect decoding for CHM files whose hhc file is also a content file.
-    - Fixed: Conversion: Add the double low quote to list of characters that are converted to ascii.
-    - Fixed: Amazon metadata download: Update plugin to handle changes to Amazon site that could cause some covers to not be downloaded. Also fix finding metadata for books with + in their titles.
-    - Fixed: Content server: Fix a bug that prevented the cover being updated when files are downloaded from the content server
-	- Fixed: Conversion: Handle the use of @import CSS rules inside style tags in HTML files
-	- Fixed: Book polishing: Do not error out when polishing epub files that have XML comments in their OPF metadata section.
-	- Fixed: Book polishing: Do not error out when updating covers in EPUB files that have entries int heir manifest that point to missing files
-	- Fixed: Book polishing: Fix a bug that could cause updating covers to error out in some books
-	- Fixed: Fix updating the calibre application id in EPUBs that also use the application id as the package id.
-	- Fixed: Apple driver: Fix bug preventing sending books to iBooks if no books have been previously added to iBooks.
-	- Fixed: EPUB/AZW3 Output: Fix splitting on page breaks ignored if the page breaks are inside an element which itself has a page-break-after style applied.
-	- Fixed: EPUB/AZW3 Output: Fix incorrect splitting of html at page-break-after page breaks in certain circumstances (The split element being the first child of a parent that contains other split elements).
-	- New News Source: Various new Polish news sources by Unknown
-    - Improved News Source: Le Devoir
-    - Improved News Source: New York Times Book Review
-	- Improved News Source: Various Polish news sources
+    - New: ToC Editor: Allow auto-generation of Table of Contents entries from headings and/or links in the book 
+    - New: EPUB/MOBI Catalogs: Allow saving used settings as presets which can be loaded easily later. 
+    - New: Indicate which columns are custom columns when selecting columns in the Preferences 
+	- New: News download: Add an option recipe authors can set to have calibre automatically reduce the size of downloaded images by lowering their quality 
+    - Fixed: News download: Fix a regression in 0.9.23 that prevented oldest_article from working with some RSS feeds.
+    - Fixed: Conversion: handle the :before and :after pseudo CSS selectors correctly 
+    - Fixed: AZW3 Output: Handle the case of the guide reference to a ToC containing an anchor correctly. 
+    - Fixed: BiBTeX catalogs: Fix ISBN not being output and the library_name field causing catalog generation to fail 
+	- Fixed: Conversion: Add support for CSS stylesheets that wrap their rules inside a media rule.
+	- Fixed: Cover browser: Fix scrolling not working for books after the 32678th book in a large library. 
+	- Fixed: Linux: Update bundled libmtp version
+	- Fixed: Clear the Book details panel when the current search returns no matches.
+	- Fixed: Fix a regression that broke creation of advanced column coloring rules 
+	- Fixed: Amazon metadata download: Handle cover images loaded via javascript on the amazon.de site 
+	- Fixed: Nicer error message when exporting a generated csv catalog to a file open in another program on windows.
+	- Fixed: Fix ebook-convert -h showing ANSI escape codes in the windows command prompt 
+    - Improved News Source: Various Polish news sources
+    - Improved News Source: kath.net
+	- Improved News Source: Il Giornale
+	- Improved News Source: Kellog Insight
     </releaseNotes>
   </metadata>
 </package>
