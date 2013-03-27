@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>fiddler4</id>
+    <title>Fiddler</title>
+    <version>4.4.3</version>
+    <authors>Telerik</authors>
+    <owners>Gary Ewan Park</owners>
+    <summary>fiddler4</summary>
+    <description>fiddler4</description>
+    <projectUrl>http://www.fiddler2.com/Fiddler2/version.asp</projectUrl>
+    <tags>fiddler4 admin</tags>
+    <copyright></copyright>
+    <licenseUrl>http://www.fiddler2.com/Fiddler/help/license.asp</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <!--<iconUrl>https://github.com/__CHOCO_PKG_OWNER_REPO__/raw/master/fiddler4/fiddler4.gif</iconUrl>-->
+    <!--<dependencies>
+      <dependency id="" version="" />
+    </dependencies>-->
+    <releaseNotes></releaseNotes>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+    <!--<file src="content\**" target="content" />-->
+  </files>
+</package>
