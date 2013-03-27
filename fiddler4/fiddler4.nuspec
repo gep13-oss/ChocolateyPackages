@@ -6,21 +6,19 @@
     <version>4.4.3</version>
     <authors>Telerik</authors>
     <owners>Gary Ewan Park</owners>
-    <summary>fiddler4</summary>
-    <description>fiddler4</description>
-    <projectUrl>http://www.fiddler2.com/Fiddler2/version.asp</projectUrl>
-    <tags>fiddler4 admin</tags>
+    <summary>Fiddler Web Debugging Proxy</summary>
+    <description>Fiddler is a Web Debugging Proxy which logs all HTTP(S) traffic between your computer and the Internet. Fiddler allows you to inspect all HTTP(S) traffic, set breakpoints, and "fiddle" with incoming or outgoing data. Fiddler includes a powerful event-based scripting subsystem, and can be extended using any .NET language.
+
+Fiddler is freeware and can debug traffic from virtually any application, including Internet Explorer, Mozilla Firefox, Opera, and thousands more.</description>
+    <projectUrl>http://www.fiddler2.com/fiddler2/</projectUrl>
+    <tags>fiddler fiddler2 web debugging proxy admin</tags>
     <copyright></copyright>
     <licenseUrl>http://www.fiddler2.com/Fiddler/help/license.asp</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <!--<iconUrl>https://github.com/__CHOCO_PKG_OWNER_REPO__/raw/master/fiddler4/fiddler4.gif</iconUrl>-->
-    <!--<dependencies>
-      <dependency id="" version="" />
-    </dependencies>-->
+    <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/fiddler4/FiddlerLogo.png</iconUrl>
     <releaseNotes></releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
-    <!--<file src="content\**" target="content" />-->
   </files>
 </package>
