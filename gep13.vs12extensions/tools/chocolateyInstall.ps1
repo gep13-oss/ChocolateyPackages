@@ -7,4 +7,5 @@ Install-ChocolateyVsixPackage "Git Source Control Provider" "http://visualstudio
 Install-ChocolateyVsixPackage "VSCommands for Visual Studio 2012" "http://visualstudiogallery.msdn.microsoft.com/a83505c6-77b3-44a6-b53b-73d77cba84c8/file/74740/21/SquaredInfinity.VSCommands.VS11.vsix"
 Install-ChocolateyVsixPackage "Spell Checker" "http://visualstudiogallery.msdn.microsoft.com/7c8341f1-ebac-40c8-92c2-476db8d523ce/file/15808/10/SpellChecker.vsix"
 Install-ChocolateyVsixPackage "devColor" "http://visualstudiogallery.msdn.microsoft.com/7dbae8b3-5812-490e-913e-7bfe17f47f1d/file/29587/13/donmar.devColor.vsix"
-Install-ChocolatryVsixPackage "MultiEditing" "http://visualstudiogallery.msdn.microsoft.com/2beb9705-b568-45d1-8550-751e181e3aef/file/93630/4/MultiEdit.vsix"
+Install-ChocolateyVsixPackage "MultiEditing" "http://visualstudiogallery.msdn.microsoft.com/2beb9705-b568-45d1-8550-751e181e3aef/file/93630/4/MultiEdit.vsix"
+Install-ChocoatelyVsixPackage "Productivity Power Tools 2012" "http://visualstudiogallery.msdn.microsoft.com/3a96a4dc-ba9c-4589-92c5-640e07332afd/file/88404/2/ProPowerTools.vsix"
