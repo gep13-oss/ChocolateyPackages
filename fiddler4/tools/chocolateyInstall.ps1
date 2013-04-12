@@ -1,6 +1,6 @@
 ﻿$packageName = 'fiddler4'
 $installerType = 'EXE'
-$url = 'http://www.getfiddler.com/dl/Fiddler4BetaSetup.exe'
+$url = 'http://fiddler2.com/docs/default-source/default-document-library/fiddler4setup.exe?sfvrsn=4'
 $url64 = $url
 $silentArgs = '/S'
 $validExitCodes = @(0,1)
