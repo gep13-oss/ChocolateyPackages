@@ -3,7 +3,7 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>0.9.25</version>
+    <version>0.9.27</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -15,26 +15,33 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
     <releaseNotes>
-    - New: Automatic adding: When checking for duplicates is enabled, use the same duplicates found dialog as is used during manual adding.
-    - New: ToC Editor: Allow searching to find a location quickly when browsing through the book to select a location for a ToC item
-    - New: ToC Editor: Add a button to quickly flatten the entire table of contents
-	- New: Conversion: When converting a single book to EPUB or AZW3, add an option to automatically launch the Table of Contents editor after the conversion completes. Found under the Table of Contents section of the conversion dialog.
-    - Fixed: calibredb: Nicer error messages when user provides invalid input
-    - Fixed: News download: Always use the .jpg extension for jpeg images as apparently Moon+ Reader cannot handle .jpeg
-    - Fixed: Fix Book Details popup keyboard navigation doesn't work on a Mac
-    - Fixed: Fix a regression that caused the case of the book files to not be changed when changing the case of the title/author on case insensitive filesystems
-	- New News Source: Fortune Magazine by Rick Shang
-	- New News Source: Eclipse Online by Jim DeVona
-    - Improved News Source: RTE news
-    - Improved News Source: Various Polish news sources
-	- Improved News Source: Psychology Today
-	- Improved News Source: Foreign Affairs
-	- Improved News Source: History Today
-	- Improved News Source: Harpers Magazine (printed edition)
+    - New: Metadata download: Add two new sources for covers: Google Image Search and bigbooksearch.com.
+    - New: Content server: Allow specifying a reestriction to use for the server when embedding it as a WSGI app.
+    - New: Get Books: Add a plugin for the Koobe Polish book store
+	- New: calibredb add_format: Add an option to not replace existing formats. Also pep8 compliance.
+	- New: Allow restoring of the ORIGINAL_XXX format by right-clicking it in the book details panel
+    - Fixed: AZW3 Input: Do not fail to identify JPEG images with 8BIM headers created with Adobe Photoshop.
+    - Fixed: Amazon metadata download: Ignore Spanish edition entries when searching for a book on amazon.com
+    - Fixed: TXT Input: When converting a txt file with a Byte Order Mark, remove the Byte Order Mark before further processing as it can cause the first line of the text to be mis-interpreted.
+    - Fixed: Get Books: Fix searching for current book/title/author by right clicking the get books icon
+	- Fixed: Get Books: Update nexto, gutenberg, and virtualo store plugins for website changes
+	- Fixed: Amazon metadata download: When downloading from amazon.co.jp handle the 'Black curtain redirect' for adult titles.
+	- Fixed: When extracting zip files do not allow maliciously created zip files to overwrite other files on the system
+	- Fixed: RTF Input: Handle RTF files with invalid border style specifications
+	- New News Source: Economia by Manish Bhattarai
+	- New News Source: Universe Today by seird
+	- New News Source: The Galaxy's Edge by Krittika Goyal
+    - Improved News Source: The Escapist
+    - Improved News Source: San Francisco Chronicle
+	- Improved News Source: The Onion
+	- Improved News Source: Fronda
+	- Improved News Source: Tom's Hardware
+	- Improved News Source: New Yorker
+	- Improved News Source: Financial Times UK
 	- Improved News Source: Business Week Magazine
-	- Improved News Source: The Hindu
-	- Improved News Source: Irish Times
-	- Improved News Source: Le Devoir
+	- Improved News Source: Victoria Times
+	- Improved News Source: tvxs
+	- Improved News Source: The Independent
     </releaseNotes>
   </metadata>
 </package>
