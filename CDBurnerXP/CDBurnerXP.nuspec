@@ -3,7 +3,7 @@
   <metadata>
     <id>cdburnerxp</id>
     <title>CDBurnerXP</title>
-    <version>4.5.0.3717</version>
+    <version>4.5.1.3868</version>
     <authors>Canneverbe Limited</authors>
     <owners>Gary Ewan Park</owners>
     <summary>CDBurnerXP - burn CDs and DVDs for free!</summary>
@@ -15,15 +15,15 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/CDBurnerXP/CDBurnerXP.png</iconUrl>
     <releaseNotes>
-    - Changed/Improved Feature: More details on file system restrictions (length limit)
-    - Changed/Improved Feature: Property dialog now works recursively if multiple files/folders are selected
-    - Fixed: COMException
-    - Fixed: Release all locked files immediately if compilation is closed
-    - Fixed: Upgrade code for x64 bit MSI packages
-    - Fixed: Do not allow creating new folders when file with same name already exists
-    - Fixed: Possible COMExceptions when deleting files
-    - Fixed: Prevent adding files with file names longer than technically possible (should probably be changed later so that files are renamed before the burning process starts)
-    - Fixed: Caching options don't work
+    - New Feature: Added "-format" option with ISO for command line version
+	- New Feature: Reintroduced 2.88MB boot images
+	- Changed/Improved Feature: Refresh disc info automatically (in disc info dialog)
+    - Fixed: UDF version is not being saved
+    - Fixed: Crash when starting the burning process
+    - Fixed: Starting disc spanning may take an unnecessarily long time
+    - Fixed: Adding files from UNC paths (M3U)
+    - Fixed: MSI install/uninstall order
+    - Fixed: Size of imported files is always 0
     </releaseNotes>
   </metadata>
 </package>
