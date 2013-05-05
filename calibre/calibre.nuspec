@@ -17,7 +17,7 @@
     <releaseNotes>
     - New: Bulk metadata download: Allow reviewing of the downloaded metadata before it is applied
     - New: FB2 Output: Write ISBN, pubdate, tags and publisher metadata when creating fb2 files
-    - Fixed: When reading metadata from EPUB 3 files, use the first <dc:title> element rather than the last.
+    - Fixed: When reading metadata from EPUB 3 files, use the first dc:title element rather than the last.
     - Fixed: Fix regression causing the search query parser to not parse search string containing newlines/tabs instead of spaces correctly
     - Fixed: Kobo driver: Fix covers written to wrong place on OS X/linux when books sent to SD card. Fix covers not sent to SD card is images directory missing.
     - Fixed: Fix 'Preferences - Behavior - Virtual library to use when this library is opened' being applied only on calibre startup and not when switching to the library
