@@ -3,7 +3,7 @@
   <metadata>
     <id>cdburnerxp</id>
     <title>CDBurnerXP</title>
-    <version>4.5.1.3868</version>
+    <version>4.5.1.4003</version>
     <authors>Canneverbe Limited</authors>
     <owners>Gary Ewan Park</owners>
     <summary>CDBurnerXP - burn CDs and DVDs for free!</summary>
@@ -15,15 +15,13 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/CDBurnerXP/CDBurnerXP.png</iconUrl>
     <releaseNotes>
-    - New Feature: Added "-format" option with ISO for command line version
-	- New Feature: Reintroduced 2.88MB boot images
-	- Changed/Improved Feature: Refresh disc info automatically (in disc info dialog)
-    - Fixed: UDF version is not being saved
-    - Fixed: Crash when starting the burning process
-    - Fixed: Starting disc spanning may take an unnecessarily long time
-    - Fixed: Adding files from UNC paths (M3U)
-    - Fixed: MSI install/uninstall order
-    - Fixed: Size of imported files is always 0
+	- Changed/Improved Feature: Adjusted ISO split file name for sorting
+    - Fixed: Cancel does not work
+    - Fixed: Disc name is not set when burning data discs per command line
+    - Fixed: Issues with size calculation
+    - Fixed: Incorrect disc size descriptions
+    - Fixed: Adding certain files with similar names fails with an exception
+    - Fixed: File names are now automatically renamed to match the file system specifications
     </releaseNotes>
   </metadata>
 </package>
