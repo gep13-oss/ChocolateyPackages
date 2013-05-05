@@ -3,7 +3,7 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>0.9.28</version>
+    <version>0.9.29</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -15,35 +15,25 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
     <releaseNotes>
-    - New: Virtual Libraries: Easily partition your large calibre library into smaller 'virtual' libraries
-    - New: Book details panel: Allow copying of links in the book details panel by right clicking on them.
-    - New: Kobo driver: Add support for the new Kobo Aura HD and firmware version 2.5.0
-	- New: Metadata download: When showing downloaded covers, allow right clicking on a cover to view a full size version.
-	- New: Driver for Easy player cyber book e touch and Droid 4
-	- New: Edit ToC: Allow the size of the panels in the location view to be adjusted
-	- New: When copying to a library by path, make it more efficient to choose between moving and copying
-	- New: When checking if a zip/rar file is a comic or contains a single ebook to be auto-extracted, ignore thumbs.db files inside the archive
-    - Fixed: EPUB Input: Fix handling of EPUB files that contain images with non-ascii filenames.
-    - Fixed: Device driver: Detect Laser EB720 with newer firmware.
-    - Fixed: Fix bug in Danish translation causing books with language Ingush being incorrectly translated as Engelsk
-    - Fixed: PDF Output: Fix hyperlinks not working when converting an EPUB whose individual files have names with URL unsafe characters.
-	- Fixed: Book polishing: Fix inserting cover into an epub with no cover could lead to incorrect guide entry if the opf is not at the root of the epub.
-	- Fixed: ZIP Output: Fix links containing backslashes on windows
-	- Fixed: Fix polishing of AZW3 files not working on OS X.
-	- Fixed: Polishing books: Fix polishing erroring out if the book being polished has no cover
-	- Fixed: RTF Input: Add partial support for hyperlinks to web resources.
-	- Fixed: Fix book details panel showing incorrect info after deleting books from a connected device
-	- New News Source: Voice of America by Krittika Goyal
-	- New News Source: Lightspeed Magazine by Jose Pinto
-	- New News Source: The Feature by Jose Pinto
-    - Improved News Source: NZZ Online
-    - Improved News Source: Baltimore Sun
-	- Improved News Source: Metro NL
-	- Improved News Source: Financial Times
-	- Improved News Source: EcoGeek
-	- Improved News Source: comics.com
-	- Improved News Source: Psychology Today
-	- Improved News Source: Science News
+    - New: Bulk metadata download: Allow reviewing of the downloaded metadata before it is applied
+    - New: FB2 Output: Write ISBN, pubdate, tags and publisher metadata when creating fb2 files
+    - Fixed: When reading metadata from EPUB 3 files, use the first <dc:title> element rather than the last.
+    - Fixed: Fix regression causing the search query parser to not parse search string containing newlines/tabs instead of spaces correctly
+    - Fixed: Kobo driver: Fix covers written to wrong place on OS X/linux when books sent to SD card. Fix covers not sent to SD card is images directory missing.
+    - Fixed: Fix 'Preferences - Behavior - Virtual library to use when this library is opened' being applied only on calibre startup and not when switching to the library
+	- Fixed: PDF metadata: When rendering the first page as the cover, respect the PDF CropBox.
+	- Fixed: PDF Output: Fix link generation broken on windows when converting epubs if the filenames contained uppercase letters.
+	- Fixed: Tolino driver: Fix card and main memory swapped on windows
+	- Fixed: FB2 Output: Fix images being ignored when converting a EPUB with image filenames that contain URL unsafe characters.
+	- Fixed: EPUB Input: Fix page margins specified in Adobe page template files with incorrect mime-types not being removed.
+	- New News Source: Diario Extra by Douglas Delgado
+    - Improved News Source: The New Republic
+    - Improved News Source: io9
+	- Improved News Source: What if
+	- Improved News Source: Orlando Sentinel
+	- Improved News Source: Read It Later recipe
+	- Improved News Source: Smithsonian
+	- Improved News Source: Business Week Magazine
     </releaseNotes>
   </metadata>
 </package>
