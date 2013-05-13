@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>VisualStudio2012Premium.msdn</id>
+    <title>Visual Studio 2012 - Premium</title>
+    <version>11.0.1</version>
+    <authors>Microsoft</authors>
+    <owners>Gary Ewan Park</owners>
+    <summary>From small development shops to large companies, most software is built by a team. Visual Studio Premium 2012 offers an integrated ALM solution to bring together stakeholders, users, and software development functions to deliver compelling applications as a unified team.</summary>
+    <description>This silently installs the 90 day trial (http://msdn.microsoft.com/en-us/library/gg442061.aspx) of Visual Studio Premium along with the Microsoft .Net 4.5 Framework SDK. All Optional Features such as Blend, Sql Dev tools, Web dev tools, etc. are not installed. However, from the "Programs and Features" menu in Windows you can right click Microsoft Visual Studio Premium and choose "Change" and then add the features you want. This may take quite a while to install so grab your Chubaka mask and practice your wookie grunts with your co-workers while you wait!</description>
+    <projectUrl>http://www.microsoft.com/visualstudio/11/en-us</projectUrl>
+    <tags>Microsoft Visual Studio 2012 Premium IDE ALM</tags>
+    <licenseUrl>http://msdn.microsoft.com/en-US/cc300389.aspx</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <!--<iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/VisualStudio2012Premium.msdn/VisualStudio2012Premium.msdn.gif</iconUrl>-->
+    <dependencies>
+      <dependency id="DotNet4.5" />
+    </dependencies>
+    <releaseNotes></releaseNotes>
+  </metadata>
+</package>
