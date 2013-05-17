@@ -3,7 +3,7 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>0.9.30</version>
+    <version>0.9.31</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -15,26 +15,19 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
     <releaseNotes>
-    - New: Kobo driver: Add support for showing 'Archived' books on the device. Also up the supported firmware version to 2.5.3.
-    - New: Driver for Blackberry 9790
-	- New: Add a tweak to turn off the highlighting of the book count when using a virtual library (Preferences - Tweaks)
-	- New: Add a button to clear the viewer search history in the viewer Preferences, under Miscellaneous
-	- New: Add keyboard shortcuts to clear the virtual Library and the additional restriction (Ctrl+Esc and Alt+Esc). Also use Shift+Esc to bring keyboard focus back tot he book list. Can be changed under Preferences - Keyboard
-	- New: Docx metadata: Read the language of the file, if present
-    - Fixed: Kobo driver: Fix unable to read SD card on OS X/Linux
-    - Fixed: Content server: Fix unable to download ORIGINAL_* formats
-    - Fixed: Fix regression that broke searching for terms containing a quote mark
-    - Fixed: Fix regression that broke conversion of txt files when no input encoding is specified
-	- Fixed: When changing to a virtual library, refresh the Book Details panel.
-	- Fixed: Fix regression that caused searching for user categories to break.
-	- Fixed: Fix error when downloading only covers and reviewing downloaded metadata.
-	- Fixed: MOBI metadata: Strip XML unsafe unicode codepoints when reading metadata from MOBI files.
-	- Fixed: Txt Input: Use the gbk encoding for txt files with detected encoding of gb2312.
-	- Fixed: When pressing Ctrl+Home/End preserve the horizontal scroll position in the book list
-    - Improved News Source: NSFW
-    - Improved News Source: Go Comics
-	- Improved News Source: Various Polish news sources
-	- Improved News Source: The Sun
+    - New: Book list: Highlight the current cell in the book list, particularly convenient for usage with the keyboard.
+    - New: Allow creation of advanced rules for column icons.
+	- New: Driver for the limited edition SONY PRS-T2N
+	- New: MOBI Input: Add support for MOBI/KF8 files generated with the to be released kindlegen 2.9.
+    - Fixed: ToC Editor: Fix incorrect playOrders in the generated toc.ncx when editing the toc in an epub file. This apparently affects FBReader.
+    - Fixed: PDF Input: Fix crashes on some malformed files, by updating the PDF library calibre uses (poppler 0.22.4)
+    - Fixed: PDF Output: Ignore invalid links instead of erroring out on them.
+    - Fixed: MOBI Output: Fix space errorneously being removed when the input document contains a tag with leading space and sub-tags.
+	- Fixed: Search and replace wizard: Fix generated html being slightly different from the actual html in the conversion pipeline for some input formats (mainly HTML, CHM, LIT).
+	- Fixed: Nook Color/Touch driver: Scan for ebooks in the entire main memory, not just under My Files
+	- New News Source: nrc-next by Niels Giesen
+    - Improved News Source: Weblogs SL
+    - Improved News Source: .net magazine
     </releaseNotes>
   </metadata>
 </package>
