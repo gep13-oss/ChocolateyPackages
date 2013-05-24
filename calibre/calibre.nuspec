@@ -26,7 +26,7 @@
 	- Fixed: When setting metadata using the edit metadata dialog, convert newlines, tabs etc. to normal spaces
 	- Fixed: EPUB/AZW3 Output: Fix pages that contain only an svg image being regarded as empty and removed during splitting
 	- Fixed: AZW3 Input: Handle files that use unnecessary svg: prefixes.
-	- Fixed: EPUB Input: Handle EPUB files that have no <metadata> section in their OPF.
+	- Fixed: EPUB Input: Handle EPUB files that have no metadata section in their OPF.
 	- Fixed: Get Books: Fix Foyles UK store plugin.
 	- New News Source: WirtschaftsWoche Online by Hegi
     - Improved News Source: Wall Street Journal
