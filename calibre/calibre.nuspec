@@ -3,7 +3,7 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>0.9.32</version>
+    <version>0.9.33</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -15,26 +15,25 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
     <releaseNotes>
-    - New: Show the number of currently selected books in the status bar at the bottom of the book list
-    - New: Driver for PocketBook Touch 623 and Yarvik tablet Xenta 13c
-	- New: When editing dates such as published, allow pressing the minus key to clear the date and the = key to set the date to today.
-    - Fixed: EPUB/AZW3 Output: Fix regression that caused erros when trying to convert documents that have URLs with invalid (non-utf-8) quoting.
-    - Fixed: When backing up metadata automatically remove XML invalid chars, instead of erroring out
-    - Fixed: ebook-viewer: Fix --debug-javascript option causing an error when running from a binary build on os x and linux
-    - Fixed: Fix switch library dialog and menu both popping up when clicking the library button in some window managers
-	- Fixed: Apple driver: Fix a regression in 0.9.31 that could cause sending books to the device to hang
-	- Fixed: When setting metadata using the edit metadata dialog, convert newlines, tabs etc. to normal spaces
-	- Fixed: EPUB/AZW3 Output: Fix pages that contain only an svg image being regarded as empty and removed during splitting
-	- Fixed: AZW3 Input: Handle files that use unnecessary svg: prefixes.
-	- Fixed: EPUB Input: Handle EPUB files that have no metadata section in their OPF.
-	- Fixed: Get Books: Fix Foyles UK store plugin.
-	- New News Source: WirtschaftsWoche Online by Hegi
-    - Improved News Source: Wall Street Journal
+    - New: PDF Output: Add an option to generate a printable Table of Contents (that lists page numbers). Useful if you intend to print out the PDF.
+    - New: Replace the book counts in the choose library button and next to the virtual library button with the names of the current library and virtual library. The count information is now displayed in the status bar at the bottom.
+	- New: When reviewing downloaded metadata, add a button to view the book being reviewed.
+	- New: Get Books: Add SONY Reader Store (Australia).
+	- New: For users running calibre from source, note that calibre has moved to using git for source control. See http://www.mobileread.com/forums/showthread.php?t=214465 for details
+    - Fixed: Windows build: Update the version of Qt calibre uses to fix crashes on some Windows 8 64 bit machines with touchscreens
+    - Fixed: Fix error when using _daysago in search queries.
+    - Fixed: Kobo driver: When deleting books from the Kobo Aura, do not leave empty entries on the home screen. Also show downloaded books stored in the SD card as on the card, not the main memory.
+    - Fixed: Get Books: Fix price information for Sony store incorrect, also fix libri.de store plugin
+	- Fixed: Fix error generated when changing libraries with the quickview window open
+	- Fixed: Fix regression that broke clicking on column headers in the device views
+	- New News Source: Various Polish News sources by Tomasz Dlugoz
+    - Improved News Source: Folha de Sao Paolo
     - Improved News Source: Various Polish news sources
-	- Improved News Source: Handelsblatt
-	- Improved News Source: The Australian
-	- Improved News Source: Las Vegas Review
-	- Improved News Source: NME
+	- Improved News Source: Melbourne Herald Sun
+	- Improved News Source: Hindu Business Line
+	- Improved News Source: .net magazine
+	- Improved News Source: Pocket
+	- Improved News Source: Tagesschau.de
     </releaseNotes>
   </metadata>
 </package>
