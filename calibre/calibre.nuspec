@@ -3,7 +3,7 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>0.9.37</version>
+    <version>0.9.38</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -15,22 +15,22 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
     <releaseNotes>
-    - New: Conversion: Add option to embed all referenced fonts
-    - New: ToC Editor: When generating a ToC from files, if the file has no text, do not skip it. Instead create an entry using the filename of the file.
-	- New: AZW3 Input: Add support for the page-progression-direction that is used to indicate page turns should happen from right to left. The attribute is passed into EPUB when converting.
-	- New: ebook-convert: Add a --from-opf option to read metadata from OPF files directly, instead of having to run ebook-meta --from-opf after conversion
-    - Fixed: PDF Output: Fix Table of Contents being added to the end of the PDF even without the Add Table of Contents option being enabled.
-    - Fixed: When auto-merging books on add, also merge identifiers.
-    - Fixed: Fix an error when using the Template Editor to create a template that uses custom columns.
-    - Fixed: LRF Output: Fix &quot; entities in attribute values causing problems
-	- Fixed: News download: Apply the default page margin conversion settings. Also, when converting to PDF, apply the pdf conversion defaults.
-	- Fixed: Fix a regression that broke scanning for books on all devices that used the Aluratek Color driver.
-	- Fixed: fetch-ebbok-metadata: Fix --opf argument erroneously requiring a value
-	- Fixed: When waiting before sending email, log the wait.
-    - Improved News Source: taz.de (RSS)
-    - Improved News Source: Miradas al sur
-	- Improved News Source: Frontline
-	- Improved News Source: La Nacion (Costa Rica)
+    - New: Book polishing: Add option to embed all referenced fonts when polishing books using the 'Polish Books' tool.
+    - New: DOCX Input: Add support for clickable (hyperlinked) images
+    - New: DOCX Input: Insert page breaks at the start of every new section
+	- New: Drivers for Trekstor Pyrus Maxi and PocketBook Surfpad 2
+	- New: DOCX Input: Add support for horizontal rules created by typing three hyphens and pressing enter.
+    - Fixed: Fix detection of SD Card in some PRS-T2N devices
+    - Fixed: MOBI Input: Fix a regression that broke parsing of MOBI files with malformed markup that also used entities for apostrophes.
+    - Fixed: Get Books: Update Woblink store plugin
+    - Fixed: Metadata download dialog: Prevent the buttons from being re-ordered when the Next button is clicked.
+    - Fixed: PDF Output: Fix links that point to URLs with query parameters being mangled by the conversion process.
+	- Fixed: DOCX Input: Fix links pointing to locations in the same document that contain multiple, redundant bookmarks not working.
+	- Fixed: EPUB/AZW3 Output: Fix splitting on page-break-after with plain text immediately following the split point causing the text to be added before rather than after the split point.
+	- Fixed: DOCX Input: handle bookmarks defined at the paragraph level
+	- Fixed: DOCX Input: Handle hyperlinks created as fields
+	- New News Source: Democracy Now by Antoine Beaupre
+    - Improved News Source: iprofessional
     </releaseNotes>
   </metadata>
 </package>
