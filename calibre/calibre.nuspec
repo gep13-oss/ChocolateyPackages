@@ -3,7 +3,7 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>0.9.43</version>
+    <version>0.9.44</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -15,26 +15,19 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
     <releaseNotes>
-    - New: TXT Input: Allow using various markdown extensions for more features when converting markdown formatted txt files. See http://pythonhosted.org/Markdown/extensions/index.html for details.
-    - New: Sending by email: Allow sending by email to an arbitrary combination of email address. Access it via the 'Select recipients' menu entry in the Email To menu.
-    - New: A new 'Sort By' action for the right click menu. This allows sorting on all columns in the library, not just the visible columns. To use it go to Preferences--Toolbars and add it to 'The context menu for books in the calibre library'
-    - New: Allow adding images into the comments field, by clicking on the insert link button in the comments editor in the edit metadata dialog.
-	- New: Allow skipping the confirm bulk reconvert dialog
-	- New: EPUB Input: If the EPUB file identifies an actual cover image in addition to the titlepage html file, use the cover image instead of rendering the titlepage. This is faster and has the advantage that an EPUB to EPUB conversion preserves internal cover structure.
-	- New: Get Books: Improve searching by removing punctuation from title/authors before matching.
-    - Fixed: Conversion: Fix empty inline tags that are the second child of a paragraph causing text change location.
-    - Fixed: Fix book count in tooltip of choose library button not updating
-    - Fixed: Kobo driver: When deleting shelves that have been synced, the Activity entry for the shelf was not being deleted. This left a tile for the shelf on the home screen of the Glo and AuraHD.
-    - Fixed: Comments editor: The Insert Link button has no effect until the user clicks inside the comments box, therefore disable it until it is ready, to prevent confusion.
-    - Fixed: Get Books: Update various Polish store plugins
-	- New News Source: Various French news sources by Malah
-	- New News Source: La Capital de Rosario by Darko Miletic
-	- New News Source: Jot Down by desUbiKado
-	- New News Source: Private Eye by Martyn Pritchard
-    - Improved News Source: The Sunday Times UK and The Times Online
-	- Improved News Source: Telegraph UK
-	- Improved News Source: Le Monde: Edition abonnés
-	- Improved News Source: The Scotsman
+    - New: Add an option to display all virtual libraries as tabs above the book list.
+    - New: An improved cover trimming algorithm to automatically detect and remove borders and extra space from the edge of cover images. To try it use the 'Trim' button in the edit metadata dialog. This can sometimes remove too much so if you dont like the result, just click cancel. You can make the algorithm more or less aggressive via Preferences--Tweaks
+    - New: Allow customizing the comic metadata reader plugin via Preferences--Plugins to read the series index from either the volume or the issue number of the comic.
+    - New: Linux MTP driver: Add ids for some newer devices.
+	- New: Add a trim cover option to the bulk metadata edit dialog
+	- New: Make the book information dialog user resizable, with a splitter between the cover and the info panel. Also change the background of the cover panel for books that have been marked using the Temp marker plugin.
+	- New: Driver for Samsung Galaxy Young Android phone
+    - Fixed: PDF Output: Do not abort conversion if the document being converted has an HTML cover (found in some broken EPUB 
+    - Fixed: RTF Input: When converting RTF files with no codepage, use the input encoding setting as the codepage.
+	- New News Source: Daily Express by Dave Asbury
+    - Improved News Source: The Independent
+	- Improved News Source: El Periodica de Aragon
+	- Improved News Source: El Correo
     </releaseNotes>
   </metadata>
 </package>
