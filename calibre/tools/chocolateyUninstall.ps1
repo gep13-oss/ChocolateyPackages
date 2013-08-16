@@ -2,7 +2,7 @@ $package = "Calibre"
 $packageWildCard = $package + "*";
 
 try {
-	$app = Get-WmiObject -Class Win32_Product | Where-Object { $_.Name -like $packageWildCard  -and ($_.Version -eq "0.9.41") }
+	$app = Get-WmiObject -Class Win32_Product | Where-Object { $_.Name -like $packageWildCard  -and ($_.Version -eq "0.9.42") }
 	$result = $app.Uninstall();
 	
 	Write-ChocolateySuccess $package

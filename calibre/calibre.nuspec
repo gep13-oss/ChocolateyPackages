@@ -3,7 +3,7 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>0.9.41</version>
+    <version>0.9.42</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -15,23 +15,17 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
     <releaseNotes>
-    - New: Add a button to clear the current virtual library easily
-    - New: Driver for Surftab Ventos
-    - New: Ebook-viewer: Allow re-ordering bookmarks in the bookmarks manager by drag and drop.
-    - Fixed: DOCX Input: Fix conversion breaking for files that use heading style paragraphs to insert line rules
-    - Fixed: Content server: Fix last search query not being fully sanitized in results page
-    - Fixed: Book polishing: Fix page margins being removed if an unused font was found during subsetting of embedded fonts.
-    - Fixed: PDF Output: Do not error out when the input document uses a font that cannot be subset, such as the Symbol font. Instead print a warning and embed the full font.
-    - Fixed: Conversion: Fix a regression in the last release that broke conversion of a few files with comments just before a chapter start.
-	- New News Source: Blindbuch and No names, No jackets by Armin Geller
-	- New News Source: El Tribuno Salta and Jujuy by Darko Miletic
-    - Improved News Source: Something Awful
-	- Improved News Source: Spektrum der Wissenschaft
-	- Improved News Source: mediapart.fr
-	- Improved News Source: Dilbert
-	- Improved News Source: Antyweb
-	- Improved News Source: Scientific American
-	- Improved News Source: taz.de (RSS)
+    - New: When downloading metadata from Amazon, convert the amazon categories into tags. You can turn this off by going to Preferences--Metadata download and configuring the Amazon source.
+    - New: Kobo driver: Add an option to modify the styling in books being sent to the device, based on a template on the device.
+    - New: Get Books: Add support for two more Polish ebook stores: cdp.pl and ebooki.allegro.pl
+    - New: 	calibredb: Add a new clone command to create clones of libraries with the same custom columns, virtual libraries, etc. as the current library.
+    - Fixed: MOBI metadata: Do not fail to set metadata in MOBI files if they have EXTH fields with NULL pointers to a cover or thumbnail.
+    - Fixed: Fix editing of book metadata failing when its timestamp is out of range for the system.
+    - Fixed: Fix renaming a user category to the same name it already has erases the user category.
+    - Fixed: Fix drag 'n drop of cover onto conversion dialog not working
+    - Fixed: Device drivers: Explicitly fsync() all files when writing to devices, to reduce chances of file corruption if the device is disconnected while jobs are running
+	- Fixed: Fix calibre not appearing in Ubuntu's 'Open with..' menu
+    - Improved News Source: PC World
     </releaseNotes>
   </metadata>
 </package>
