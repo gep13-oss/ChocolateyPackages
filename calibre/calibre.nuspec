@@ -3,7 +3,7 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>1.4.0</version>
+    <version>1.5.0</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -15,30 +15,20 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
     <releaseNotes>
-    - New: Column icons: Allow the use of multiple icons with column icon rules.
-    - New: Kobo driver: Add support for new cover handling in Kobo Aura with updated firmware
-	- New: Driver for Icarus Essence
-	- New: Show a warning when attempting to copy books between libraries that do not have the same set of custom columns.
-	- New: EPUB/AZW3 Output: Use shorthand forms for margin, padding and border CSS properties, where possible
-	- New: Allow colons in identifier values, needed for using URIs as identifiers
-	- New: Comments editor: Allow treating arbitrary URLs as images
-	- New: Show full path of library under mouse in status bar when switching/renaming/deleting libraries via the calibre library button.
-	- New: DOCX Input: Add support for embedded EMF images that are just wrappers around an actual raster image.
-	- Fixed: Conversion: Fix font subsetting not working for large fonts with more than 4000 glyphs, such as CJK fonts
-    - Fixed: HTML Input: Fix a regression that broke processing of HTML files that contain meta tags with dc: namespaced attribute values.
-    - Fixed: Fix switching to an empty virtual library not blanking the book details panel
-	- Fixed: Keep position when deleting tags in the tag editor
-	- Fixed: Book details panel: Render custom comments fields the same as the builtin comments field. In particular this fixes problems caused by wide text and images in custom comments fields.
-	- Fixed: Metadata jackets: Do not error out when using a custom template with some custom fields that are not present.
-	- Fixed: AZW3 Output: Dont choke on invalid (undecodable) links in the input document
-	- Fixed: Cover grid: Respect the double click on library view tweak
-	- Fixed: Fix covers set by drag and drop or pasting in the edit metadata dialog showing compression artifacts due to aggressive jpeg compression
-	- Fixed: Conversion: Fix a bug that could cause incorrect border values to be used when cascading, shorthand border CSS is present.
-	- Fixed: Fix regression in 1.3 that caused the book list to not track the current book when using Next/Previous in the edit metadata dialog.
-	- New News Source: Sage News by Brian Hahn
-	- New News Source: Il Cambiamento by ghib9
-    - Improved News Source: Liberation
-	- Improved News Source: Politika
+    - New: Driver for Woxter Scriba
+    - New: Bulk metadata edit: Allow setting the comments for all selected books and also allow cloning the covers. Cloning covers means that the cover of the first selected book will be set for all other selected books.
+	- Fixed: Windows: Improved device ejection code. Eject individual drives before trying to eject the device. This fixes incomplete ejection with the Nook devices.
+    - Fixed:Catalogs: fix exclude tags rules not working in non-English locales when creating catalogs in EPUB/MOBI formats.
+    - Fixed: Kobo driver: Fix reading status being cleared when connecting to a Kobo with older firmware and metadata management set to automatic.
+	- Fixed: Content server: Sort virtual libraries by name
+	- Fixed: DOCX Input: Convert tabs in the docx file into non-breaking spaces in the output document. Note that custom tab stops are not supported.
+	- Fixed: Conversion: Handle the style attribute on the html tag
+	- Fixed: Handle databases with invalid ratings link tables
+	- Fixed: DOCX Input: Handle DOCX files with missing referenced styles
+	- Fixed: Update amazon metadata download plugin for changes to the Amazon website
+    - Improved News Source: Slate
+	- Improved News Source: El Universal (VE)
+	- Improved News Source: GoComics
     </releaseNotes>
   </metadata>
 </package>
