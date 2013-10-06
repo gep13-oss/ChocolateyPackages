@@ -3,7 +3,7 @@
   <metadata>
     <id>cdburnerxp</id>
     <title>CDBurnerXP</title>
-    <version>4.5.2.4214</version>
+    <version>4.5.2.4255</version>
     <authors>Canneverbe Limited</authors>
     <owners>Gary Ewan Park</owners>
     <summary>CDBurnerXP - burn CDs and DVDs for free!</summary>
@@ -15,13 +15,11 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/CDBurnerXP/CDBurnerXP.png</iconUrl>
     <releaseNotes>
-	- Changed/Improved Feature: Adjusted ISO split file name for sorting
-    - Fixed: Cancel does not work
-    - Fixed: Disc name is not set when burning data discs per command line
-    - Fixed: Issues with size calculation
-    - Fixed: Incorrect disc size descriptions
-    - Fixed: Adding certain files with similar names fails with an exception
-    - Fixed: File names are now automatically renamed to match the file system specifications
+	- Changed/Improved Feature: When caching files is enabled, CDBurnerXP now saves the original non-cached path for data compilations
+    - Fixed: Before burning ISO images, an empty disc should be required (instead of just a writable one)
+    - Fixed: CDBurnerXP does not ask for erasing the disc if an empty disc is required
+    - Fixed: ISO burning does not show any progress
+    - Fixed: Errors occuring during ISO burning or copying are not displayed
     </releaseNotes>
   </metadata>
 </package>
