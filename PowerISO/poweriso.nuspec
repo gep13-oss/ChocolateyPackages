@@ -3,7 +3,7 @@
   <metadata>
     <id>poweriso</id>
     <title>PowerISO</title>
-    <version>5.6</version>
+    <version>5.7</version>
     <authors>Power Software Ltd</authors>
     <owners>Gary Ewan Park</owners>
     <summary>PowerISO - All in one solution</summary>
@@ -15,11 +15,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/PowerISO/PowerISO.png</iconUrl>
     <releaseNotes>
-    - New: Support burning to multiple drives simultaneously.
-	- New: Support simulation burning.
-	- New: Support viewing drive and disk information.
-	- New: Support searching within image file.
-    - Fixed: Some minor bug fixes and enhancements.
+    - New: Improve DVD and Blu-ray disc burning..
+	- New: Some minor bug fixes and enhancements.
     </releaseNotes>
   </metadata>
 </package>
