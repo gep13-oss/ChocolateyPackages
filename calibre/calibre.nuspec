@@ -3,7 +3,7 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>1.2.0</version>
+    <version>1.3.0</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -15,23 +15,27 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
     <releaseNotes>
-    - New: Conversion: Add support for the CSS3 rem font size unit
-    - New: MTP devices, such as Android tablets/phones: Allow ignoring any folder on the device, not just top level folders. For newly connected devices, also scan /Android/data/com.amazon.kindle for books by default (newer versions of the Kindle app place downloaded files there).
-    - New: Speed up sorting when the book list is showing a restricted set of books, such as when the results of a search are displayed or a virtual library is used.
-	- New: Edit metadata dialog: Add an undo option for the Trim cover button.
-	- Fixed: Amazon metadata download: Update to handle website changes at amazon.com
-    - Fixed: PDF Output: Workaround a bug in the library calibre uses to render HTML to PDF that caused text in some documents that used small-caps fonts to not render correctly.
-    - Fixed: Kobo driver: When a sideloaded kepub is added from a Kobo device to the calibre library, it is added as an epub, but the file copied is corrupt.
-	- Fixed: Fix changing the user interface language in the welcome wizard causing some parts of the interface to remain in the old language until calibre is restarted.
-	- Fixed: Fix regression in 1.0 that broke setting author names with the | character in them.
-	- Fixed: Content server: When running from inside the main calibre program, do not restrict the books shown based on the current virtual library in the main program. If you wish to restrict the books shown in the content server, use Preferences -- Sharing over the net.
-	- Fixed: Output dates in the local timezone instead of UTC when generating CSV catalogs
-	- Fixed: Library maintenance: When doing a check library instead of dumping the database to SQL and restoring it, run a VACUUM. This works around various bugs in the dump and restore capabilities of apsw.
-	- Fixed: Edit metadata dialog: Fix adding an image to an empty comments block not working
-	- Fixed: Conversion: Fix font declarations with invalid font-family values causing conversion to abort when subsetting is enabled.
-	- Fixed: MOBI Output: Fix conversion of some super/sub scripts failling if they are the first or last element in a paragraph.
-	- Fixed: New database backend: Various improvements to make the backend more robust against databases with invalid/corrupt data in them.
-    - Improved News Source: Countryfile
+    - New: When doing searches or switching between virtual libraries in the main book list, preserve the current book. The currently selected book will remain visible if it is present in the results of the search or the selected virtual library.
+    - New: Drivers for Oppo Find 5 and PocketBook Mini 515
+	- Fixed: DOCX Input: Handle numbered paragraphs where the numbering is specified in the paragraph style, instead of on the paragraph directly. Also support the use of arbitrary, styled text for bullets.
+    - Fixed: DOCX Input: Fix a single line break at the end of a paragraph not being rendered as a blank line.
+    - Fixed: DOCX Input: Fix extra top/bottom margins around headings when the heading style in word does not specify any top/bottom margins.
+	- Fixed: DOCX Input: Handle images in footnotes and endnotes.
+	- Fixed: ODT Input: Only treat the first image as a cover if it is of suitable size, instead of any image in the document.
+	- Fixed: Book polishing: Do not leave behind the old comments when updating metadata if the comments have been deleted in calibre.
+	- Fixed: PDF Output: Fix non-breaking space characters incorrectly rendered in PDF outline.
+	- Fixed: Content server: Fix error in opds feed after using virtual libraries in the main server.
+	- Fixed: Do not scroll the book list horizontally after editing metadata.
+	- Fixed: New database backend: Handle databases that contain multiple tags/series/publishers/etc. that differ only in case.
+	- New News Source: Caravan Magazine by Kovid Goyal
+	- New News Source: Phys Org by Krittika Goyal
+    - Improved News Source: Harvard Business Review
+	- Improved News Source: Jakarta Post
+	- Improved News Source: Jakarta Globe
+	- Improved News Source: Dilema Veche
+	- Improved News Source: Daily Express
+	- Improved News Source: Anandtech
+	- Improved News Source: High Country News
     </releaseNotes>
   </metadata>
 </package>
