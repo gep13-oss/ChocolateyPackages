@@ -3,7 +3,7 @@
   <metadata>
     <id>wixtoolset</id>
     <title>WiX Toolset</title>
-    <version>3.7.1224.20130612</version>
+    <version>3.7.1224.20131031</version>
     <authors>Rob Mensching</authors>
     <owners>Gary Ewan Park</owners>
     <summary>The most powerful set of tools available to create your Windows installation experience. Free and Open Source since 2004!</summary>
@@ -14,9 +14,6 @@
     <licenseUrl>http://wix.codeplex.com/license</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/wixtoolset/wix.gif</iconUrl>
-    <!--<dependencies>
-      <dependency id="" version="" />
-    </dependencies>-->
     <releaseNotes>
 	WiX Toolset v3.7 introduces self-update and reference counting for Bundles. Also includes a number of bug fixes since the v3.6 release.
 	
