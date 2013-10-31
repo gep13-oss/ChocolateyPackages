@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>wixtoolset</id>
+    <title>WiX Toolset</title>
+    <version>3.8.1021-weekly</version>
+    <authors>Rob Mensching</authors>
+    <owners>Gary Ewan Park, Justin Dearing</owners>
+    <summary>The most powerful set of tools available to create your Windows installation experience. Free and Open Source since 2004!</summary>
+    <description>The Windows Installer XML (WiX) is a toolset that builds Windows installation packages from XML source code. The toolset supports a command line environment that developers may integrate into their build processes to build MSI and MSM setup packages. The WiX toolset CodePlex project stores the stable releases and Mercurial repository.</description>
+    <projectUrl>http://wixtoolset.org/</projectUrl>
+    <tags>wix toolset msi xml admin</tags>
+    <copyright>2009 - 2013 RobMensching.com LLC.</copyright>
+    <licenseUrl>http://wix.codeplex.com/license</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/wixtoolset/wix.gif</iconUrl>
+    <releaseNotes>This is a weekly prerelease</releaseNotes>
+  </metadata>
+</package>
