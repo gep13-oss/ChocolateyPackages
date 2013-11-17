@@ -3,7 +3,7 @@
   <metadata>
     <id>poweriso</id>
     <title>PowerISO</title>
-    <version>5.7</version>
+    <version>5.8</version>
     <authors>Power Software Ltd</authors>
     <owners>Gary Ewan Park</owners>
     <summary>PowerISO - All in one solution</summary>
@@ -15,8 +15,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/PowerISO/PowerISO.png</iconUrl>
     <releaseNotes>
-    - New: Improve DVD and Blu-ray disc burning..
-	- New: Some minor bug fixes and enhancements.
+    - New: Support multisession burning.
+	- New: Support creating file checksum(md5 and crc32).
+	- New: PowerISO x64 is released.
+	- Fixed: Some minor bug fixes and enhancements.
     </releaseNotes>
   </metadata>
 </package>
