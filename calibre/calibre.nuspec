@@ -3,7 +3,7 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>1.6.0</version>
+    <version>1.7.0</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -15,35 +15,33 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
     <releaseNotes>
-    - New: Temporary marking of books in the library
-    - New: Get Books: Add Wolne Lektury and Amazon (Canada) ebook stores
-	- New: DOCX Input: Handle hyperlinks in footnotes and endnotes
-	- New: Driver for Sunstech reader
-	- New: Allow using both uri: and url: identifiers to create two different arbitrary links instead of just one in the Book details panel
-	- New: E-book viewer: Make all keyboard shortcuts configurable
-	- New: Conversion: Add an option to not condense CSS rules for margin, padding, border, etc. Option is under the Look and Feel section of the conversion dialog.
-	- New: calibredb: Allow setting of title sort field
-	- New: ebook-meta: Add an --identifier option to set identifiers.
-	- Fixed: Fix a locking error when composite columns containing formats are used and formats are added and or deleted.
-	- Fixed: EPUB Output: Do not strip object tags with type application svg xml in addition to those that use image svg xml.
-	- Fixed: Cover grid: Fix selecting all books with Ctrl and A causing subsequent deselects to not fully work.
-	- Fixed: HTMLZ Output: Fix long titles causing error when converting on windows.
-	- Fixed: Content server: Fix OPDS category links to composite columns
-	- Fixed: E-book viewer: Fix regression that broke import/export of bookmarks
-	- Fixed: E-book viewer: Use the default font size setting for the dictionary view as well.
-	- Fixed: DOCX Input: Avoid using the value attribute for simple numbered lists, to silence the asinine epubcheck
-	- Fixed: HTML Input: Images linked by the poster attribute of the video tag are now recognized and processed.
-	- Fixed: DOCX Input: Fix erorr when converting docx files that have numbering defined with no associated character style.
-	- Fixed: EPUB Metadata: Implementing updating identifiers other than isbn in the epub file from calibre when polishing or exporting the epub
-	- Fixed: Amazon metadata download: Fix parsing of some dates on amazon.de
-	- New News Source: Various Uruguayan news sources by Carlos Alves
-    - Improved News Source: National Geographic Magazine
-	- Improved News Source: New York Review of Books
-	- Improved News Source: Focus (PL)
-	- Improved News Source: Carta Capital
-	- Improved News Source: AM 730
-	- Improved News Source: Ming Pao (HK)
-	- Improved News Source: Neu Osnabrucker Zeitung
+    - New: Cover grid: Allow using images as the background for the cover grid. To choose an image, go to Preferences - Look and Feel - Cover Grid.
+    - New: An option to mark newly added books with a temporary mark. Option is in Preferences - Adding books.
+	- New: Edit metadata dialog: Allow turning off the cover size displayed in the bottom right corner of the cover by right clicking the cover and choosing 'Hide cover size'. It can be restored the same way.
+	- Fixed: Conversion: If both embed font family and the filter css option to remove fonts are set, do not remove the font specified by the embed font family option.
+	- Fixed: Fix a few remaining situations that could cause formats column to show an error message about SHLock
+	- Fixed: Make deleting books to recycle bin more robust. Ensure that the temporary directory created during the move to recycle bin process is not left behind in case of errors.
+	- Fixed: Windows: Check if the books' files are in use before deleting
+	- Fixed: Fix custom device driver swap main and card option not working. Also fix swapping not happening for a few devices on linux
+	- Fixed: Edit metadata dialog: The Edit metadata dialog currently limits its max size based on the geometry of the smallest attached screen. Change that to use the geometry of the screen on which it will be shown.
+	- Fixed: HTMLZ Output: Fix style tag placed inside body tag instead of head tag.
+	- Fixed: HTMLZ Output: Fix inline styles not escaping quotes properly.
+	- Fixed: HTMLZ Output: Fix incorrect handling of some self closing tags like br tag
+	- Fixed: Content server: Fix single item categories not working with reverse proxy setup.
+	- Fixed: Fix a bug that could cause calibre to crash when switching from a large library to a smaller library with marked books.
+	- Fixed: Get Books: Fix downloading of some books in formats that do not have metadata yielding nonsense titles
+	- Fixed: Allow marked book button to be added to main toolbar when device is connected
+	- Fixed: Fix error if a marked book is deleted/merged.
+	- Fixed: Template language: Fix formatter function days_between to compute the right value when the answer is negative.
+	- Fixed: Windows: Fix spurious file in use by other process error if the book's folder contained multiple hard links pointing to the same file
+	- Fixed: Windows: Fix duplicate files being created in very special circumstances when changing title and or author. (the title or author had to be between 31 and 35 characters long and the book entry had to have been created by a pre 1.x version of calibre). You can check if your library has any such duplicates and remove them, by using the Check Library tool (Right click the calibre button on the toolbar and select Library Maintenance - Check Library).
+    - Improved News Source: Wall Street Journal
+	- Improved News Source: Newsweek Polska
+	- Improved News Source: Wired Magazine
+	- Improved News Source: cracked.com
+	- Improved News Source: Television Without Pity
+	- Improved News Source: Carta
+	- Improved News Source: Diagonales
     </releaseNotes>
   </metadata>
 </package>
