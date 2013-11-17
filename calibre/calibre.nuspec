@@ -3,7 +3,7 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>1.10.0</version>
+    <version>1.11.0</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -15,19 +15,22 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
     <releaseNotes>
-    - New: Conversion: Treat .docm the same as .docx files, ignoring any macros in the file.
-    - New: EPUB Output: Auto convert CMYK images to RGB. Works around the inability of Adobe Digital Editions to display CMYK images.
-	- New: Quickview: Add a checkbox to lock the quickview window so that it does not change while moving around in the main book list
-	- Fixed: Fix number of marked books shown in the drop down menu of the Mark Books action not being updated when marked books are deleted (as opposed to being unmarked).
-	- Fixed: Book list: Preserve the current column when using Ctrl+Home or Ctrl+End shortcuts
-	- Fixed: Booklist: Fix using Page Up/Down keys moving book list by one row too many.
-	- Fixed: Metadata download: Do not auto trim downloaded covers as trimming can sometimes have undesirable effects.
-	- Fixed: Template language: Fix zero valued series indices not formatting correctly
-	- Fixed: Fix a regression in 1.9 that broke bibtex catalog creation
-	- Fixed: Quickview: Auto-close the quickview window when changing libraries. You have to open it again in the new library.
-	- Fixed: Linux binary build: Update the bundled version of zlib to fix library compatibility on some newer linux distros that have libpng16 compiled to require newer zlib versions
-    - Improved News Source: New York Review of Books
-	- Improved News Source: Various Polish news sources
+    - New: Kobo driver: Support the new firmware version 3.0.0 for Kobo devices
+    - New: Content server: Show the name of the virtual library at the top when browsing books in a virtual library.
+	- New: Add a keyboard shortcut (Ctrl+*) to convert the current search into a temporary virtual library.
+	- New: Template language: Add a transliterate function, useful to convert metadata in other languages into its phonetic English representation, when exporting books from calibre.
+	- New: Remove the button to toggle search result highlighting from next to the search bar, as too many people click it accidentally and then do not realize what they have done, despite the confirmation message that pops up. The button can be restored via Preferences - Searching
+	- New: Wireless driver: Remove old non-streaming networking code. Apps that still use it must be updated. A message will popup notifying the user of the need to update if such an app is encountered.
+	- New: Linux: Add an option to cause calibre to detach from its controlling terminal (--detach)
+	- Fixed: DOCX Input: Fix page-breaks created as a page break inside an otherwise empty paragraph not being rendered on conversion to PDF.
+	- Fixed: Windows: When viewing books with an external viewer, check if windows will open the file with calibre itself, and if so, popup an error message telling the user to install some software capable of viewing the file.
+	- Fixed: Wireless driver: Fix a bug that could cause the wrong path information to be sent to the device in some circumstances.
+	- Fixed: Linux binary build: Return proper exit codes when raising SystemExit
+	- Fixed: Transliterate the Arabic Alef into 'a'
+	- New News Source: ARG Noticias by Darko Miletic
+    - Improved News Source: Radikal (tr)
+	- Improved News Source: Spiegel Online
+	- Improved News Source: El Mundo
     </releaseNotes>
   </metadata>
 </package>
