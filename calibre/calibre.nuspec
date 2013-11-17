@@ -3,7 +3,7 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>1.5.0</version>
+    <version>1.6.0</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -15,20 +15,35 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
     <releaseNotes>
-    - New: Driver for Woxter Scriba
-    - New: Bulk metadata edit: Allow setting the comments for all selected books and also allow cloning the covers. Cloning covers means that the cover of the first selected book will be set for all other selected books.
-	- Fixed: Windows: Improved device ejection code. Eject individual drives before trying to eject the device. This fixes incomplete ejection with the Nook devices.
-    - Fixed:Catalogs: fix exclude tags rules not working in non-English locales when creating catalogs in EPUB/MOBI formats.
-    - Fixed: Kobo driver: Fix reading status being cleared when connecting to a Kobo with older firmware and metadata management set to automatic.
-	- Fixed: Content server: Sort virtual libraries by name
-	- Fixed: DOCX Input: Convert tabs in the docx file into non-breaking spaces in the output document. Note that custom tab stops are not supported.
-	- Fixed: Conversion: Handle the style attribute on the html tag
-	- Fixed: Handle databases with invalid ratings link tables
-	- Fixed: DOCX Input: Handle DOCX files with missing referenced styles
-	- Fixed: Update amazon metadata download plugin for changes to the Amazon website
-    - Improved News Source: Slate
-	- Improved News Source: El Universal (VE)
-	- Improved News Source: GoComics
+    - New: Temporary marking of books in the library
+    - New: Get Books: Add Wolne Lektury and Amazon (Canada) ebook stores
+	- New: DOCX Input: Handle hyperlinks in footnotes and endnotes
+	- New: Driver for Sunstech reader
+	- New: Allow using both uri: and url: identifiers to create two different arbitrary links instead of just one in the Book details panel
+	- New: E-book viewer: Make all keyboard shortcuts configurable
+	- New: Conversion: Add an option to not condense CSS rules for margin, padding, border, etc. Option is under the Look & Feel section of the conversion dialog.
+	- New: calibredb: Allow setting of title sort field
+	- New: ebook-meta: Add an --identifier option to set identifiers.
+	- Fixed: Fix a locking error when composite columns containing formats are used and formats are added and or deleted.
+	- Fixed: EPUB Output: Do not strip object tags with type application svg xml in addition to those that use image svg xml.
+	- Fixed: Cover grid: Fix selecting all books with Ctrl and A causing subsequent deselects to not fully work.
+	- Fixed: HTMLZ Output: Fix long titles causing error when converting on windows.
+	- Fixed: Content server: Fix OPDS category links to composite columns
+	- Fixed: E-book viewer: Fix regression that broke import/export of bookmarks
+	- Fixed: E-book viewer: Use the default font size setting for the dictionary view as well.
+	- Fixed: DOCX Input: Avoid using the value attribute for simple numbered lists, to silence the asinine epubcheck
+	- Fixed: HTML Input: Images linked by the poster attribute of the video tag are now recognized and processed.
+	- Fixed: DOCX Input: Fix erorr when converting docx files that have numbering defined with no associated character style.
+	- Fixed: EPUB Metadata: Implementing updating identifiers other than isbn in the epub file from calibre when polishing or exporting the epub
+	- Fixed: Amazon metadata download: Fix parsing of some dates on amazon.de
+	- New News Source: Various Uruguayan news sources by Carlos Alves
+    - Improved News Source: National Geographic Magazine
+	- Improved News Source: New York Review of Books
+	- Improved News Source: Focus (PL)
+	- Improved News Source: Carta Capital
+	- Improved News Source: AM 730
+	- Improved News Source: Ming Pao (HK)
+	- Improved News Source: Neu Osnabrucker Zeitung
     </releaseNotes>
   </metadata>
 </package>
