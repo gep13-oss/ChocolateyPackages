@@ -3,7 +3,7 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>1.8.0</version>
+    <version>1.9.0</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -15,27 +15,25 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
     <releaseNotes>
-    - New: DOCX Input: Support linked (as opposed to embedded) images, if the linked image is found on the local computer.
-    - New: FB2 Input: Add support for note and cite back references. Link pairs of type="note" and type="cite" now automatically generate the correct back reference.
-	- New: When automerging books during during an add, include the author as well as the title in the report of merged books.
-	- New: OS X Mavericks (10.9) breaks connecting to iTunes and iBooks on iOS devices
-	- Fixed: OS X: Fix system tray notifications causing crashes on some OS X 10.9 (Mavericks) systems (those that had Growl installed at some point).
-	- Fixed: OSX: Fix font size in completion popups too small on Mavericks (I hope)
-	- Fixed: PDF Output: Fix rendering of some semi-transparent images. All semi-transparent images are now rendered using soft masks.
-	- Fixed: MOBI Output: Fix text marked with white-space:pre-wrap causing the Kindle to break lines at arbitrary points inside words.
-	- Fixed: FB2 Input: Fix a regression that broke conversion of FB2 files with paragraphs having both a style and an id attribute.
-	- Fixed: TXT Input: Ensure that title tag in the generated HTML has a meaningful value.
-	- Fixed: Book details panel: Fix HTML in author names and identifiers not being escaped
-	- Fixed:HTML 5 parsing: Fix handling of xml:lang attributes on all elements xml:lang is now mapped to a plain lang on all elements, not just html tag.
-	- Fixed: Update HTML 5 parser used in calibre (html5lib-python) to fix a few corner cases
-	- Fixed: When bulk deleting formats, use a single temporary directory for the deleted files. This makes restoring them from the recycle bin a little cleaner. Also might fix the reported issue with the windows recycle bin choking on creating a large number of folders.
-	- Fixed: DOCX Input: Add support for hyperlink fields that have only anchors and not URLs
-	- Fixed: DOCX Input: Fix handling of multiple block level bookmarks at the same location.
-	- Fixed: HTMLZ Output: Fix Htmlz does not apply inline css from body tag.
-	- Fixed: Fix the restore database operation failing on windows installs with long usernames (this would cause the path to the temporary folder used to restore the database to become too long).
-	- Fixed: ODT Input: Various workarounds for broken ODT files generated my mk4ht
-	- Fixed: Fix a bug with non-ascii text in the create catalog dialog
-    - Improved News Source: A List Apart
+    - New: Drivers for the new Nook Glowlight, Lenovo IdeaPad and Kindle Fire HDX (linux)
+    - New: Add an option to check for duplicates (books with the same title/author) when copying between libraries. Option is under Preferences - Adding books.
+	- New: Content server: Display book title on details page. Also put the most important fields (authors/series/tags) at the top.
+	- New: When developing recipes using the command line, allow specifying the number of feeds and articles when using the --test parameter.
+	- New: PDF Output: Option to control title of generated Table of Contents
+	- New: PDF metadata: If one of the keywords in the PDF is a valid ISBN, use it as the ISBN for the book
+	- Fixed: Amazon metadata download: Fix spurious ratings being returned for unrated books.
+	- Fixed: Bulk metadata edit: Only clear series if the clear series checkbox is checked. Also add a clear checkbox for publishers, so that publishers can be removed.
+	- Fixed: Use h2 tag for the inserted Table of Contents title for the MOBI and PDF formats as well as the EPUB and AZW3 formats.
+	- Fixed: Fix comments editor in review metadata becoming too small on small screens.
+	- Fixed: DOCX Input: Fix hyperlink showing as underlined even if the hyperlink style in word is set to not show underlines.
+	- Fixed: E-book viewer: Remember the size of the 'Inspect' window used to examine the book's code.
+	- Fixed: Wireless driver: Fix bug that prevented different formats of the same book on the device from being recognized
+	- Fixed: Bulk metadata download: When downloading only covers and some covers fail, do not show the failed books while reviewing downloaded metadata.
+	- Fixed: BibTeX catalogs: Strip unmatched braces to prevent generation of invalid .bib file.
+    - Improved News Source: Reuters (Japan)
+	- Improved News Source: MIT Technology Review
+	- Improved News Source: dotNet Magazine
+	- Improved News Source: Science Based News
     </releaseNotes>
   </metadata>
 </package>
