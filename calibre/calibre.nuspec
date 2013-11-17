@@ -21,7 +21,7 @@
 	- New: Driver for Sunstech reader
 	- New: Allow using both uri: and url: identifiers to create two different arbitrary links instead of just one in the Book details panel
 	- New: E-book viewer: Make all keyboard shortcuts configurable
-	- New: Conversion: Add an option to not condense CSS rules for margin, padding, border, etc. Option is under the Look & Feel section of the conversion dialog.
+	- New: Conversion: Add an option to not condense CSS rules for margin, padding, border, etc. Option is under the Look and Feel section of the conversion dialog.
 	- New: calibredb: Allow setting of title sort field
 	- New: ebook-meta: Add an --identifier option to set identifiers.
 	- Fixed: Fix a locking error when composite columns containing formats are used and formats are added and or deleted.
