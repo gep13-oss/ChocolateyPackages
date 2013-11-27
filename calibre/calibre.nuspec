@@ -3,7 +3,7 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>1.11.0</version>
+    <version>1.12.0</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -15,22 +15,23 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
     <releaseNotes>
-    - New: Kobo driver: Support the new firmware version 3.0.0 for Kobo devices
-    - New: Content server: Show the name of the virtual library at the top when browsing books in a virtual library.
-	- New: Add a keyboard shortcut (Ctrl+*) to convert the current search into a temporary virtual library.
-	- New: Template language: Add a transliterate function, useful to convert metadata in other languages into its phonetic English representation, when exporting books from calibre.
-	- New: Remove the button to toggle search result highlighting from next to the search bar, as too many people click it accidentally and then do not realize what they have done, despite the confirmation message that pops up. The button can be restored via Preferences - Searching
-	- New: Wireless driver: Remove old non-streaming networking code. Apps that still use it must be updated. A message will popup notifying the user of the need to update if such an app is encountered.
-	- New: Linux: Add an option to cause calibre to detach from its controlling terminal (--detach)
-	- Fixed: DOCX Input: Fix page-breaks created as a page break inside an otherwise empty paragraph not being rendered on conversion to PDF.
-	- Fixed: Windows: When viewing books with an external viewer, check if windows will open the file with calibre itself, and if so, popup an error message telling the user to install some software capable of viewing the file.
-	- Fixed: Wireless driver: Fix a bug that could cause the wrong path information to be sent to the device in some circumstances.
-	- Fixed: Linux binary build: Return proper exit codes when raising SystemExit
-	- Fixed: Transliterate the Arabic Alef into 'a'
-	- New News Source: ARG Noticias by Darko Miletic
-    - Improved News Source: Radikal (tr)
-	- Improved News Source: Spiegel Online
-	- Improved News Source: El Mundo
+    - New: Auto adding: Option to add files of all types, not just ebooks. You can now tell calibre to auto add all file types, instead of just known ebooks via Preferences--Adding books--Automatic adding.
+    - New: Quick view: Show the title/author/series columns in the same order as in the main book list.
+	- New: Update Kobo driver to allow sending kepubs
+	- New: Allow right clicking on covers to copy them in the metadata cover download dialog.
+	- Fixed: Titlecase: Fix incorrect title casing for some non-English words.
+	- Fixed: Kobo driver: Fix errors when using rating or numerical custom columns to create shelves.
+	- Fixed: E-book viewer: Allow searching to work with hyphenation enabled, provided you are searching for whole words. Searching for partial words may still not work. For robust searching, turn off hyphenation in the viewer preferences.
+	- Fixed: Get books: Update the BandN UK store plugin to handle changes to the BandN UK website
+	- Fixed: Apply changes being edited when clicking apply in the email preferences list.
+	- Fixed: Fix crash on linux systems whose fontconfig configuration includes paths to in an undecodable encoding.
+	- Fixed: Fix editing custom column values in the book list not allowing change of case.
+	- Fixed: Kobo driver: Fix latest firmware update for Kobo Wifi causing calibre to not recognize it.
+	- Fixed: Content server: Fix virtual libraries with an ampersand in their names not working
+	- New News Source: Loksatta and Maharashtra Times by Krittika Goyal
+    - Improved News Source: Le Monde (free version)
+	- Improved News Source: Pecat
+	- Improved News Source: Daily Express
     </releaseNotes>
   </metadata>
 </package>
