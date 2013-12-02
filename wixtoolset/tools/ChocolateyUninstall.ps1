@@ -2,7 +2,7 @@ $package = 'wixtoolset'
 
 try {
   # HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\
-  $msiid = '{4EC5B734-2163-4C1E-91FB-E3DBD8645505}'
+  $msiid = '{4B64688B-B9E9-468B-A834-2D86CDD75DE7}'
   Uninstall-ChocolateyPackage $package 'MSI' -SilentArgs "$msIid /qb" -validExitCodes @(0)
   
   # the following is all part of error handling
