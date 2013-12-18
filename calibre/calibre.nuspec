@@ -1,9 +1,9 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>1.14.0</version>
+    <version>1.15.0</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -13,7 +13,7 @@
     <copyright>Kovid Goyal</copyright>
     <licenseUrl>http://www.gnu.org/licenses/gpl.html</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
+    <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.png</iconUrl>
     <releaseNotes>
     - New: Edit metadata dialog: Add the ability to trim covers manually, if automatic trimming is not satisfactory.
     - New: You can now show any metadata field below the covers in the cover grid view, not just title. To change the displayed field go to Preferences -- Look and Feel -- Cover Grid.
