@@ -1,9 +1,9 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>1.13.0</version>
+    <version>1.15.0</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -13,7 +13,7 @@
     <copyright>Kovid Goyal</copyright>
     <licenseUrl>http://www.gnu.org/licenses/gpl.html</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.ico</iconUrl>
+    <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.png</iconUrl>
     <releaseNotes>
     - New: Edit metadata dialog: Facilitate editing the authors for books that have a large number of authors, by using a dedicated 'Edit authors' tool, which you can launch by right clicking the authors in the edit metadata dialog and selecting 'Edit authors'.
     - New: Conversion: Fix specifying shorthand properties in filter css not working. Now all shorthand properties automatically filter out all the properties they are shorthand for.
