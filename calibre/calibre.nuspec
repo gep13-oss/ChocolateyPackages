@@ -15,22 +15,15 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.png</iconUrl>
     <releaseNotes>
-    - New: Edit metadata dialog: Add the ability to trim covers manually, if automatic trimming is not satisfactory.
-    - New: You can now show any metadata field below the covers in the cover grid view, not just title. To change the displayed field go to Preferences -- Look and Feel -- Cover Grid.
-	- New: Allow searching for plugins by name in the install new plugins dialog
-	- New: Kobo driver: Allow sending kepubs to older kobo devices as well, also add support for firmware 3.1
-	- New: Allow viewer plugins to customize the viewer's user interface
-	- Fixed: Table of Contents Editor: Handle generating ToC from headings if the first heading level in the document is not h1 or the document skips some intermediate heading levels
-	- Fixed: Update the metadata download and Get Books plugins for ozon.ru
-	- Fixed: Fix sending by email not working on computers with non-ascii hostnames.
-	- Fixed: Wireless driver: Fix launching programs from within calibre causing the wireless driver port to remain in use even after calibre is shutdown.
-    - Improved News Source: Kommersant
-	- Improved News Source: Pocket
-	- Improved News Source: Heraldo de Aragon
-	- Improved News Source: National Geographic Magazine
-	- Improved News Source: Los Angeles Times
-	- Improved News Source: Boerse Online
-	- Improved News Source: Reuters
+    - New: A new book editor, capable of editing files in the EPUB and AZW3 (Kindle) formats
+    - New: Edit metadata dialog: In the tag editor, allow easy filtering of the lists of available and applied tags.
+	- New: Driver for Onyx Boox C65.
+	- Fixed: Kobo driver: Fix book covers not showing for sideloaded kepubs on the book details screen, with newer Kobo firmware.
+	- Fixed: Content server: Popup a more useful error when clicking on the cover of a book that has no formats to view.
+	- Fixed: Cover grid: Fix text showing 'None' for rating fields for books with no rating
+	- Fixed: Cover grid: Set text color based on the background color/image being used.
+	- Fixed: Metadata editor: Fix removing formatting for comments not removing background colors.
+	- Fixed: EPUB Output: Remove name attribute from anchor tags (replacing with id) to keep the asinine epubcheck happy
     </releaseNotes>
   </metadata>
 </package>
