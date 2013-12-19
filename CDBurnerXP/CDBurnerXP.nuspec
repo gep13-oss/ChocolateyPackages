@@ -3,7 +3,7 @@
   <metadata>
     <id>cdburnerxp</id>
     <title>CDBurnerXP</title>
-    <version>4.5.2.4291</version>
+    <version>4.5.2.4478</version>
     <authors>Canneverbe Limited</authors>
     <owners>Gary Ewan Park</owners>
     <summary>CDBurnerXP - burn CDs and DVDs for free!</summary>
@@ -15,9 +15,12 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/CDBurnerXP/CDBurnerXP.png</iconUrl>
     <releaseNotes>
-	- Changed/Improved Feature: Updated StarBurn library
-    - Fixed: Imported file size is displayed incorrectly
-    - Fixed startup issue occurring on some WinXP systems
+	- Changed/Improved Feature: Also import album title and artist from cue sheet for CD-Text
+	- Changed/Improved Feature: Now prefers 4.0 runtime over 2.0
+	- Changed/Improved Feature: When only adding audio files to the compilation, ask for ISO/Joliet compatibility
+    - Fixed: Full capacity of CD-R should be considered when burning audio discs
+	- Fixed: Two missing translations
+	- Fixed: Long filenames in UDF not being shortened automatically
     </releaseNotes>
   </metadata>
 </package>
