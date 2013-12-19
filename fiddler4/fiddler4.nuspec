@@ -3,7 +3,7 @@
   <metadata>
     <id>fiddler4</id>
     <title>Fiddler</title>
-    <version>4.4.5.6</version>
+    <version>4.4.5.8</version>
     <authors>Telerik</authors>
     <owners>Gary Ewan Park</owners>
     <summary>Fiddler Web Debugging Proxy</summary>
@@ -16,7 +16,14 @@ Fiddler is freeware and can debug traffic from virtually any application, includ
     <licenseUrl>http://www.fiddler2.com/Fiddler/help/license.asp</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/fiddler4/FiddlerLogo.png</iconUrl>
-    <releaseNotes></releaseNotes>
+    <releaseNotes>
+	- Add Packet Capture Import 
+	- Enhanced Composer
+	- Enhanced AutoResponder
+	- Enhanced Protocol Violation detection
+	- Improved WebView
+	- Add registry-fallback to EnableLoopback
+	</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
