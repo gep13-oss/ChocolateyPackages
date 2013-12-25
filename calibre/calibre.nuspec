@@ -3,7 +3,7 @@
   <metadata>
     <id>calibre</id>
     <title>Calibre</title>
-    <version>1.16.0</version>
+    <version>1.17.0</version>
     <authors>Kovid Goyal</authors>
     <owners>Gary Ewan Park</owners>
     <summary>calibre is the one stop solution to all your e-book needs.</summary>
@@ -15,24 +15,26 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <iconUrl>https://github.com/gep13/ChocolateyPackages/raw/master/calibre/calibre.png</iconUrl>
     <releaseNotes>
-    - New: Add a tool to browse all images in the book with their thumbnails. Useful for visually locating an image. To launch it, use View->Browse images in book.
-    - New: Allow creation of new, empty books via File->Create new book
-    - New: Add buttons to easily create formatting such as bold/italic/colors/etc. when editing HTML files
-    - New: Add button to easily insert img tag while editing HTML
-    - New: Add options to change the default font families/sizes for the preview panel
-    - New: Allow customizing which dockable windows occupy the four dock corners via Edit->Preferences. You can now also choose to have more than one row of windows in a given dock area.
-    - Fixed: When editing AZW3 files with no images in them, do not incorrectly display a number of binary records from the AZW3 file as 'unknown' miscellaneous files
-    - Fixed: Fix marking image as cover not working for AZW3 files if the file did not previously have a cover
-    - Fixed: AZW3 Output: Do not refuse to create the ToC if it has only a single entry
-    - Fixed: Fix crashes when processing some books that contain malformed markup on OS X and windows 64bit machines
-    - Fixed: Fix error when renaming the html file currently displayed in the preview panel and that file is not the file being currently edited
-    - Fixed: Fix crash when editing books that have links to absolute paths.
-    - Fixed: Fix book not being marked as modified after editing the ToC
-    - Fixed: When syncing the position of the preview panel to the cursor in the editor and the cursor is at or before the body tag set the position of the preview panel to the top of the file, so that the top margin of the body tag is seen easily.
-    - Fixed: Fix trying to import an html file/css file via the add new file button always resulting in a blank file
-    - Fixed: Fix replacing a file with another file with exactly the same filename causing an error.
-    - Fixed: Have the ToC view refresh itself after any major operation on the book
-    - Fixed: Fix pasting in the image editor not working
+    - New: Merry Christmas everyone! Early release this week, as I will be travelling.
+    - New: Edit book: Allow drag and drop of images onto the image editor
+    - New: Edit book: Allow import of multiple files at once, via File - Import files into book
+    - New: Edit book: Show the name of the current character to the left of the cursor in the status bar. Can be turned off via Preferences.
+    - New: Edit book: Automatically replace HTML entities as they are typed. This can be turned off in the Preferences.
+    - New: ToC Editor: Allow bulk renaming of items. Simply select the items you want to rename, right click and choose bulk rename. Useful if, for instance, you want to rename all the items to be Chapter 1, Chapter 2 and so on.
+	- New: Edit book: Allow linking of stylesheets into HTML files automatically. Right click on the selected HTML files in the File browser and choose 'Link stylesheets' to have the link tags for the sheets automatically inserted.
+	- New: Edit book: When deleting files, automatically remove all entries that refer to them from the ToC
+    - Fixed: ToC Editor: When auto-generating the table of contents from headings or XPath, if an element is at the top of the file, link only to the file instead of to the element.
+    - Fixed: Edit book: When splitting files, name the newly created file with a _split suffix.
+    - Fixed: Edit book: Fix position syncing incorrect when in HTML files that contain meta tags with charset encoding declarations over more than a single line
+    - Fixed: Edit book: Automatic correction of font family names not quoting family names with spaces in them if the original, incorrect family name did not have a space.
+    - Fixed: Title casing: Fix presence of some non-English characters or smart punctuation causing all-caps text to not be properly titlecased
+    - Fixed: Edit book: Fix a bug preventing marking an image as cover in a book that previously had no cover
+    - Fixed: Edit book: Fix a typo causing the preferences for which windows occupy which corners to not work
+    - Fixed: Edit book: Fix crash that happens sometimes when deleting multiple files.
+    - Fixed: Edit book: Handle EPUB files which contain opf files with no metadata tags
+    - Fixed: Edit book: Fix deleting a file that is currently open in an editor, not auto-closing the editor
+    - Fixed: DOCX Input: Fix error when converting DOCX file that contains only image based links and no text based links.
+	- New News Source: Birmingham Evening Mail by Dave Asbury
     </releaseNotes>
   </metadata>
 </package>
