@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>gep13.DefaultConfig</id>
+    <version>1.0.0</version>
+    <authors>gep13</authors>
+    <owners>gep13</owners>
+    <description>Boxstarter Package to do all the things that are always done when starting a new machine</description>
+    <tags>Boxstarter</tags>
+  </metadata>
+</package>

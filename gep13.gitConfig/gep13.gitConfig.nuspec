@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>gep13.gitConfig</id>
+    <version>1.0.0</version>
+    <authors>gep13</authors>
+    <owners>gep13</owners>
+    <description>Chocolatey package to configure the default settings for a Git install</description>
+    <tags>Boxstarter</tags>
+	<dependencies>
+     <dependency id="kdiff3" />
+	 <dependency id="git" />
+	 <dependency id="notepadplusplus" />
+   </dependencies>
+  </metadata>
+</package>
