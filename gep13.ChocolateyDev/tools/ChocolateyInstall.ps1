@@ -10,6 +10,11 @@ try {
 	cinstm githubforwindows 
 	cinstm PowerGUI
 	cinstm powershell
+	cinstm kdiff3
+	
+	cinstm VS2010PremiumMsdn -source https://www.myget.org/F/gep13
+	cinstm gep13.gitConfig -source https://www.myget.org/F/gep13
+	cinstm gep13.vs2010extensions -source https://www.myget.org/F/gep13
  
 	# fix the "WARNING: Could not find ssh-agent" in PowerShell console as per here:
 	# http://stackoverflow.com/questions/7470385/git-in-powershell-saying-could-not-find-ssh-agent
@@ -68,8 +73,10 @@ try {
 	
 	Install-ChocolateyPinnedTaskBarItem "C:\Program Files (x86)\Notepad++\notepad++.exe"
 	Install-ChocolateyPinnedTaskBarItem "C:\Program Files\Internet Explorer\iexplore.exe"
+	Install-ChocolateyPinnedTaskBarItem  "C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\devenv.exe"
 	
 	# Enable Nuget Package Restore
+	cinstm NuGetEnablePackageRestore -source https://www.nuget.org/api/v2/
 	
 	# Setup Database
 	
