@@ -13,6 +13,7 @@ try {
 	cinstm kdiff3
 	
 	cinstm VS2010PremiumMsdn -source https://www.myget.org/F/gep13
+	cinstm gep13.DefaultConfig -source https://www.myget.org/F/gep13
 	cinstm gep13.gitConfig -source https://www.myget.org/F/gep13
 	cinstm gep13.vs2010extensions -source https://www.myget.org/F/gep13
  
@@ -80,7 +81,9 @@ try {
 	
 	# Setup Database
 	
-    Write-ChocolateySuccess 'gep13.ChocolateyDev'
+	cinstm gep13.WindowsUpdate -source -source https://www.myget.org/F/gep13
+	
+	Write-ChocolateySuccess 'gep13.ChocolateyDev'
 } catch {
 	Write-ChocolateyFailure 'gep13.ChocolateyDev' $($_.Exception.Message)
 	throw
