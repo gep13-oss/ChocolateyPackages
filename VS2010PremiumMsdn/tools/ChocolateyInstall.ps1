@@ -19,7 +19,7 @@ try {
 	}
 	
 	# Where are we running from?
-	$isoStoreDriveLetter = [System.IO.Path]::GetRootPath($visualStudio2010SP1iso)
+	$isoStoreDriveLetter = [System.IO.Path]::GetPathRoot($visualStudio2010SP1iso)
 	
 	$before = (Get-Volume).DriveLetter
 	
