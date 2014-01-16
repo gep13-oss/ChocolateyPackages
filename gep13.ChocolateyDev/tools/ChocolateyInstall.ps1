@@ -20,7 +20,7 @@ try {
 	
 	cinstm VS2010PremiumMsdn -source https://www.myget.org/F/gep13
 	
-	cinstm aspnetmvc.install
+	cinstm gep13.aspnetmvc -source https://www.myget.org/F/gep13
 	
 	cinstm gep13.DefaultConfig -source https://www.myget.org/F/gep13
 	cinstm gep13.gitConfig -source https://www.myget.org/F/gep13
@@ -90,7 +90,7 @@ try {
 	
 	cinstm gep13.WindowsUpdate -source -source https://www.myget.org/F/gep13
 	
-	Update-Help
+	Update-Help	
 	
 	Write-ChocolateySuccess 'gep13.ChocolateyDev'
 } catch {
