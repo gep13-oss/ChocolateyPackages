@@ -1,4 +1,10 @@
 try {
+	cinst IIS-WebServerRole -source windowsfeatures
+	cinst IIS-HttpCompressionDynamic -source windowsfeatures
+	cinst TelnetClient -source windowsFeatures
+	
+	cinst IISExpress -source webpi
+
 	cinstm notepadplusplus
 	cinstm fiddler4
 	cinstm git-credential-winstore
@@ -13,10 +19,13 @@ try {
 	cinstm kdiff3
 	
 	cinstm VS2010PremiumMsdn -source https://www.myget.org/F/gep13
+	
+	cinstm aspnetmvc.install
+	
 	cinstm gep13.DefaultConfig -source https://www.myget.org/F/gep13
 	cinstm gep13.gitConfig -source https://www.myget.org/F/gep13
 	cinstm gep13.vs2010extensions -source https://www.myget.org/F/gep13
- 
+	 
 	# fix the "WARNING: Could not find ssh-agent" in PowerShell console as per here:
 	# http://stackoverflow.com/questions/7470385/git-in-powershell-saying-could-not-find-ssh-agent
 	$currentPathVariable = [environment]::GetEnvironmentVariable("PATH", "Machine")
@@ -79,9 +88,9 @@ try {
 	# Enable Nuget Package Restore
 	cinstm NuGetEnablePackageRestore -source https://www.nuget.org/api/v2/
 	
-	# Setup Database
-	
 	cinstm gep13.WindowsUpdate -source -source https://www.myget.org/F/gep13
+	
+	Update-Help
 	
 	Write-ChocolateySuccess 'gep13.ChocolateyDev'
 } catch {

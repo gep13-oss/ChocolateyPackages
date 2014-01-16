@@ -27,20 +27,6 @@ try {
 	$visualStudio2010MountPath = Mount-Iso $visualStudio2010iso
 	Write-Host "Mounting complete."
 	
-	$after = (Get-Volume).DriveLetter
-	$winVolume = compare $before $after -Passthru
-	$winVolume | % { new-PSDrive -Name $_ -PSProvider FileSystem -Root "$($_):\" | out-null}
-	
-	Write-Host "Copying Visual Studio 2010 Files..."
-	Copy-Item $visualStudio2010MountPath (Join-Path -Path $isoStoreDriveLetter -ChildPath "2010") -recurse
-	Write-Host "Copying complete."
-	
-	Write-Host "Dismounting Visual Studio 2010 iso..."
-	Dismount-Iso $visualStudio2010MountPath
-	Write-Host "Dismounting complete."
-	
-	$before = (Get-Volume).DriveLetter
-	
 	Write-Host "Mounting Visual Studio 2010 SP1 iso..."
 	$visualStudio2010SP1MountPath = Mount-Iso $visualStudio2010SP1iso
 	Write-Host "Mounting complete."
@@ -49,9 +35,17 @@ try {
 	$winVolume = compare $before $after -Passthru
 	$winVolume | % { new-PSDrive -Name $_ -PSProvider FileSystem -Root "$($_):\" | out-null}
 	
+	Write-Host "Copying Visual Studio 2010 Files..."
+	Copy-Item $visualStudio2010MountPath (Join-Path -Path $isoStoreDriveLetter -ChildPath "2010") -recurse
+	Write-Host "Copying complete."
+	
 	Write-Host "Copying Visual Studio 2010 SP1 Files..."
 	Copy-Item $visualStudio2010SP1MountPath (Join-Path -Path $isoStoreDriveLetter -ChildPath "2010\SP1") -recurse
 	Write-Host "Copying complete."
+	
+	Write-Host "Dismounting Visual Studio 2010 iso..."
+	Dismount-Iso $visualStudio2010MountPath
+	Write-Host "Dismounting complete."
 	
 	Write-Host "Dismounting Visual Studio 2010 SP1 iso..."
 	Dismount-Iso $visualStudio2010SP1MountPath
