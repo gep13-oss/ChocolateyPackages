@@ -16,6 +16,8 @@ try {
 	cinstm powershell
 	cinstm kdiff3
 	
+	cinst NetFx3 -source windowsfeatures
+	
 	cinstm VS2010PremiumMsdn -source https://www.myget.org/F/gep13
 	
 	cinstm gep13.aspnetmvc -source https://www.myget.org/F/gep13
