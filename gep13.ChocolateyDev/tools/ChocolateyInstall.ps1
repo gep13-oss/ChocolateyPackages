@@ -3,8 +3,6 @@ try {
 	cinst IIS-HttpCompressionDynamic -source windowsfeatures
 	cinst TelnetClient -source windowsFeatures
 	
-	cinst IISExpress -source webpi
-
 	cinstm notepadplusplus
 	cinstm fiddler4
 	cinstm git-credential-winstore
@@ -21,6 +19,7 @@ try {
 	cinstm VS2010PremiumMsdn -source https://www.myget.org/F/gep13
 	
 	cinstm gep13.aspnetmvc -source https://www.myget.org/F/gep13
+	cinst IISExpress -source webpi
 	
 	cinstm gep13.DefaultConfig -source https://www.myget.org/F/gep13
 	cinstm gep13.gitConfig -source https://www.myget.org/F/gep13
