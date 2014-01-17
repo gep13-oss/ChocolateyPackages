@@ -89,7 +89,7 @@ try {
 	# Enable Nuget Package Restore
 	cinstm NuGetEnablePackageRestore -source https://www.nuget.org/api/v2/
 	
-	cinstm gep13.WindowsUpdate -source -source https://www.myget.org/F/gep13
+	cinstm gep13.WindowsUpdate -source https://www.myget.org/F/gep13
 	
 	Update-Help	
 	
