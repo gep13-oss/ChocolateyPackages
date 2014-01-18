@@ -3,30 +3,30 @@ try {
 	cinst IIS-HttpCompressionDynamic -source windowsfeatures
 	cinst TelnetClient -source windowsFeatures
 	
-	cinstm notepadplusplus
-	cinstm fiddler4
-	cinstm git-credential-winstore
-	cinstm git
-	cinstm poshgit
-	cinstm gitextensions 
-	cinstm NugetPackageExplorer 
-	cinstm ChocolateyGUI 
-	cinstm githubforwindows 
-	cinstm PowerGUI
-	cinstm powershell
-	cinstm kdiff3
-	cinstm markdownpad2
+	cinst notepadplusplus
+	cinst fiddler4
+	cinst git-credential-winstore
+	cinst git
+	cinst poshgit
+	cinst gitextensions 
+	cinst NugetPackageExplorer 
+	cinst ChocolateyGUI 
+	cinst githubforwindows 
+	cinst PowerGUI
+	cinst powershell
+	cinst kdiff3
+	cinst markdownpad2
 	
 	cinst NetFx3 -source windowsfeatures
 	
-	cinstm VS2010PremiumMsdn -source https://www.myget.org/F/gep13
+	cinst VS2010PremiumMsdn -source https://www.myget.org/F/gep13
 	
-	cinstm gep13.aspnetmvc -source https://www.myget.org/F/gep13
+	cinst gep13.aspnetmvc -source https://www.myget.org/F/gep13
 	cinst IISExpress -source webpi
 	
-	cinstm gep13.DefaultConfig -source https://www.myget.org/F/gep13
-	cinstm gep13.gitConfig -source https://www.myget.org/F/gep13
-	cinstm gep13.vs2010extensions -source https://www.myget.org/F/gep13
+	cinst gep13.DefaultConfig -source https://www.myget.org/F/gep13
+	cinst gep13.gitConfig -source https://www.myget.org/F/gep13
+	cinst gep13.vs2010extensions -source https://www.myget.org/F/gep13
 	 
 	# fix the "WARNING: Could not find ssh-agent" in PowerShell console as per here:
 	# http://stackoverflow.com/questions/7470385/git-in-powershell-saying-could-not-find-ssh-agent
@@ -96,9 +96,9 @@ try {
 	Install-ChocolateyPinnedTaskBarItem  "C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\devenv.exe"
 	
 	# Enable Nuget Package Restore
-	cinstm NuGetEnablePackageRestore -source https://www.nuget.org/api/v2/
+	cinst NuGetEnablePackageRestore -source https://www.nuget.org/api/v2/
 	
-	cinstm gep13.WindowsUpdate -source https://www.myget.org/F/gep13
+	cinst gep13.WindowsUpdate -source https://www.myget.org/F/gep13
 	
 	Update-Help	
 	

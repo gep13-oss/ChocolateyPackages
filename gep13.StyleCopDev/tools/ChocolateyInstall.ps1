@@ -1,12 +1,12 @@
 try {
-	cinstm DotNet3.5
-	cinstm notepadplusplus
-	cinstm fiddler4
-	cinstm hg
-	cinstm Posh-HG
-	cinstm tortoisehg
-	cinstm Wix35
-	cinstm resharper
+	cinst DotNet3.5
+	cinst notepadplusplus
+	cinst fiddler4
+	cinst hg
+	cinst Posh-HG
+	cinst tortoisehg
+	cinst Wix35
+	cinst resharper
 	
 	Install-ChocolateyPinnedTaskBarItem "C:\Program Files (x86)\Notepad++\notepad++.exe"
 	Install-ChocolateyPinnedTaskBarItem "C:\Program Files\Internet Explorer\iexplore.exe"
