@@ -16,7 +16,7 @@ try {
 	git config --global "mergetool.kdiff3.trustExitCode" "false"
 
 	git config --global "core.symlinks" "false"
-	git config --global "core.autocrlf" "true"
+	git config --global "core.autocrlf" "false"
 	git config --global "core.editor" "npp.bat"
 	
 	if(!(Test-Path "c:\Program Files (x86)\Git\bin\npp.bat")){
