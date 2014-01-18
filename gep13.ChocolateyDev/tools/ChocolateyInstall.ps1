@@ -15,6 +15,7 @@ try {
 	cinstm PowerGUI
 	cinstm powershell
 	cinstm kdiff3
+	cinstm markdownpad2
 	
 	cinst NetFx3 -source windowsfeatures
 	
@@ -80,6 +81,14 @@ try {
 	
 	if(!(Test-Path "c:\github\chocolatey-Explorer")){
 		git clone https://github.com/gep13/chocolatey-Explorer.git
+	}
+	
+	if(!(Test-Path "c:\github\ChocolateyPackages")){
+		git clone https://github.com/gep13/ChocolateyPackages.git
+	}
+	
+	if(!(Test-Path "c:\github\ChocolateyAutomaticPackages")){
+		git clone https://github.com/gep13/ChocolateyAutomaticPackages.git
 	}
 	
 	Install-ChocolateyPinnedTaskBarItem "C:\Program Files (x86)\Notepad++\notepad++.exe"
