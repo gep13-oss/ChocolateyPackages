@@ -37,51 +37,58 @@ try {
 		New-Item -Type Directory "C:\github"
 	}
 	
-	cd "C:\github"
+	if(!(Test-Path "c:\github\organisations")) {
+		New-Item -Type Directory "C:\github\organisations"
+	}
 	
-	if(!(Test-Path "c:\github\chocolatey-coreteampackages")){
+	cd "C:\github\organisations"
+	
+	if(!(Test-Path "c:\github\organisations\chocolatey-coreteampackages")){
 		git clone https://github.com/chocolatey/chocolatey-coreteampackages.git
 	}
 	
-	if(!(Test-Path "c:\github\chocolatey.org")){
+	if(!(Test-Path "c:\github\organisations\chocolatey.org")){
 		git clone https://github.com/chocolatey/chocolatey.org.git
 	}
 	
-	if(!(Test-Path "c:\github\chocolatey-webhooks")){
+	if(!(Test-Path "c:\github\organisations\chocolatey-webhooks")){
 		git clone https://github.com/chocolatey/chocolatey-webhooks.git
 	}
 	
-	if(!(Test-Path "c:\github\puppet-chocolatey")){
+	if(!(Test-Path "c:\github\organisations\puppet-chocolatey")){
 		git clone https://github.com/chocolatey/puppet-chocolatey.git
 	}
 	
-	if(!(Test-Path "c:\github\puppet-chocolatey-handsonlab")){
+	if(!(Test-Path "c:\github\organisations\puppet-chocolatey-handsonlab")){
 		git clone https://github.com/chocolatey/puppet-chocolatey-handsonlab.git
 	}
 	
-	if(!(Test-Path "c:\github\chocolatey")){
+	if(!(Test-Path "c:\github\organisations\chocolatey")){
 		git clone https://github.com/chocolatey/chocolatey.git
 	}
 	
-	if(!(Test-Path "c:\github\chocolateytemplates")){
+	if(!(Test-Path "c:\github\organisations\chocolateytemplates")){
 		git clone https://github.com/chocolatey/chocolateytemplates.git
 	}
  
-	if(!(Test-Path "c:\github\chocolatey.github.com")){
+	if(!(Test-Path "c:\github\organisations\chocolatey.github.com")){
 		git clone https://github.com/chocolatey/chocolatey.github.com.git
 	}
 	
-	if(!(Test-Path "c:\github\chocolatey-cookbook")){
+	if(!(Test-Path "c:\github\organisations\chocolatey-cookbook")){
 		git clone https://github.com/chocolatey/chocolatey-cookbook.git
 	}
 	
-	if(!(Test-Path "c:\github\chocolatey.web")){
+	if(!(Test-Path "c:\github\organisations\chocolatey.web")){
 		git clone https://github.com/chocolatey/chocolatey.web.git
 	}
 	
-	if(!(Test-Path "c:\github\chocolatey-Explorer")){
-		git clone https://github.com/gep13/chocolatey-Explorer.git
+	if(!(Test-Path "c:\github\organisations\ChocolateyGUI")){
+		git clone https://github.com/chocolatey/ChocolateyGUI.git
 	}
+	
+	# My Repos
+	cd "c:\github"
 	
 	if(!(Test-Path "c:\github\ChocolateyPackages")){
 		git clone https://github.com/gep13/ChocolateyPackages.git
@@ -89,6 +96,14 @@ try {
 	
 	if(!(Test-Path "c:\github\ChocolateyAutomaticPackages")){
 		git clone https://github.com/gep13/ChocolateyAutomaticPackages.git
+	}
+	
+	if(!Test-Path "C:\github\chocolatey")) {
+		git clone https://github.com/gep13/chocolatey.git
+	}
+	
+	if(!Test-Path "C:\github\chocolatey.org")) {
+		git clone https://github.com/gep13/chocolatey.org.git
 	}
 	
 	Install-ChocolateyPinnedTaskBarItem "C:\Program Files (x86)\Notepad++\notepad++.exe"
