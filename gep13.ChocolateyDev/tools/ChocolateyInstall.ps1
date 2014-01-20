@@ -3,6 +3,10 @@ try {
 	cinst IIS-HttpCompressionDynamic -source windowsfeatures
 	cinst TelnetClient -source windowsFeatures
 	
+	cinst GoogleChrome
+	cinst Firefox
+	cinst dotPeek
+	cinst filezilla
 	cinst notepadplusplus
 	cinst fiddler4
 	cinst git-credential-winstore
