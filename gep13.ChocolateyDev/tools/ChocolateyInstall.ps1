@@ -20,6 +20,7 @@ try {
 	cinst powershell
 	cinst kdiff3
 	cinst markdownpad2
+	cinst 7zip
 	
 	cinst NetFx3 -source windowsfeatures
 	
@@ -28,9 +29,12 @@ try {
 	cinst gep13.aspnetmvc -source https://www.myget.org/F/gep13
 	cinst IISExpress -source webpi
 	
+	cinst VisualStudio2013Premium -InstallArguments "Blend WebTools Win8SDK SilverLight_Developer_Kit WindowsPhone80"
+	
 	cinst gep13.DefaultConfig -source https://www.myget.org/F/gep13
 	cinst gep13.gitConfig -source https://www.myget.org/F/gep13
 	cinst gep13.vs2010extensions -source https://www.myget.org/F/gep13
+	cinst gep13.vs2013extensions -source https://www.myget.org/F/gep13
 	 
 	# fix the "WARNING: Could not find ssh-agent" in PowerShell console as per here:
 	# http://stackoverflow.com/questions/7470385/git-in-powershell-saying-could-not-find-ssh-agent
@@ -113,6 +117,7 @@ try {
 	Install-ChocolateyPinnedTaskBarItem "C:\Program Files (x86)\Notepad++\notepad++.exe"
 	Install-ChocolateyPinnedTaskBarItem "C:\Program Files\Internet Explorer\iexplore.exe"
 	Install-ChocolateyPinnedTaskBarItem  "C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\devenv.exe"
+	Install-ChocolateyPinnedTaskBarItem "C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\devenv.exe"
 	
 	# Enable Nuget Package Restore
 	cinst NuGetEnablePackageRestore -source https://www.nuget.org/api/v2/
