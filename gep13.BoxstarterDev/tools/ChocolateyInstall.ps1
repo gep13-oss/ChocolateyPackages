@@ -1,5 +1,5 @@
 try {
-    cinst IIS-WebServerRole -source windowsfeatures
+	cinst IIS-WebServerRole -source windowsfeatures
 	cinst IIS-HttpCompressionDynamic -source windowsfeatures
 	cinst TelnetClient -source windowsFeatures
 	
@@ -14,7 +14,7 @@ try {
 	cinst poshgit
 	cinst gitextensions 
 	cinst NugetPackageExplorer
-    cinst githubforwindows 
+	cinst githubforwindows 
 	cinst PowerGUI
 	cinst powershell
 	cinst kdiff3
@@ -50,8 +50,8 @@ try {
 	
 	Update-Help	
 	
-    Write-ChocolateySuccess 'gep13.BoxstarterDev'
+	Write-ChocolateySuccess 'gep13.BoxstarterDev'
 } catch {
-    Write-ChocolateyFailure 'gep13.BoxstarterDev' $($_.Exception.Message)
-    throw
+	Write-ChocolateyFailure 'gep13.BoxstarterDev' $($_.Exception.Message)
+	throw
 }
