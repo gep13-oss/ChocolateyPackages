@@ -20,6 +20,7 @@ try {
 	cinst kdiff3
 	cinst markdownpad2
 	cinst 7zip
+	cinst pester
 	
 	cinst VisualStudio2013Premium -InstallArguments "Blend WebTools Win8SDK SilverLight_Developer_Kit WindowsPhone80"
 	
