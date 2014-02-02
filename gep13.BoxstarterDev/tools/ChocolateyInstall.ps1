@@ -21,6 +21,7 @@ try {
 	cinst markdownpad2
 	cinst 7zip
 	cinst pester
+	cinst psake -source http://packages.nuget.org/v1/FeedService.svc/
 	
 	cinst VisualStudio2013Premium -InstallArguments "Blend WebTools Win8SDK SilverLight_Developer_Kit WindowsPhone80"
 	cinst VS2013.1 
