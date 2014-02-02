@@ -20,6 +20,7 @@ try {
 	cinst kdiff3
 	cinst markdownpad2
 	cinst 7zip
+	cinst 7zip.CommandLine
 	cinst pester
 	cinst psake -source http://packages.nuget.org/v1/FeedService.svc/
 	
