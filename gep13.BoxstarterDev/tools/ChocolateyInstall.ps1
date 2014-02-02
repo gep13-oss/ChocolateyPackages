@@ -23,6 +23,7 @@ try {
 	cinst pester
 	
 	cinst VisualStudio2013Premium -InstallArguments "Blend WebTools Win8SDK SilverLight_Developer_Kit WindowsPhone80"
+	cinst VS2013.1 
 	
 	cinst gep13.DefaultConfig -source https://www.myget.org/F/gep13
 	cinst gep13.gitConfig -source https://www.myget.org/F/gep13
