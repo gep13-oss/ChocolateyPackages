@@ -52,6 +52,9 @@ try {
 	Install-ChocolateyPinnedTaskBarItem "C:\Program Files\Internet Explorer\iexplore.exe"
 	Install-ChocolateyPinnedTaskBarItem "C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\devenv.exe"
 	
+	# Enable Nuget Package Restore
+	cinst NuGetEnablePackageRestore -source https://www.nuget.org/api/v2/
+
 	cinst gep13.WindowsUpdate -source https://www.myget.org/F/gep13
 	
 	Update-Help	
