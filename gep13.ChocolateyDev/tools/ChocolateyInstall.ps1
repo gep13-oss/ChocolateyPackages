@@ -21,6 +21,7 @@ try {
 	cinst kdiff3
 	cinst markdownpad2
 	cinst 7zip
+	cinst wixtoolset
 	
 	cinst NetFx3 -source windowsfeatures
 	
