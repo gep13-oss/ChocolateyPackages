@@ -21,6 +21,7 @@ try {
 	cinst kdiff3
 	cinst markdownpad2
 	cinst 7zip
+	cinst wixtoolset
 	
 	cinst NetFx3 -source windowsfeatures
 	
@@ -106,11 +107,11 @@ try {
 		git clone https://github.com/gep13/ChocolateyAutomaticPackages.git
 	}
 	
-	if(!Test-Path "C:\github\chocolatey")) {
+	if(!(Test-Path "C:\github\chocolatey")) {
 		git clone https://github.com/gep13/chocolatey.git
 	}
 	
-	if(!Test-Path "C:\github\chocolatey.org")) {
+	if(!(Test-Path "C:\github\chocolatey.org")) {
 		git clone https://github.com/gep13/chocolatey.org.git
 	}
 	
