@@ -12,6 +12,7 @@ try {
 	Install-ChocolateyVsixPackage "PowerShell Tools for Visual Studio" "http://visualstudiogallery.msdn.microsoft.com/c9eb3ba8-0c59-4944-9a62-6eee37294597/file/112013/5/PowerShellTools.vsix"
 	Install-ChocolateyVsixPackage "Visual Studio Spell Checker" "http://visualstudiogallery.msdn.microsoft.com/a23de100-31a1-405c-b4b7-d6be40c3dfff/file/104494/2/VSSpellCheckerPackage.vsix"
 	Install-ChocolateyVsixPackage "Regionator" "http://visualstudiogallery.msdn.microsoft.com/646f2de1-f421-4aa8-be18-8996abfb40a7/file/128005/4/RegionatorExtension.vsix"
+	Install-ChocolateyVsixPackage "Ref12" "http://visualstudiogallery.msdn.microsoft.com/f89b27c5-7d7b-4059-adde-7ccc709fa86e/file/125016/4/Ref12.vsix"
 	
     Write-ChocolateySuccess 'gep13.vs2012extensions'
 } catch {
