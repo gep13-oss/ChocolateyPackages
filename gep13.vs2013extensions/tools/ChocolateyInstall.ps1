@@ -7,6 +7,7 @@ try {
 	Install-ChocolateyVsixPackage "SideWaffle Template Pack" "http://visualstudiogallery.msdn.microsoft.com/a16c2d07-b2e1-4a25-87d9-194f04e7a698/referral/110630"
 	Install-ChocolateyVsixPackage "Ref12" "http://visualstudiogallery.msdn.microsoft.com/f89b27c5-7d7b-4059-adde-7ccc709fa86e/file/125016/4/Ref12.vsix"
 	Install-ChocolateyVsixPackage "CodeMaid" "http://visualstudiogallery.msdn.microsoft.com/76293c4d-8c16-4f4a-aee6-21f83a571496/file/9356/23/CodeMaid_v0.7.0.vsix"
+	Install-ChocolateyVsixPackage "ClipboardDiff" "http://visualstudiogallery.msdn.microsoft.com/a7519ab0-6029-49f3-9243-a74d1718a5bb/file/49749/4/ClipboardDiff.vsix"
 	
 	Write-ChocolateySuccess 'gep13.vs2013extensions'
 } catch {
