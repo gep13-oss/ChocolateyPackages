@@ -15,6 +15,7 @@ try {
 	Install-ChocolateyVsixPackage "Ref12" "http://visualstudiogallery.msdn.microsoft.com/f89b27c5-7d7b-4059-adde-7ccc709fa86e/file/125016/4/Ref12.vsix"
 	Install-ChocolateyVsixPackage "StopOnFirstBuildError" "http://visualstudiogallery.msdn.microsoft.com/91aaa139-5d3c-43a7-b39f-369196a84fa5/file/44205/3/StopOnFirstBuildError.vsix"
 	Install-ChocolateyVsixPackage "CodeMaid" "http://visualstudiogallery.msdn.microsoft.com/76293c4d-8c16-4f4a-aee6-21f83a571496/file/9356/23/CodeMaid_v0.7.0.vsix"
+	Install-ChocolateyVsixPackage "ClipboardDiff" "http://visualstudiogallery.msdn.microsoft.com/a7519ab0-6029-49f3-9243-a74d1718a5bb/file/49749/4/ClipboardDiff.vsix"
 	
     Write-ChocolateySuccess 'gep13.vs2012extensions'
 } catch {
