@@ -1,7 +1,7 @@
 try {
 	Update-ExecutionPolicy Unrestricted
 	Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions -EnableShowFullPathInTitleBar
-	Set-TaskbarOptions -Size Small -Lock -Dock Left
+	Set-TaskbarOptions -Size Small -Lock blah -Dock Left
 	Disable-InternetExplorerESC
 	Disable-UAC
 	Enable-RemoteDesktop
