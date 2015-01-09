@@ -20,6 +20,7 @@ try {
 	Install-ChocolateyVsixPackage "Visual Studio Auto Updater" "https://visualstudiogallery.msdn.microsoft.com/14973bbb-8e00-4cab-a8b4-415a38d78615/file/150147/7/ExtensionUpdater.vsix"
 	Install-ChocolateyVsixPackage "CssCop - FxCop for Stylesheets" "https://visualstudiogallery.msdn.microsoft.com/a921b98e-9430-4be2-bf53-1169e12bdb50/file/62099/7/CssLint.vsix"
 	Install-ChocolateyVsixPackage "Open From Azure Websites" "https://visualstudiogallery.msdn.microsoft.com/60d414b1-4ead-4fde-9359-588aa126cd6c/file/151097/2/OpenFromPortal.vsix"
+	Install-ChocolateyVsixPackage "Trailing Whitespace Visualizer" "https://visualstudiogallery.msdn.microsoft.com/a204e29b-1778-4dae-affd-209bea658a59/file/135653/12/TrailingWhitespace.vsix"
 	
 	Write-ChocolateySuccess 'gep13.vs2013extensions'
 } catch {
