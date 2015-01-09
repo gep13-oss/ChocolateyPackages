@@ -5,16 +5,22 @@ try {
 	git config --global "push.default" "simple"
  
 	git config --global "diff.tool" "kdiff3"
-	git config --global "merge.tool" "kdiff3"
  
 	git config --global "difftool.kdiff3.path" "C:/Program Files (x86)/KDiff3/kdiff3.exe"
 	git config --global "difftool.kdiff3.keepBackup" "false"
 	git config --global "difftool.kdiff3.trustExitCode" "false"
 
+	git config --global "merge.ff" "false"
+	git config --global "merge.log" "true"
+	git config --global "renamelimit" "6500"
+	git config --global "merge.tool" "kdiff3"
+	
 	git config --global "mergetool.kdiff3.path" "C:/Program Files (x86)/KDiff3/kdiff3.exe"
 	git config --global "mergetool.kdiff3.keepBackup" "false"
 	git config --global "mergetool.kdiff3.trustExitCode" "false"
 
+	git config --global "fetch.prune" "true"
+	
 	git config --global "core.symlinks" "false"
 	git config --global "core.autocrlf" "false"
 	git config --global "core.editor" "npp.bat"
