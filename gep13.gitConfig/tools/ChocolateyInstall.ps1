@@ -12,7 +12,7 @@ try {
 
 	git config --global "merge.ff" "false"
 	git config --global "merge.log" "true"
-	git config --global "renamelimit" "6500"
+	git config --global "merge.renamelimit" "6500"
 	git config --global "merge.tool" "kdiff3"
 	
 	git config --global "mergetool.kdiff3.path" "C:/Program Files (x86)/KDiff3/kdiff3.exe"
