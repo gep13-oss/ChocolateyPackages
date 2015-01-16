@@ -2,19 +2,24 @@
 <package>
   <metadata>
     <id>gep13.vs2013extensions</id>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <authors>gep13</authors>
     <owners>gep13</owners>
     <description>Chocolatey package to install all the Visual Studio 2013 Extensions that I use</description>
     <tags>Boxstarter</tags>
 	<releaseNotes>
-##1.0.1
+##1.0.3
 
-* Added new packages from Mads.  Basically went through this [list](https://visualstudiogallery.msdn.microsoft.com/site/search?f%5B0%5D.Type=User&f%5B0%5D.Value=Mads%20Kristensen)
+* Added MvvmLight extension - based on requiring a lightweight MVVM framework for testing a few things out
+* Added GitHub Extension - based on hearing about it on Dot Net Rocks
 
 ##1.0.2
 
 * Added Trailing Whitespace Visualizer
+
+##1.0.1
+
+* Added new packages from Mads.  Basically went through this [list](https://visualstudiogallery.msdn.microsoft.com/site/search?f%5B0%5D.Type=User&f%5B0%5D.Value=Mads%20Kristensen)
 	</releaseNotes>
   </metadata>
 </package>

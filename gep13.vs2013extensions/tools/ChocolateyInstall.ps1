@@ -21,6 +21,8 @@ try {
 	Install-ChocolateyVsixPackage "CssCop - FxCop for Stylesheets" "https://visualstudiogallery.msdn.microsoft.com/a921b98e-9430-4be2-bf53-1169e12bdb50/file/62099/7/CssLint.vsix"
 	Install-ChocolateyVsixPackage "Open From Azure Websites" "https://visualstudiogallery.msdn.microsoft.com/60d414b1-4ead-4fde-9359-588aa126cd6c/file/151097/2/OpenFromPortal.vsix"
 	Install-ChocolateyVsixPackage "Trailing Whitespace Visualizer" "https://visualstudiogallery.msdn.microsoft.com/a204e29b-1778-4dae-affd-209bea658a59/file/135653/12/TrailingWhitespace.vsix"
+	Install-ChocolateyVsixPackage "GitHub Extension" "https://visualstudiogallery.msdn.microsoft.com/e4ba5ebd-bcd5-4e20-8375-bb8cbdd71d7e/file/148389/4/Alteridem.GitHub.Extension.vsix"
+	Install-ChocolateyVsixPackage "MVVM Light for VS2013" "https://visualstudiogallery.msdn.microsoft.com/2f214591-4162-4e41-9908-8bf88282968e/file/143801/4/MvvmLight.VS2013.vsix"
 	
 	Write-ChocolateySuccess 'gep13.vs2013extensions'
 } catch {
