@@ -23,6 +23,7 @@ try {
 	Install-ChocolateyVsixPackage "Trailing Whitespace Visualizer" "https://visualstudiogallery.msdn.microsoft.com/a204e29b-1778-4dae-affd-209bea658a59/file/135653/12/TrailingWhitespace.vsix"
 	Install-ChocolateyVsixPackage "GitHub Extension" "https://visualstudiogallery.msdn.microsoft.com/e4ba5ebd-bcd5-4e20-8375-bb8cbdd71d7e/file/148389/4/Alteridem.GitHub.Extension.vsix"
 	Install-ChocolateyVsixPackage "MVVM Light for VS2013" "https://visualstudiogallery.msdn.microsoft.com/2f214591-4162-4e41-9908-8bf88282968e/file/143801/4/MvvmLight.VS2013.vsix"
+	Install-ChocolateyVsixPackage "Open Command Line" "https://visualstudiogallery.msdn.microsoft.com/4e84e2cf-2d6b-472a-b1e2-b84932511379/file/151803/3/OpenCommandLine.vsix"
 	
 	Write-ChocolateySuccess 'gep13.vs2013extensions'
 } catch {
