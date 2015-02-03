@@ -24,6 +24,8 @@ try {
 	Install-ChocolateyVsixPackage "GitHub Extension" "https://visualstudiogallery.msdn.microsoft.com/e4ba5ebd-bcd5-4e20-8375-bb8cbdd71d7e/file/148389/4/Alteridem.GitHub.Extension.vsix"
 	Install-ChocolateyVsixPackage "MVVM Light for VS2013" "https://visualstudiogallery.msdn.microsoft.com/2f214591-4162-4e41-9908-8bf88282968e/file/143801/4/MvvmLight.VS2013.vsix"
 	Install-ChocolateyVsixPackage "Open Command Line" "https://visualstudiogallery.msdn.microsoft.com/4e84e2cf-2d6b-472a-b1e2-b84932511379/file/151803/3/OpenCommandLine.vsix"
+	Install-ChocolateyVsixPackage "Tidy Tabs" "https://visualstudiogallery.msdn.microsoft.com/b80ab284-83f8-4022-bc78-95af126ba5f0/file/130014/4/TidyTabs.vsix"
+	Install-ChocolateyVsixPackage "YamlDotNetEditor" "https://visualstudiogallery.msdn.microsoft.com/34423c06-f756-4721-8394-bc3d23b91ca7/file/101669/8/YamlDotNetEditor.vsix"
 	
 	Write-ChocolateySuccess 'gep13.vs2013extensions'
 } catch {
