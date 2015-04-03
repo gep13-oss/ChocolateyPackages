@@ -26,7 +26,8 @@ try {
 	Install-ChocolateyVsixPackage "Open Command Line" "https://visualstudiogallery.msdn.microsoft.com/4e84e2cf-2d6b-472a-b1e2-b84932511379/file/151803/3/OpenCommandLine.vsix"
 	Install-ChocolateyVsixPackage "Tidy Tabs" "https://visualstudiogallery.msdn.microsoft.com/b80ab284-83f8-4022-bc78-95af126ba5f0/file/130014/4/TidyTabs.vsix"
 	Install-ChocolateyVsixPackage "YamlDotNetEditor" "https://visualstudiogallery.msdn.microsoft.com/34423c06-f756-4721-8394-bc3d23b91ca7/file/101669/8/YamlDotNetEditor.vsix"
-	
+	Install-ChocolateyVsixPackage "Flatten Packages" "https://visualstudiogallery.msdn.microsoft.com/cd0b1938-4513-4e57-b9b7-c674b4a20e79/file/157954/7/Flatten%20Packages%20v1.0.8.vsix"
+
 	Write-ChocolateySuccess 'gep13.vs2013extensions'
 } catch {
 	Write-ChocolateyFailure 'gep13.vs2013extensions' $($_.Exception.Message)
