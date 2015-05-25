@@ -22,6 +22,7 @@ try {
 	Install-ChocolateyVsixPackage "YamlDotNetEditor" "https://visualstudiogallery.msdn.microsoft.com/34423c06-f756-4721-8394-bc3d23b91ca7/file/101669/8/YamlDotNetEditor.vsix"
 	Install-ChocolateyVsixPackage "Flatten Packages" "https://visualstudiogallery.msdn.microsoft.com/cd0b1938-4513-4e57-b9b7-c674b4a20e79/file/157954/7/Flatten%20Packages%20v1.0.8.vsix"
 	Install-ChocolateyVsixPackage "Developer Assistant" "https://visualstudiogallery.msdn.microsoft.com/a1166718-a2d9-4a48-a5fd-504ff4ad1b65/file/125117/17/DeveloperAssistant_2013.vsix"
+	Install-ChocolateyVsixPackage "EditorConfig" "https://visualstudiogallery.msdn.microsoft.com/c8bccfe2-650c-4b42-bc5c-845e21f96328/file/75539/12/EditorConfigPlugin.vsix"		
 
 	Write-ChocolateySuccess 'gep13.vs2013extensions'
 } catch {

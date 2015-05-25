@@ -2,14 +2,17 @@
 <package>
   <metadata>
     <id>gep13.vs2015extensions</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <authors>gep13</authors>
     <owners>gep13</owners>
     <description>Chocolatey package to install all the Visual Studio 2015 Extensions that I use</description>
     <tags>Boxstarter</tags>
 	<releaseNotes>
-## 1.0.0
+## 1.0.1
+* Removed extensions no longer required
+* Added EditorConfig
 
+## 1.0.0
 * Initial Release.
 	</releaseNotes>
   </metadata>

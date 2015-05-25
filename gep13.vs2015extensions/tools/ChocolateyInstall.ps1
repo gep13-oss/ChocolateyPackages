@@ -1,6 +1,5 @@
 try {
 	Install-ChocolateyVsixPackage "Web Essentials 2015.0 RC" "https://visualstudiogallery.msdn.microsoft.com/ee6e6d8c-c837-41fb-886a-6b50ae2d06a2/file/146119/17/Web%20Essentials%202015.0%20RC%20v0.4.107.vsix"
-	Install-ChocolateyVsixPackage "GitHub Extension for Visual Studio" "https://visualstudiogallery.msdn.microsoft.com/75be44fb-0794-4391-8865-c3279527e97d/file/159055/4/GitHub.VisualStudio.vsix"
 	Install-ChocolateyVsixPackage "Developer Assistant" "https://visualstudiogallery.msdn.microsoft.com/5d01e3bd-6433-47f2-9c6d-a9da52d172cc/file/150980/4/DeveloperAssistant_2015.vsix"
 	Install-ChocolateyVsixPackage "Trailing Whitespace Visualizer" "https://visualstudiogallery.msdn.microsoft.com/a204e29b-1778-4dae-affd-209bea658a59/file/135653/17/Trailing%20Whitespace%20Visualizer%20v2.0.51.vsix"
 	Install-ChocolateyVsixPackage "SideWaffle Template Pack" "http://visualstudiogallery.msdn.microsoft.com/a16c2d07-b2e1-4a25-87d9-194f04e7a698/referral/110630"
@@ -13,7 +12,7 @@ try {
 	Install-ChocolateyVsixPackage "Open From Azure Websites" "https://visualstudiogallery.msdn.microsoft.com/60d414b1-4ead-4fde-9359-588aa126cd6c/file/151097/4/Open%20From%20Azure%20Websites%20v1.2.37.vsix"
 	Install-ChocolateyVsixPackage "Open Command Line" "https://visualstudiogallery.msdn.microsoft.com/4e84e2cf-2d6b-472a-b1e2-b84932511379/file/151803/12/Open%20Command%20Line%20v1.7.121.vsix"
 	Install-ChocolateyVsixPackage "Flatten Packages" "https://visualstudiogallery.msdn.microsoft.com/cd0b1938-4513-4e57-b9b7-c674b4a20e79/file/157954/7/Flatten%20Packages%20v1.0.8.vsix"
-	
+	Install-ChocolateyVsixPackage "EditorConfig" "https://visualstudiogallery.msdn.microsoft.com/c8bccfe2-650c-4b42-bc5c-845e21f96328/file/75539/12/EditorConfigPlugin.vsix"
 	
 	Write-ChocolateySuccess 'gep13.vs2015extensions'
 } catch {
