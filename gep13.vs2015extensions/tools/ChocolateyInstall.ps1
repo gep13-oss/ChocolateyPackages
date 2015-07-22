@@ -17,6 +17,8 @@ try {
 	Install-ChocolateyVsixPackage "Flatten Packages" "https://visualstudiogallery.msdn.microsoft.com/cd0b1938-4513-4e57-b9b7-c674b4a20e79/file/157954/7/Flatten%20Packages%20v1.0.8.vsix"
 	Install-ChocolateyVsixPackage "Developer Assistant" "https://visualstudiogallery.msdn.microsoft.com/5d01e3bd-6433-47f2-9c6d-a9da52d172cc/file/150980/4/DeveloperAssistant_2015.vsix"		
 	Install-ChocolateyVsixPackage "EditorConfig" "https://visualstudiogallery.msdn.microsoft.com/c8bccfe2-650c-4b42-bc5c-845e21f96328/file/75539/12/EditorConfigPlugin.vsix"
+	Install-ChocolateyVsixPackage "BetterStartPage" "https://visualstudiogallery.msdn.microsoft.com/8da4b080-2ad6-47fd-a1ff-4e7cc185523b/file/146177/8/BetterStartPage.vsix"
+	Install-ChocolateyVsixPackage "Reopen Start Page" "https://visualstudiogallery.msdn.microsoft.com/e64380ab-e3aa-4ac7-aa11-95719c5c91e9/file/169737/1/VSReopenStartPage.vsix"
 	
 	Write-ChocolateySuccess 'gep13.vs2015extensions'
 } catch {
