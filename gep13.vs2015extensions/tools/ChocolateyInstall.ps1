@@ -19,6 +19,7 @@ try {
 	Install-ChocolateyVsixPackage "EditorConfig" "https://visualstudiogallery.msdn.microsoft.com/c8bccfe2-650c-4b42-bc5c-845e21f96328/file/75539/12/EditorConfigPlugin.vsix"
 	Install-ChocolateyVsixPackage "BetterStartPage" "https://visualstudiogallery.msdn.microsoft.com/8da4b080-2ad6-47fd-a1ff-4e7cc185523b/file/146177/8/BetterStartPage.vsix"
 	Install-ChocolateyVsixPackage "Reopen Start Page" "https://visualstudiogallery.msdn.microsoft.com/e64380ab-e3aa-4ac7-aa11-95719c5c91e9/file/169737/1/VSReopenStartPage.vsix"
+	Install-ChocolateyVsixPackage "GitFlow for Visual Studio 2015" "https://visualstudiogallery.msdn.microsoft.com/f5ae0a1d-005f-4a09-a19c-3f46ff30400a/file/154275/6/GitFlowVS.2015.vsix"
 	
 	Write-ChocolateySuccess 'gep13.vs2015extensions'
 } catch {
