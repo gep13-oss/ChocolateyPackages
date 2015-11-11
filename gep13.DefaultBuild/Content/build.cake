@@ -1,60 +1,10 @@
 ///////////////////////////////////////////////////////////////////////////////
-// ARGUMENTS
-///////////////////////////////////////////////////////////////////////////////
-
-var target          = Argument<string>("target", "Default");
-var configuration   = Argument<string>("configuration", "Release");
-
-///////////////////////////////////////////////////////////////////////////////
 // GLOBAL VARIABLES
 ///////////////////////////////////////////////////////////////////////////////
 var isLocalBuild        = !AppVeyor.IsRunningOnAppVeyor;
 var isPullRequest       = AppVeyor.Environment.PullRequest.IsPullRequest;
 var isDevelopBranch     = AppVeyor.Environment.Repository.Branch == "develop";
 var isTag               = AppVeyor.Environment.Repository.Tag.IsTag;
-var solution            = "./../../../Source/ReSharperReports.sln";
-var solutionPath        = "./../../../Source/ReSharperReports";
-var sourcePath          = "./../../../Source";
-var binDir              = "./../../../Source/ReSharperReports/bin/" + configuration;
-var buildArtifacts      = "./../../../BuildArtifacts";
-var version             = "0.2.0";
-var semVersion          = "0.2.0";
-
-var assemblyInfo        = new AssemblyInfoSettings {
-                                Title                   = "ReSharperReports",
-                                Description             = "Command line tool to allow generation of human readable ReSharper Reports",
-                                Product                 = "ReSharperReports",
-                                Company                 = "gep13",
-                                Version                 = version,
-                                FileVersion             = version,
-                                InformationalVersion    = semVersion,
-                                Copyright               = string.Format("Copyright © gep13 and Contributors {0} - Present", DateTime.Now.Year),
-                                CLSCompliant            = true
-                            };
-var nuGetPackSettings   = new NuGetPackSettings {
-                                Id                      = assemblyInfo.Product,
-                                Version                 = assemblyInfo.InformationalVersion,
-                                Title                   = assemblyInfo.Title,
-                                Authors                 = new[] {assemblyInfo.Company},
-                                Owners                  = new[] {assemblyInfo.Company},
-                                Description             = assemblyInfo.Description,
-                                Summary                 = "Command line tool to allow generation of human readable ReSharper Reports",
-                                ProjectUrl              = new Uri("https://github.com/gep13/ReSharperReports/"),
-                                LicenseUrl              = new Uri("https://github.com/gep13/ReSharperReports/blob/master/LICENSE"),
-                                Copyright               = assemblyInfo.Copyright,
-                                ReleaseNotes            = new List<string>() { "https://github.com/gep13/ReSharperReports/releases" },
-                                Tags                    = new [] {"ReSharper", "DupFinder", "InspectCode", "Reports"},
-                                RequireLicenseAcceptance= false,
-                                Symbols                 = false,
-                                NoPackageAnalysis       = true,
-                                Files                   = new [] {
-                                                                    new NuSpecContent {Source = "ReSharperReports.exe", Target = "tools"},
-                                                                    new NuSpecContent {Source = "ReSharperReports.pdb", Target = "tools"},
-                                                                    new NuSpecContent {Source = "ReSharperReports.xml", Target = "tools"}
-                                                                 },
-                                BasePath                = binDir,
-                                OutputDirectory         = buildArtifacts
-                            };
 
 ///////////////////////////////////////////////////////////////////////////////
 // SETUP / TEARDOWN
@@ -202,7 +152,7 @@ Task("Publish-Nuget-Package")
     }
 
     // Get the path to the package.
-    var package = buildArtifacts + "/ReSharperReports." + semVersion + ".nupkg";
+    var package = buildArtifacts + "/" + product + "." + semVersion + ".nupkg";
 
     // Push the package.
     NuGetPush(package, new NuGetPushSettings {
