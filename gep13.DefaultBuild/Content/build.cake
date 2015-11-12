@@ -1,3 +1,5 @@
+#addin Cake.ReSharperReports
+
 ///////////////////////////////////////////////////////////////////////////////
 // GLOBAL VARIABLES
 ///////////////////////////////////////////////////////////////////////////////
@@ -78,8 +80,16 @@ Task("DupFinder")
     DupFinder(solution, new DupFinderSettings() {
         ShowStats = true,
         ShowText = true,
-        OutputFile = buildArtifacts + "/_ReSharperReports/dupfinder.xml"
+        OutputFile = buildArtifacts + "/_ReSharperReports/dupfinder.xml",
+        ThrowExceptionOnFindingDuplicates = true
     });
+})
+.OnError(exception =>
+{
+    Information("Duplicates were found in your codebase, creating HTML report...");
+    ReSharperReports.Transform(
+        buildArtifacts + "/_ReSharperReports/dupfinder.xml", 
+        buildArtifacts + "/_ReSharperReports/dupfinder.html");
 });
 
 Task("InspectCode")
@@ -90,8 +100,16 @@ Task("InspectCode")
     InspectCode(solution, new InspectCodeSettings() {
         SolutionWideAnalysis = true,
         Profile = sourcePath + "/ReSharperReports.sln.DotSettings",
-        OutputFile = buildArtifacts + "/_ReSharperReports/inspectcode.xml"
+        OutputFile = buildArtifacts + "/_ReSharperReports/inspectcode.xml",
+        ThrowExceptionOnFindingViolations = true
     });
+})
+.OnError(exception =>
+{
+    Information("Violations were found in your codebase, creating HTML report...");
+    ReSharperReports.Transform(
+        buildArtifacts + "/_ReSharperReports/inspectcode.xml", 
+        buildArtifacts + "/_ReSharperReports/inspectcode.html");
 });
 
 Task("Create-Build-Directories")
