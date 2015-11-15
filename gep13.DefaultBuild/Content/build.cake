@@ -85,6 +85,34 @@ Task("Print-AppVeyor-Environment-Variables")
     Information("CONFIGURATION: {0}", EnvironmentVariable("CONFIGURATION"));
 });
 
+Task("Run-GitVersion-AppVeyor")
+    .WithCriteria(AppVeyor.IsRunningOnAppVeyor)
+    .Does(() =>
+{
+    GitVersion(new GitVersionSettings {
+        UpdateAssemblyInfoFilePath = sourcePath + "/SolutionInfo.cs",
+        UpdateAssemblyInfo = true,
+        OutputType = GitVersionOutput.BuildServer
+    });
+    
+    semVersion = EnvironmentVariable("GitVersion_LegacySemVerPadded");
+    
+    Information("Calculated Semantic Version: {0}", semVersion);
+});
+
+Task("Run-GitVersion-Local")
+    .WithCriteria(!AppVeyor.IsRunningOnAppVeyor)
+    .Does(() =>
+{
+    var result = GitVersion(new GitVersionSettings {
+        OutputType = GitVersionOutput.Json,
+    });
+    
+    semVersion = result.LegacySemVerPadded;
+    
+    Information("Calculated Semantic Version: {0}", semVersion);
+});
+
 Task("Clean")
     .Does(() =>
 {
@@ -104,21 +132,13 @@ Task("Restore")
     NuGetRestore(solution);
 });
 
-Task("SolutionInfo")
-    .IsDependentOn("Clean")
-    .IsDependentOn("Restore")
-    .Does(() =>
-{
-    var file = sourcePath + "/SolutionInfo.cs";
-    CreateAssemblyInfo(file, assemblyInfo);
-});
-
 Task("Build")
     .IsDependentOn("Show-Info")
     .IsDependentOn("Print-AppVeyor-Environment-Variables")
     .IsDependentOn("Clean")
     .IsDependentOn("Restore")
-    .IsDependentOn("SolutionInfo")
+    .IsDependentOn("Run-GitVersion-Local")
+    .IsDependentOn("Run-GitVersion-AppVeyor")
     .IsDependentOn("DupFinder")
     .IsDependentOn("InspectCode")
     .Does(() =>
@@ -143,7 +163,7 @@ Task("DupFinder")
         ThrowExceptionOnFindingDuplicates = true
     });
 })
-.OnError(exception =>
+.ReportError(exception =>
 {
     Information("Duplicates were found in your codebase, creating HTML report...");
     ReSharperReports.Transform(
@@ -163,7 +183,7 @@ Task("InspectCode")
         ThrowExceptionOnFindingViolations = true
     });
 })
-.OnError(exception =>
+.ReportError(exception =>
 {
     Information("Violations were found in your codebase, creating HTML report...");
     ReSharperReports.Transform(
@@ -190,6 +210,27 @@ Task("Create-NuGet-Package")
     .IsDependentOn("Create-Build-Directories")
     .Does(() =>
 {
+    var nuGetPackSettings   = new NuGetPackSettings {
+                                Id                      = product,
+                                Version                 = semVersion,
+                                Title                   = title,
+                                Authors                 = new[] {company},
+                                Owners                  = new[] {company},
+                                Description             = description,
+                                Summary                 = description,
+                                ProjectUrl              = projectUrl,
+                                LicenseUrl              = licenseUrl,
+                                Copyright               = copyright,
+                                ReleaseNotes            = releaseNotes,
+                                Tags                    = tags,
+                                RequireLicenseAcceptance= false,
+                                Symbols                 = false,
+                                NoPackageAnalysis       = true,
+                                Files                   = nugetFiles,
+                                BasePath                = binDir,
+                                OutputDirectory         = buildArtifacts
+                            };
+                            
     NuGetPack(nuGetPackSettings);
 });
 
