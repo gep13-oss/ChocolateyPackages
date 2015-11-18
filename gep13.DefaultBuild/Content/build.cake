@@ -98,7 +98,7 @@ Task("Run-GitVersion-AppVeyor")
     
     semVersion = EnvironmentVariable("GitVersion_LegacySemVerPadded");
     
-    string.IsNullOrEmpty(semVersion)
+    if(string.IsNullOrEmpty(semVersion))
     {
         assertedVersions = GitVersion(new GitVersionSettings {
             OutputType = GitVersionOutput.Json,
