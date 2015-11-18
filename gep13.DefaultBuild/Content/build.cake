@@ -18,6 +18,7 @@ var isLocalBuild        = !AppVeyor.IsRunningOnAppVeyor;
 var isPullRequest       = AppVeyor.Environment.PullRequest.IsPullRequest;
 var isDevelopBranch     = AppVeyor.Environment.Repository.Branch == "develop";
 var isTag               = AppVeyor.Environment.Repository.Tag.IsTag;
+GitVersion assertedVersions = null;
 
 ///////////////////////////////////////////////////////////////////////////////
 // SETUP / TEARDOWN
@@ -97,6 +98,15 @@ Task("Run-GitVersion-AppVeyor")
     
     semVersion = EnvironmentVariable("GitVersion_LegacySemVerPadded");
     
+    string.IsNullOrEmpty(semVersion)
+    {
+        assertedVersions = GitVersion(new GitVersionSettings {
+            OutputType = GitVersionOutput.Json,
+        });
+        
+        semVersion = assertedVersions.LegacySemVerPadded;
+    }
+    
     Information("Calculated Semantic Version: {0}", semVersion);
 });
 
@@ -104,11 +114,11 @@ Task("Run-GitVersion-Local")
     .WithCriteria(!AppVeyor.IsRunningOnAppVeyor)
     .Does(() =>
 {
-    var result = GitVersion(new GitVersionSettings {
+    assertedVersions = GitVersion(new GitVersionSettings {
         OutputType = GitVersionOutput.Json,
     });
     
-    semVersion = result.LegacySemVerPadded;
+    semVersion = assertedVersions.LegacySemVerPadded;
     
     Information("Calculated Semantic Version: {0}", semVersion);
 });
