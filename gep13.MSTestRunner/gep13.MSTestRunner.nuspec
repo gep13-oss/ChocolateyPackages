@@ -1,0 +1,13 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>gep13.MSTestRunner</id>
+    <version>0.1.0</version>
+    <title>MSTest Runner</title>
+    <authors>gep13</authors>
+    <owners>gep13</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This package will register the build target for the MSTest test runner.</description>
+    <tags>mstest test runner build cake</tags>
+  </metadata>
+</package>

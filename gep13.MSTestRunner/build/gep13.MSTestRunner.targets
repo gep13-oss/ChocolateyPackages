@@ -1,0 +1,58 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <MSTestProjectOutputDirectory>$(OutDir)_PublishedMSTestTests\$(MSBuildProjectName)</MSTestProjectOutputDirectory>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PrepareForRunDependsOn>
+      $(PrepareForRunDependsOn);
+      _CopyMSTestTests
+    </PrepareForRunDependsOn>
+  </PropertyGroup>
+
+  <!--
+	============================================================
+	_CopyMSTestTests
+
+	This target will copy the build outputs along with the 
+	content files into a _PublishedMSTestTests folder.
+	
+	This Task is only necessary when $(OutDir) has been redirected
+	to a folder other than ~\bin such as is the case with Team Build.
+	============================================================
+	-->
+  <Target Name="_CopyMSTestTests" Condition="'$(OutDir)' != '$(OutputPath)'" >
+    <!-- Log tasks -->
+    <Message Text="Copying Application Project Files for $(MSBuildProjectName)" />
+
+    <!-- Create the _PublishedMSTestTests\app\ folder -->
+    <MakeDir Directories="$(MSTestProjectOutputDirectory)" />
+
+    <!-- Copy build outputs to _PublishedMSTestTests\app\ folder -->
+    <Copy SourceFiles="@(IntermediateAssembly)" DestinationFolder="$(MSTestProjectOutputDirectory)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(AddModules)" DestinationFolder="$(MSTestProjectOutputDirectory)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(IntermediateOutputPath)$(_SGenDllName)" DestinationFolder="$(MSTestProjectOutputDirectory)\%(Content.SubFolder)%(Content.RecursiveDir)" SkipUnchangedFiles="true" Condition="'$(_SGenDllCreated)'=='true'" />
+    <Copy SourceFiles="$(IntermediateOutputPath)$(TargetName).pdb" DestinationFolder="$(MSTestProjectOutputDirectory)" SkipUnchangedFiles="true" Condition="'$(_DebugSymbolsProduced)'=='true'" />
+    <Copy SourceFiles="@(DocFileItem)" DestinationFolder="$(MSTestProjectOutputDirectory)" SkipUnchangedFiles="true" Condition="'$(_DocumentationFileProduced)'=='true'" />
+    <Copy SourceFiles="@(IntermediateSatelliteAssembliesWithTargetPath)" DestinationFiles="@(IntermediateSatelliteAssembliesWithTargetPath->'$(MSTestProjectOutputDirectory)\%(Culture)\$(TargetName).resources.dll')" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(ReferenceComWrappersToCopyLocal); @(ResolvedIsolatedComModules); @(_DeploymentLooseManifestFile); @(NativeReferenceFile)" DestinationFolder="$(MSTestProjectOutputDirectory)" SkipUnchangedFiles="true" />
+
+    <!-- copy any referenced assemblies to _PublishedMSTestTests\app\ folder -->
+    <Copy SourceFiles="@(ReferenceCopyLocalPaths)" DestinationFiles="@(ReferenceCopyLocalPaths->'$(MSTestProjectOutputDirectory)\%(DestinationSubDirectory)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+
+    <!-- Copy content files recursively to _PublishedMSTestTests\app\ folder -->
+    <Copy SourceFiles="@(Content)" Condition="'%(Content.Link)' == ''" DestinationFolder="$(MSTestProjectOutputDirectory)\%(Content.RelativeDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(Content)" Condition="'%(Content.Link)' != ''" DestinationFiles="$(MSTestProjectOutputDirectory)\%(Content.Link)" SkipUnchangedFiles="true"/>
+
+    <!-- Copy items that have been marked to be copied to the output folder -->
+    <Copy SourceFiles="@(_SourceItemsToCopyToOutputDirectory)" DestinationFolder="$(MSTestProjectOutputDirectory)" SkipUnchangedFiles="true"/>
+    <Copy SourceFiles="@(_SourceItemsToCopyToOutputDirectoryAlways)" DestinationFolder="$(MSTestProjectOutputDirectory)" SkipUnchangedFiles="false"/>
+
+    <!-- Copy items that need to be bin deployed to the output folder -->
+    <Copy SourceFiles="@(_binDeployableAssemblies)" DestinationFolder="$(MSTestProjectOutputDirectory)\%(RecursiveDir)" SkipUnchangedFiles="true"/>
+
+    <!-- Copy config files to _PublishedMSTestTests\app\ folder -->
+    <Copy SourceFiles="$(OutDir)$(TargetFileName).config" DestinationFolder="$(MSTestProjectOutputDirectory)" ContinueOnError="true" SkipUnchangedFiles="true" />
+  </Target>
+</Project>
