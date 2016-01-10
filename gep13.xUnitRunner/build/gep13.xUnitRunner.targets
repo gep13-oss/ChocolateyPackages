@@ -1,0 +1,58 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <xUnitProjectOutputDirectory>$(OutDir)_PublishedxUnitTests\$(MSBuildProjectName)</xUnitProjectOutputDirectory>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PrepareForRunDependsOn>
+      $(PrepareForRunDependsOn);
+      CopyxUnitTests
+    </PrepareForRunDependsOn>
+  </PropertyGroup>
+
+  <!--
+	============================================================
+	CopyxUnitTests
+
+	This target will copy the build outputs along with the 
+	content files into a _PublishedxUnitTests folder.
+	
+	This Task is only necessary when $(OutDir) has been redirected
+	to a folder other than ~\bin such as is the case with Team Build.
+	============================================================
+	-->
+  <Target Name="CopyxUnitTests" Condition="'$(OutDir)' != '$(OutputPath)'" >
+    <!-- Log tasks -->
+    <Message Text="Copying Application Project Files for $(MSBuildProjectName)" />
+
+    <!-- Create the _PublishedxUnitTests\app\ folder -->
+    <MakeDir Directories="$(xUnitProjectOutputDirectory)" />
+
+    <!-- Copy build outputs to _PublishedxUnitTests\app\ folder -->
+    <Copy SourceFiles="@(IntermediateAssembly)" DestinationFolder="$(xUnitProjectOutputDirectory)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(AddModules)" DestinationFolder="$(xUnitProjectOutputDirectory)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(IntermediateOutputPath)$(_SGenDllName)" DestinationFolder="$(xUnitProjectOutputDirectory)\%(Content.SubFolder)%(Content.RecursiveDir)" SkipUnchangedFiles="true" Condition="'$(_SGenDllCreated)'=='true'" />
+    <Copy SourceFiles="$(IntermediateOutputPath)$(TargetName).pdb" DestinationFolder="$(xUnitProjectOutputDirectory)" SkipUnchangedFiles="true" Condition="'$(_DebugSymbolsProduced)'=='true'" />
+    <Copy SourceFiles="@(DocFileItem)" DestinationFolder="$(xUnitProjectOutputDirectory)" SkipUnchangedFiles="true" Condition="'$(_DocumentationFileProduced)'=='true'" />
+    <Copy SourceFiles="@(IntermediateSatelliteAssembliesWithTargetPath)" DestinationFiles="@(IntermediateSatelliteAssembliesWithTargetPath->'$(xUnitProjectOutputDirectory)\%(Culture)\$(TargetName).resources.dll')" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(ReferenceComWrappersToCopyLocal); @(ResolvedIsolatedComModules); @(_DeploymentLooseManifestFile); @(NativeReferenceFile)" DestinationFolder="$(xUnitProjectOutputDirectory)" SkipUnchangedFiles="true" />
+
+    <!-- copy any referenced assemblies to _PublishedxUnitTests\app\ folder -->
+    <Copy SourceFiles="@(ReferenceCopyLocalPaths)" DestinationFiles="@(ReferenceCopyLocalPaths->'$(xUnitProjectOutputDirectory)\%(DestinationSubDirectory)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+
+    <!-- Copy content files recursively to _PublishedxUnitTests\app\ folder -->
+    <Copy SourceFiles="@(Content)" Condition="'%(Content.Link)' == ''" DestinationFolder="$(xUnitProjectOutputDirectory)\%(Content.RelativeDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(Content)" Condition="'%(Content.Link)' != ''" DestinationFiles="$(xUnitProjectOutputDirectory)\%(Content.Link)" SkipUnchangedFiles="true"/>
+
+    <!-- Copy items that have been marked to be copied to the output folder -->
+    <Copy SourceFiles="@(_SourceItemsToCopyToOutputDirectory)" DestinationFolder="$(xUnitProjectOutputDirectory)" SkipUnchangedFiles="true"/>
+    <Copy SourceFiles="@(_SourceItemsToCopyToOutputDirectoryAlways)" DestinationFolder="$(xUnitProjectOutputDirectory)" SkipUnchangedFiles="false"/>
+
+    <!-- Copy items that need to be bin deployed to the output folder -->
+    <Copy SourceFiles="@(_binDeployableAssemblies)" DestinationFolder="$(xUnitProjectOutputDirectory)\%(RecursiveDir)" SkipUnchangedFiles="true"/>
+
+    <!-- Copy config files to _PublishedxUnitTests\app\ folder -->
+    <Copy SourceFiles="$(OutDir)$(TargetFileName).config" DestinationFolder="$(xUnitProjectOutputDirectory)" ContinueOnError="true" SkipUnchangedFiles="true" />
+  </Target>
+</Project>
