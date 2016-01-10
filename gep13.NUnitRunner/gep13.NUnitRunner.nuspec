@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>gep13.NUnitRunner</id>
+    <version>0.1.0</version>
+    <title>NUnit Runner</title>
+    <authors>gep13</authors>
+    <owners>gep13</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This package will register the build target for the NUnit test runner.</description>
+    <tags>nunit test runner build cake</tags>
+    <dependencies>
+      <dependency id="NUnit" version="3.0.1" />
+    </dependencies>
+  </metadata>
+</package>
