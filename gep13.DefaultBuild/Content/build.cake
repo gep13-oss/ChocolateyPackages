@@ -2,6 +2,8 @@
 // ADDINS
 ///////////////////////////////////////////////////////////////////////////////
 #addin Cake.ReSharperReports
+#addin Cake.Gitter
+#addin Cake.Slack
 
 ///////////////////////////////////////////////////////////////////////////////
 // TOOLS
@@ -14,11 +16,35 @@
 ///////////////////////////////////////////////////////////////////////////////
 // GLOBAL VARIABLES
 ///////////////////////////////////////////////////////////////////////////////
-var isLocalBuild        = !AppVeyor.IsRunningOnAppVeyor;
-var isPullRequest       = AppVeyor.Environment.PullRequest.IsPullRequest;
-var isDevelopBranch     = AppVeyor.Environment.Repository.Branch == "develop";
-var isTag               = AppVeyor.Environment.Repository.Tag.IsTag;
-GitVersion assertedVersions = null;
+var isLocalBuild                   = !AppVeyor.IsRunningOnAppVeyor;
+var isPullRequest                  = AppVeyor.Environment.PullRequest.IsPullRequest;
+var isDevelopBranch                = AppVeyor.Environment.Repository.Branch == "develop";
+var isTag                          = AppVeyor.Environment.Repository.Tag.IsTag;
+GitVersion assertedVersions        = null;
+var resharperReportsDirectoryPath  = buildDirectoryPath + "/_ReSharperReports";
+var tempBuildDirectoryPath         = buildDirectoryPath + "/temp";
+var publishedNUnitTestsDirectory   = tempBuildDirectoryPath + "/_PublishedNUnitTests";
+var publishedxUnitTestsDirectory   = tempBuildDirectoryPath + "/_PublishedxUnitTests";
+var publishedMSTestTestsDirectory  = tempBuildDirectoryPath + "/_PublishedMSTestTests";
+var publishedWebsitesDirectory     = tempBuildDirectoryPath + "/_PublishedWebsites";
+var publishedApplicationsDirectory = tempBuildDirectoryPath + "/_PublishedApplications";
+var publishedLibrariesDirectory    = tempBuildDirectoryPath + "/_PublishedLibraries";
+
+var testResultsDirectory = buildDirectoryPath + "/TestResults";
+var NUnitTestResultsDirectory = testResultsDirectory + "/NUnit";
+var xUnitTestResultsDirectory = testResultsDirectory + "/xUnit";
+var MSTestTestResultsDirectory = testResultsDirectory + "/MSTest";
+
+var testCoverageDirectory = buildDirectoryPath + "/TestCoverage";
+var testCoverageReportPath = testCoverageDirectory + "/OpenCover.xml";
+
+var testCoverageFilter = "+[*]* -[xunit.*]* -[*.NUnitTests]* -[*.Tests]* -[*.xUnitTests]*";
+var testCoverageExcludeByAttribute = "*.ExcludeFromCodeCoverage*";
+var testCoverageExcludeByFile = "*/*Designer.cs;*/*.g.cs;*/*.g.i.cs";
+
+var packagesOutputDirectory = buildDirectoryPath + "/Packages";
+var librariesOutputDirectory = packagesOutputDirectory + "/Libraries";
+var applicationsOutputDirectory = packagesOutputDirectory + "/Applications";
 
 ///////////////////////////////////////////////////////////////////////////////
 // SETUP / TEARDOWN
@@ -26,13 +52,11 @@ GitVersion assertedVersions = null;
 
 Setup(() =>
 {
-    // Executed BEFORE the first task.
     Information("Running tasks...");
 });
 
 Teardown(() =>
 {
-    // Executed AFTER the last task.
     Information("Finished running tasks.");
 });
 
@@ -43,15 +67,13 @@ Teardown(() =>
 Task("Show-Info")
     .Does(() =>
 {
-    // Output arguments.
     Information("Target: {0}", target);
     Information("Configuration: {0}", configuration);
 
-    // Output directories.
-    Information("Solution File: {0}", MakeAbsolute((FilePath)solution));
-    Information("Solution Path: {0}", MakeAbsolute((DirectoryPath)solutionPath));
-    Information("Source Path: {0}", MakeAbsolute((DirectoryPath)sourcePath));
-    Information("Build Artifacts Path: {0}", MakeAbsolute((DirectoryPath)buildArtifacts));
+    Information("Solution FilePath: {0}", MakeAbsolute((FilePath)solutionFilePath));
+    Information("Solution DirectoryPath: {0}", MakeAbsolute((DirectoryPath)solutionDirectoryPath));
+    Information("Source DirectoryPath: {0}", MakeAbsolute((DirectoryPath)sourceDirectoryPath));
+    Information("Build DirectoryPath: {0}", MakeAbsolute((DirectoryPath)buildDirectoryPath));
 });
 
 Task("Print-AppVeyor-Environment-Variables")
@@ -91,7 +113,7 @@ Task("Run-GitVersion-AppVeyor")
     .Does(() =>
 {
     GitVersion(new GitVersionSettings {
-        UpdateAssemblyInfoFilePath = sourcePath + "/SolutionInfo.cs",
+        UpdateAssemblyInfoFilePath = sourceDirectoryPath + "/SolutionInfo.cs",
         UpdateAssemblyInfo = true,
         OutputType = GitVersionOutput.BuildServer
     });
@@ -126,20 +148,22 @@ Task("Run-GitVersion-Local")
 Task("Clean")
     .Does(() =>
 {
-    Information("Cleaning {0}", solutionPath);
-    CleanDirectories(solutionPath + "/**/bin/" + configuration);
-    CleanDirectories(solutionPath + "/**/obj/" + configuration);
+    Information("Cleaning {0}...", solutionDirectoryPath);
+    
+    CleanDirectories(solutionDirectoryPath + "/**/bin/" + configuration);
+    CleanDirectories(solutionDirectoryPath + "/**/obj/" + configuration);
 
-    Information("Cleaning BuildArtifacts");
-    CleanDirectories(buildArtifacts);
+    Information("Cleaning {0}...", buildDirectoryPath);
+    
+    CleanDirectories(buildDirectoryPath);
 });
 
 Task("Restore")
     .Does(() =>
 {
-    // Restore all NuGet packages.
-    Information("Restoring {0}...", solution);
-    NuGetRestore(solution);
+    Information("Restoring {0}...", solutionFilePath);
+    
+    NuGetRestore(solutionFilePath);
 });
 
 Task("Build")
@@ -153,8 +177,9 @@ Task("Build")
     .IsDependentOn("InspectCode")
     .Does(() =>
 {
-    Information("Building {0}", solution);
-    MSBuild(solution, settings =>
+    Information("Building {0}", solutionFilePath);
+    
+    MSBuild(solutionFilePath, settings =>
         settings.SetPlatformTarget(PlatformTarget.MSIL)
             .WithProperty("TreatWarningsAsErrors","true")
             .WithTarget("Build")
@@ -165,11 +190,10 @@ Task("DupFinder")
     .IsDependentOn("Create-Build-Directories")
     .Does(() =>
 {
-    // Run ReSharper's DupFinder
-    DupFinder(solution, new DupFinderSettings() {
+    DupFinder(solutionFilePath, new DupFinderSettings() {
         ShowStats = true,
         ShowText = true,
-        OutputFile = buildArtifacts + "/_ReSharperReports/dupfinder.xml",
+        OutputFile = resharperReportsDirectoryPath + "/dupfinder.xml",
         ThrowExceptionOnFindingDuplicates = true
     });
 })
@@ -177,19 +201,18 @@ Task("DupFinder")
 {
     Information("Duplicates were found in your codebase, creating HTML report...");
     ReSharperReports.Transform(
-        buildArtifacts + "/_ReSharperReports/dupfinder.xml", 
-        buildArtifacts + "/_ReSharperReports/dupfinder.html");
+        resharperReportsDirectoryPath + "/dupfinder.xml", 
+        resharperReportsDirectoryPath + "/dupfinder.html");
 });
 
 Task("InspectCode")
     .IsDependentOn("Create-Build-Directories")
     .Does(() =>
 {
-    // Run ReSharper's InspectCode
-    InspectCode(solution, new InspectCodeSettings() {
+    InspectCode(solutionFilePath, new InspectCodeSettings() {
         SolutionWideAnalysis = true,
-        Profile = sourcePath + "/ReSharperReports.sln.DotSettings",
-        OutputFile = buildArtifacts + "/_ReSharperReports/inspectcode.xml",
+        Profile = sourceDirectoryPath + resharperSettingsFileName,
+        OutputFile = resharperReportsDirectoryPath + "/inspectcode.xml",
         ThrowExceptionOnFindingViolations = true
     });
 })
@@ -197,25 +220,31 @@ Task("InspectCode")
 {
     Information("Violations were found in your codebase, creating HTML report...");
     ReSharperReports.Transform(
-        buildArtifacts + "/_ReSharperReports/inspectcode.xml", 
-        buildArtifacts + "/_ReSharperReports/inspectcode.html");
+        resharperReportsDirectoryPath + "/inspectcode.xml", 
+        resharperReportsDirectoryPath + "/inspectcode.html");
 });
 
 Task("Create-Build-Directories")
     .Does(() =>
 {
-    if (!DirectoryExists(buildArtifacts))
+    if (!DirectoryExists(buildDirectoryPath))
     {
-        CreateDirectory(buildArtifacts);
+        CreateDirectory(buildDirectoryPath);
     }
     
-    if (!DirectoryExists(buildArtifacts + "/_ReSharperReports"))
+    if (!DirectoryExists(resharperReportsDirectoryPath))
     {
-        CreateDirectory(buildArtifacts + "/_ReSharperReports");
+        CreateDirectory(resharperReportsDirectoryPath);
+    }
+    
+    if (!DirectoryExists(tempBuildDirectoryPath))
+    {
+        CreateDirectory(tempBuildDirectoryPath);
     }
 });
 
 Task("Create-NuGet-Package")
+    .IsDependentOn("Test")
     .IsDependentOn("Build")
     .IsDependentOn("Create-Build-Directories")
     .Does(() =>
@@ -237,8 +266,8 @@ Task("Create-NuGet-Package")
                                 Symbols                 = false,
                                 NoPackageAnalysis       = true,
                                 Files                   = nugetFiles,
-                                BasePath                = binDir,
-                                OutputDirectory         = buildArtifacts
+                                BasePath                = binDirectoryPath,
+                                OutputDirectory         = buildDirectoryPath
                             };
                             
     NuGetPack(nuGetPackSettings);
@@ -257,11 +286,13 @@ Task("Publish-Nuget-Package")
         apiKey = EnvironmentVariable("MYGET_MASTER_API_KEY");
 	}
 
-	if(isTag) {
+	if(isTag) 
+    {
         apiKey = EnvironmentVariable("NUGET_API_KEY");
 	}
 
-    if(string.IsNullOrEmpty(apiKey)) {
+    if(string.IsNullOrEmpty(apiKey)) 
+    {
         throw new InvalidOperationException("Could not resolve MyGet/Nuget API key.");
     }
 
@@ -271,22 +302,51 @@ Task("Publish-Nuget-Package")
         source = EnvironmentVariable("MYGET_MASTER_SOURCE");
     }
 
-    if(isTag) {
+    if(isTag) 
+    {
         source = EnvironmentVariable("NUGET_SOURCE");
     }
 
-    if(string.IsNullOrEmpty(source)) {
+    if(string.IsNullOrEmpty(source)) 
+    {
         throw new InvalidOperationException("Could not resolve MyGet/Nuget source.");
     }
 
     // Get the path to the package.
-    var package = buildArtifacts + "/" + product + "." + semVersion + ".nupkg";
+    var package = buildDirectoryPath + "/" + product + "." + semVersion + ".nupkg";
 
     // Push the package.
     NuGetPush(package, new NuGetPushSettings {
         Source = source,
         ApiKey = apiKey
     });
+});
+
+Task("Test-NUnit")
+    .WithCriteria(DirectoryExists(NUnitTestResultsDirectory))
+    .Does(() =>
+{ 
+});
+
+Task("Test-xUnit")
+    .WithCriteria(DirectoryExists(xUnitTestResultsDirectory))
+    .Does(() =>
+{ 
+});
+
+Task("Test-MSTest")
+    .WithCriteria(DirectoryExists(MSTestTestResultsDirectory))
+    .Does(() =>
+{ 
+});
+
+Task("Test")
+    .IsDependentOn("Test-NUnit")
+    .IsDependentOn("Test-xUnit")
+    .IsDependentOn("Test-MSTest")
+    .Does(() =>
+{
+    
 });
 
 Task("Default")
