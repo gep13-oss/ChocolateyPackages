@@ -1,17 +1,10 @@
 ///////////////////////////////////////////////////////////////////////////////
 // ADDINS
 ///////////////////////////////////////////////////////////////////////////////
-#addin Cake.ReSharperReports
-#addin Cake.Gitter
-#addin Cake.Slack
 
 ///////////////////////////////////////////////////////////////////////////////
 // TOOLS
 ///////////////////////////////////////////////////////////////////////////////
-#tool GitVersion.CommandLine
-#tool gitreleasemanager
-#tool JetBrains.ReSharper.CommandLineTools
-#tool ReSharperReports
 
 ///////////////////////////////////////////////////////////////////////////////
 // GLOBAL VARIABLES
@@ -47,9 +40,12 @@ var librariesOutputDirectory = packagesOutputDirectory + "/Libraries";
 var applicationsOutputDirectory = packagesOutputDirectory + "/Applications";
 
 ///////////////////////////////////////////////////////////////////////////////
-// SETUP / TEARDOWN
+// Environment Variables
 ///////////////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////////////////
+// SETUP / TEARDOWN
+///////////////////////////////////////////////////////////////////////////////
 Setup(() =>
 {
     Information("Running tasks...");
@@ -63,7 +59,6 @@ Teardown(() =>
 ///////////////////////////////////////////////////////////////////////////////
 // TASK DEFINITIONS
 ///////////////////////////////////////////////////////////////////////////////
-
 Task("Show-Info")
     .Does(() =>
 {
@@ -74,75 +69,6 @@ Task("Show-Info")
     Information("Solution DirectoryPath: {0}", MakeAbsolute((DirectoryPath)solutionDirectoryPath));
     Information("Source DirectoryPath: {0}", MakeAbsolute((DirectoryPath)sourceDirectoryPath));
     Information("Build DirectoryPath: {0}", MakeAbsolute((DirectoryPath)buildDirectoryPath));
-});
-
-Task("Print-AppVeyor-Environment-Variables")
-    .WithCriteria(AppVeyor.IsRunningOnAppVeyor)
-    .Does(() =>
-{
-    Information("CI: {0}", EnvironmentVariable("CI"));
-    Information("APPVEYOR_API_URL: {0}", EnvironmentVariable("APPVEYOR_API_URL"));
-    Information("APPVEYOR_PROJECT_ID: {0}", EnvironmentVariable("APPVEYOR_PROJECT_ID"));
-    Information("APPVEYOR_PROJECT_NAME: {0}", EnvironmentVariable("APPVEYOR_PROJECT_NAME"));
-    Information("APPVEYOR_PROJECT_SLUG: {0}", EnvironmentVariable("APPVEYOR_PROJECT_SLUG"));
-    Information("APPVEYOR_BUILD_FOLDER: {0}", EnvironmentVariable("APPVEYOR_BUILD_FOLDER"));
-    Information("APPVEYOR_BUILD_ID: {0}", EnvironmentVariable("APPVEYOR_BUILD_ID"));
-    Information("APPVEYOR_BUILD_NUMBER: {0}", EnvironmentVariable("APPVEYOR_BUILD_NUMBER"));
-    Information("APPVEYOR_BUILD_VERSION: {0}", EnvironmentVariable("APPVEYOR_BUILD_VERSION"));
-    Information("APPVEYOR_PULL_REQUEST_NUMBER: {0}", EnvironmentVariable("APPVEYOR_PULL_REQUEST_NUMBER"));
-    Information("APPVEYOR_PULL_REQUEST_TITLE: {0}", EnvironmentVariable("APPVEYOR_PULL_REQUEST_TITLE"));
-    Information("APPVEYOR_JOB_ID: {0}", EnvironmentVariable("APPVEYOR_JOB_ID"));
-    Information("APPVEYOR_REPO_PROVIDER: {0}", EnvironmentVariable("APPVEYOR_REPO_PROVIDER"));
-    Information("APPVEYOR_REPO_SCM: {0}", EnvironmentVariable("APPVEYOR_REPO_SCM"));
-    Information("APPVEYOR_REPO_NAME: {0}", EnvironmentVariable("APPVEYOR_REPO_NAME"));
-    Information("APPVEYOR_REPO_BRANCH: {0}", EnvironmentVariable("APPVEYOR_REPO_BRANCH"));
-    Information("APPVEYOR_REPO_TAG: {0}", EnvironmentVariable("APPVEYOR_REPO_TAG"));
-    Information("APPVEYOR_REPO_TAG_NAME: {0}", EnvironmentVariable("APPVEYOR_REPO_TAG_NAME"));
-    Information("APPVEYOR_REPO_COMMIT: {0}", EnvironmentVariable("APPVEYOR_REPO_COMMIT"));
-    Information("APPVEYOR_REPO_COMMIT_AUTHOR: {0}", EnvironmentVariable("APPVEYOR_REPO_COMMIT_AUTHOR"));
-    Information("APPVEYOR_REPO_COMMIT_TIMESTAMP: {0}", EnvironmentVariable("APPVEYOR_REPO_COMMIT_TIMESTAMP"));
-    Information("APPVEYOR_SCHEDULED_BUILD: {0}", EnvironmentVariable("APPVEYOR_SCHEDULED_BUILD"));
-    Information("APPVEYOR_FORCED_BUILD: {0}", EnvironmentVariable("APPVEYOR_FORCED_BUILD"));
-    Information("APPVEYOR_RE_BUILD: {0}", EnvironmentVariable("APPVEYOR_RE_BUILD"));
-    Information("PLATFORM: {0}", EnvironmentVariable("PLATFORM"));
-    Information("CONFIGURATION: {0}", EnvironmentVariable("CONFIGURATION"));
-});
-
-Task("Run-GitVersion-AppVeyor")
-    .WithCriteria(AppVeyor.IsRunningOnAppVeyor)
-    .Does(() =>
-{
-    GitVersion(new GitVersionSettings {
-        UpdateAssemblyInfoFilePath = sourceDirectoryPath + "/SolutionInfo.cs",
-        UpdateAssemblyInfo = true,
-        OutputType = GitVersionOutput.BuildServer
-    });
-    
-    semVersion = EnvironmentVariable("GitVersion_LegacySemVerPadded");
-    
-    if(string.IsNullOrEmpty(semVersion))
-    {
-        assertedVersions = GitVersion(new GitVersionSettings {
-            OutputType = GitVersionOutput.Json,
-        });
-        
-        semVersion = assertedVersions.LegacySemVerPadded;
-    }
-    
-    Information("Calculated Semantic Version: {0}", semVersion);
-});
-
-Task("Run-GitVersion-Local")
-    .WithCriteria(!AppVeyor.IsRunningOnAppVeyor)
-    .Does(() =>
-{
-    assertedVersions = GitVersion(new GitVersionSettings {
-        OutputType = GitVersionOutput.Json,
-    });
-    
-    semVersion = assertedVersions.LegacySemVerPadded;
-    
-    Information("Calculated Semantic Version: {0}", semVersion);
 });
 
 Task("Clean")
@@ -175,53 +101,16 @@ Task("Build")
     .IsDependentOn("Run-GitVersion-AppVeyor")
     .IsDependentOn("DupFinder")
     .IsDependentOn("InspectCode")
+    .WithCriteria(Tasks.Any(x => x.Name == "Print-AppVeyor-Environment-Variables"))
     .Does(() =>
 {
     Information("Building {0}", solutionFilePath);
     
-    MSBuild(solutionFilePath, settings =>
-        settings.SetPlatformTarget(PlatformTarget.MSIL)
-            .WithProperty("TreatWarningsAsErrors","true")
-            .WithTarget("Build")
-            .SetConfiguration(configuration));
-});
-
-Task("DupFinder")
-    .IsDependentOn("Create-Build-Directories")
-    .Does(() =>
-{
-    DupFinder(solutionFilePath, new DupFinderSettings() {
-        ShowStats = true,
-        ShowText = true,
-        OutputFile = resharperReportsDirectoryPath + "/dupfinder.xml",
-        ThrowExceptionOnFindingDuplicates = true
-    });
-})
-.ReportError(exception =>
-{
-    Information("Duplicates were found in your codebase, creating HTML report...");
-    ReSharperReports.Transform(
-        resharperReportsDirectoryPath + "/dupfinder.xml", 
-        resharperReportsDirectoryPath + "/dupfinder.html");
-});
-
-Task("InspectCode")
-    .IsDependentOn("Create-Build-Directories")
-    .Does(() =>
-{
-    InspectCode(solutionFilePath, new InspectCodeSettings() {
-        SolutionWideAnalysis = true,
-        Profile = sourceDirectoryPath + resharperSettingsFileName,
-        OutputFile = resharperReportsDirectoryPath + "/inspectcode.xml",
-        ThrowExceptionOnFindingViolations = true
-    });
-})
-.ReportError(exception =>
-{
-    Information("Violations were found in your codebase, creating HTML report...");
-    ReSharperReports.Transform(
-        resharperReportsDirectoryPath + "/inspectcode.xml", 
-        resharperReportsDirectoryPath + "/inspectcode.html");
+    // MSBuild(solutionFilePath, settings =>
+    //    settings.SetPlatformTarget(PlatformTarget.MSIL)
+    //        .WithProperty("TreatWarningsAsErrors","true")
+    //        .WithTarget("Build")
+    //        .SetConfiguration(configuration));
 });
 
 Task("Create-Build-Directories")
@@ -270,7 +159,7 @@ Task("Create-NuGet-Package")
                                 OutputDirectory         = buildDirectoryPath
                             };
                             
-    NuGetPack(nuGetPackSettings);
+    // NuGetPack(nuGetPackSettings);
 });
 
 Task("Publish-Nuget-Package")
@@ -346,7 +235,6 @@ Task("Test")
     .IsDependentOn("Test-MSTest")
     .Does(() =>
 {
-    
 });
 
 Task("Default")
@@ -358,5 +246,4 @@ Task("AppVeyor")
 ///////////////////////////////////////////////////////////////////////////////
 // EXECUTION
 ///////////////////////////////////////////////////////////////////////////////
-
 RunTarget(target);
