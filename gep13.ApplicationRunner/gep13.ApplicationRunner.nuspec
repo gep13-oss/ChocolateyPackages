@@ -2,12 +2,19 @@
 <package>
   <metadata>
     <id>gep13.ApplicationRunner</id>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
     <title>Application Runner</title>
     <authors>gep13</authors>
     <owners>gep13</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>This package will register the build targets for the console applications and class libraries in preparation for a build.</description>
     <tags>application runner build cake</tags>
+	<releaseNotes>
+## 0.1.1
+* Corrected issue with missing parenthesis
+
+## 0.1.0
+* Initial Release.
+	</releaseNotes>
   </metadata>
 </package>

@@ -4,11 +4,11 @@
     <ProjectType Condition="'$(ProjectType)'=='' And ($(OutputType) == 'Exe' Or $(OutputType) == 'WinExe')">Exe</ProjectType>
     <ProjectType Condition="'$(ProjectType)'=='' And $(OutputType) == 'Library' And $(ProjectConfigFileName) == 'Web.Config'">Web</ProjectType>
     <ProjectType Condition="'$(ProjectType)'=='' And $(OutputType) == 'Library'">Library</ProjectType>
-    
+
     <ApplicationProjectOutputDirectory>$(OutDir)_PublishedApplications\$(MSBuildProjectName)</ApplicationProjectOutputDirectory>
     <LibraryProjectOutputDirectory>$(OutDir)_PublishedLibraries\$(MSBuildProjectName)</LibraryProjectOutputDirectory>
   </PropertyGroup>
-  
+
   <PropertyGroup>
     <PrepareForRunDependsOn>
       $(PrepareForRunDependsOn);
@@ -21,9 +21,9 @@
   ============================================================
   CopyApplications
 
-  This target will copy the build outputs along with the 
+  This target will copy the build outputs along with the
   content files into a _PublishedApplications folder.
-  
+
   This Task is only necessary when $(OutDir) has been redirected
   to a folder other than ~\bin such as is the case with Team Build.
   ============================================================
@@ -31,7 +31,7 @@
   <Target Name="CopyApplications" Condition="'$(OutDir)' != '$(OutputPath)' And '$(ProjectType)'=='Exe'" >
     <!-- Log tasks -->
     <Message Text="Copying Application Project Files for $(MSBuildProjectName)" />
-    
+
     <Message Text="OutputType App: $(OutputType)"/>
 
     <!-- Create the _PublishedApplications\app\ folder -->
@@ -63,22 +63,22 @@
     <!-- Copy config files to _PublishedApplications\app\ folder -->
     <Copy SourceFiles="$(OutDir)$(TargetFileName).config" DestinationFolder="$(ApplicationProjectOutputDirectory)" ContinueOnError="true" SkipUnchangedFiles="true" />
   </Target>
-  
+
   <!--
   ============================================================
   CopyLibraries
 
-  This target will copy the build outputs along with the 
+  This target will copy the build outputs along with the
   content files into a _PublishedLibraries folder.
-  
+
   This Task is only necessary when $(OutDir) has been redirected
   to a folder other than ~\bin such as is the case with Team Build.
   ============================================================
   -->
-  <Target Name="CopyLibraries" Condition="'$(OutDir)' != '$(OutputPath)' And ('$(ProjectType)'=='Library' Or '$(ProjectType)'=='Web'" >
+  <Target Name="CopyLibraries" Condition="'$(OutDir)' != '$(OutputPath)' And ('$(ProjectType)'=='Library' Or '$(ProjectType)'=='Web')" >
     <!-- Log tasks -->
     <Message Text="Copying Library Project Files for $(MSBuildProjectName)" />
-    
+
     <Message Text="OutputType App: $(OutputType)"/>
 
     <!-- Create the _PublishedLibraries\app\ folder -->
@@ -109,5 +109,5 @@
 
     <!-- Copy config files to _PublishedLibraries\app\ folder -->
     <Copy SourceFiles="$(OutDir)$(TargetFileName).config" DestinationFolder="$(LibraryProjectOutputDirectory)" ContinueOnError="true" SkipUnchangedFiles="true" />
-  </Target>  
+  </Target>
 </Project>
