@@ -89,7 +89,7 @@ Task("Restore")
 {
     Information("Restoring {0}...", solutionFilePath);
 
-    NuGetRestore(solutionFilePath);
+    NuGetRestore(solutionFilePath, new NuGetRestoreSettings { Source = new List<string> { "https://www.nuget.org/api/v2", "https://www.myget.org/F/gep13/api/v2" }});
 });
 
 Task("Build")
