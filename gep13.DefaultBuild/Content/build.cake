@@ -75,12 +75,12 @@ Task("Clean")
     .Does(() =>
 {
     Information("Cleaning {0}...", solutionDirectoryPath);
-    
+
     CleanDirectories(solutionDirectoryPath + "/**/bin/" + configuration);
     CleanDirectories(solutionDirectoryPath + "/**/obj/" + configuration);
 
     Information("Cleaning {0}...", buildDirectoryPath);
-    
+
     CleanDirectories(buildDirectoryPath);
 });
 
@@ -88,7 +88,7 @@ Task("Restore")
     .Does(() =>
 {
     Information("Restoring {0}...", solutionFilePath);
-    
+
     NuGetRestore(solutionFilePath);
 });
 
@@ -105,12 +105,13 @@ Task("Build")
     .Does(() =>
 {
     Information("Building {0}", solutionFilePath);
-    
-    // MSBuild(solutionFilePath, settings =>
-    //    settings.SetPlatformTarget(PlatformTarget.MSIL)
-    //        .WithProperty("TreatWarningsAsErrors","true")
-    //        .WithTarget("Build")
-    //        .SetConfiguration(configuration));
+
+    MSBuild(solutionFilePath, settings =>
+        settings.SetPlatformTarget(PlatformTarget.MSIL)
+            .WithProperty("TreatWarningsAsErrors","true")
+            .WithProperty("OutDir", MakeAbsolute((FilePath)buildDirectoryPath).FullPath)
+            .WithTarget("Build")
+            .SetConfiguration(configuration));
 });
 
 Task("Create-Build-Directories")
@@ -120,12 +121,12 @@ Task("Create-Build-Directories")
     {
         CreateDirectory(buildDirectoryPath);
     }
-    
+
     if (!DirectoryExists(resharperReportsDirectoryPath))
     {
         CreateDirectory(resharperReportsDirectoryPath);
     }
-    
+
     if (!DirectoryExists(tempBuildDirectoryPath))
     {
         CreateDirectory(tempBuildDirectoryPath);
@@ -158,7 +159,7 @@ Task("Create-NuGet-Package")
                                 BasePath                = binDirectoryPath,
                                 OutputDirectory         = buildDirectoryPath
                             };
-                            
+
     // NuGetPack(nuGetPackSettings);
 });
 
@@ -175,12 +176,12 @@ Task("Publish-Nuget-Package")
         apiKey = EnvironmentVariable("MYGET_MASTER_API_KEY");
 	}
 
-	if(isTag) 
+	if(isTag)
     {
         apiKey = EnvironmentVariable("NUGET_API_KEY");
 	}
 
-    if(string.IsNullOrEmpty(apiKey)) 
+    if(string.IsNullOrEmpty(apiKey))
     {
         throw new InvalidOperationException("Could not resolve MyGet/Nuget API key.");
     }
@@ -191,12 +192,12 @@ Task("Publish-Nuget-Package")
         source = EnvironmentVariable("MYGET_MASTER_SOURCE");
     }
 
-    if(isTag) 
+    if(isTag)
     {
         source = EnvironmentVariable("NUGET_SOURCE");
     }
 
-    if(string.IsNullOrEmpty(source)) 
+    if(string.IsNullOrEmpty(source))
     {
         throw new InvalidOperationException("Could not resolve MyGet/Nuget source.");
     }
@@ -214,19 +215,19 @@ Task("Publish-Nuget-Package")
 Task("Test-NUnit")
     .WithCriteria(DirectoryExists(NUnitTestResultsDirectory))
     .Does(() =>
-{ 
+{
 });
 
 Task("Test-xUnit")
     .WithCriteria(DirectoryExists(xUnitTestResultsDirectory))
     .Does(() =>
-{ 
+{
 });
 
 Task("Test-MSTest")
     .WithCriteria(DirectoryExists(MSTestTestResultsDirectory))
     .Does(() =>
-{ 
+{
 });
 
 Task("Test")
