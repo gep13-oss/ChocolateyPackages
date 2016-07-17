@@ -43,12 +43,33 @@ var applicationsOutputDirectory = packagesOutputDirectory + "/Applications";
 // Environment Variables
 ///////////////////////////////////////////////////////////////////////////////
 
+BuildParameters parameters = BuildParameters.GetParameters(Context, BuildSystem);
+bool publishingError = false;
+
 ///////////////////////////////////////////////////////////////////////////////
 // SETUP / TEARDOWN
 ///////////////////////////////////////////////////////////////////////////////
-Setup(() =>
+
+Setup(context =>
 {
-    Information("Running tasks...");
+    if(parameters.IsMasterBranch && (context.Log.Verbosity != Verbosity.Diagnostic)) {
+        Information("Increasing verbosity to diagnostic.");
+        context.Log.Verbosity = Verbosity.Diagnostic;
+    }
+
+    parameters.SetBuildVersion(
+        BuildVersion.CalculatingSemanticVersion(
+            context: Context,
+            parameters: parameters
+        )
+    );
+
+    Information("Building version {0} of Cake.Twitter ({1}, {2}) using version {3} of Cake. (IsTagged: {4})",
+        parameters.Version.SemVersion,
+        parameters.Configuration,
+        parameters.Target,
+        parameters.Version.CakeVersion,
+        parameters.IsTagged);
 });
 
 Teardown(() =>
@@ -97,10 +118,6 @@ Task("Build")
     .IsDependentOn("Print-AppVeyor-Environment-Variables")
     .IsDependentOn("Clean")
     .IsDependentOn("Restore")
-    .IsDependentOn("Run-GitVersion-Local")
-    .IsDependentOn("Run-GitVersion-AppVeyor")
-    .IsDependentOn("DupFinder")
-    .IsDependentOn("InspectCode")
     .WithCriteria(Tasks.Any(x => x.Name == "Print-AppVeyor-Environment-Variables"))
     .Does(() =>
 {
@@ -134,9 +151,10 @@ Task("Create-Build-Directories")
 });
 
 Task("Create-NuGet-Package")
-    .IsDependentOn("Test")
-    .IsDependentOn("Build")
     .IsDependentOn("Create-Build-Directories")
+    .IsDependentOn("Analyze")
+    .IsDependentOn("Build")
+    .IsDependentOn("Test")
     .Does(() =>
 {
     var nuGetPackSettings   = new NuGetPackSettings {
@@ -237,6 +255,10 @@ Task("Test")
     .Does(() =>
 {
 });
+
+Task("Analyze")
+    .IsDependentOn("DupFinder")
+    .IsDependentOn("InspectCode");
 
 Task("Default")
     .IsDependentOn("Create-NuGet-Package");

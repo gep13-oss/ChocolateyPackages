@@ -12,44 +12,72 @@
 // Environment Variables
 ///////////////////////////////////////////////////////////////////////////////
 
-///////////////////////////////////////////////////////////////////////////////
-// TASK DEFINITIONS
-///////////////////////////////////////////////////////////////////////////////
-Task("Run-GitVersion-AppVeyor")
-    .WithCriteria(AppVeyor.IsRunningOnAppVeyor)
-    .Does(() =>
+public class BuildVersion
 {
-    GitVersion(new GitVersionSettings {
-        UpdateAssemblyInfoFilePath = sourceDirectoryPath + "/SolutionInfo.cs",
-        UpdateAssemblyInfo = true,
-        OutputType = GitVersionOutput.BuildServer
-    });
-    
-    semVersion = EnvironmentVariable("GitVersion_LegacySemVerPadded");
-    
-    // Due to the way that GitVersion is executed on AppVeyor, the Environment Variables although populated
-    // are not accessible yet, so have to run GitVersion again, using OutputType of JSON
-    if(string.IsNullOrEmpty(semVersion))
-    {
-        assertedVersions = GitVersion(new GitVersionSettings {
-            OutputType = GitVersionOutput.Json,
-        });
-        
-        semVersion = assertedVersions.LegacySemVerPadded;
-    }
-    
-    Information("Calculated Semantic Version: {0}", semVersion);
-});
+    public string Version { get; private set; }
+    public string SemVersion { get; private set; }
+    public string Milestone { get; private set; }
+    public string CakeVersion { get; private set; }
 
-Task("Run-GitVersion-Local")
-    .WithCriteria(!AppVeyor.IsRunningOnAppVeyor)
-    .Does(() =>
-{
-    assertedVersions = GitVersion(new GitVersionSettings {
-        OutputType = GitVersionOutput.Json,
-    });
-    
-    semVersion = assertedVersions.LegacySemVerPadded;
-    
-    Information("Calculated Semantic Version: {0}", semVersion);
-});
+    public static BuildVersion CalculatingSemanticVersion(
+        ICakeContext context,
+        BuildParameters parameters
+        )
+    {
+        if (context == null)
+        {
+            throw new ArgumentNullException("context");
+        }
+
+        string version = null;
+        string semVersion = null;
+        string milestone = null;
+
+        if (context.IsRunningOnWindows() && !parameters.SkipGitVersion)
+        {
+            context.Information("Calculating Semantic Version");
+            if (!parameters.IsLocalBuild || parameters.IsPublishBuild || parameters.IsReleaseBuild)
+            {
+                context.GitVersion(new GitVersionSettings{
+                    UpdateAssemblyInfoFilePath = "./src/SolutionInfo.cs",
+                    UpdateAssemblyInfo = true,
+                    OutputType = GitVersionOutput.BuildServer
+                });
+
+                version = context.EnvironmentVariable("GitVersion_MajorMinorPatch");
+                semVersion = context.EnvironmentVariable("GitVersion_LegacySemVerPadded");
+                milestone = string.Concat("v", version);
+            }
+
+            GitVersion assertedVersions = context.GitVersion(new GitVersionSettings
+            {
+                OutputType = GitVersionOutput.Json,
+            });
+
+            version = assertedVersions.MajorMinorPatch;
+            semVersion = assertedVersions.LegacySemVerPadded;
+            milestone = string.Concat("v", version);
+
+            context.Information("Calculated Semantic Version: {0}", semVersion);
+        }
+
+        if (string.IsNullOrEmpty(version) || string.IsNullOrEmpty(semVersion))
+        {
+            context.Information("Fetching verson from SolutionInfo");
+            var assemblyInfo = context.ParseAssemblyInfo("./src/SolutionInfo.cs");
+            version = assemblyInfo.AssemblyVersion;
+            semVersion = assemblyInfo.AssemblyInformationalVersion;
+            milestone = string.Concat("v", version);
+        }
+
+        var cakeVersion = typeof(ICakeContext).Assembly.GetName().Version.ToString();
+
+        return new BuildVersion
+        {
+            Version = version,
+            SemVersion = semVersion,
+            Milestone = milestone,
+            CakeVersion = cakeVersion
+        };
+    }
+}
