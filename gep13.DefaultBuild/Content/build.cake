@@ -72,7 +72,7 @@ Setup(context =>
         parameters.IsTagged);
 });
 
-Teardown(() =>
+Teardown(context =>
 {
     Information("Finished running tasks.");
 });
@@ -131,27 +131,7 @@ Task("Build")
             .SetConfiguration(configuration));
 });
 
-Task("Create-Build-Directories")
-    .Does(() =>
-{
-    if (!DirectoryExists(buildDirectoryPath))
-    {
-        CreateDirectory(buildDirectoryPath);
-    }
-
-    if (!DirectoryExists(resharperReportsDirectoryPath))
-    {
-        CreateDirectory(resharperReportsDirectoryPath);
-    }
-
-    if (!DirectoryExists(tempBuildDirectoryPath))
-    {
-        CreateDirectory(tempBuildDirectoryPath);
-    }
-});
-
 Task("Create-NuGet-Package")
-    .IsDependentOn("Create-Build-Directories")
     .IsDependentOn("Analyze")
     .IsDependentOn("Build")
     .IsDependentOn("Test")
