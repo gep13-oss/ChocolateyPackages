@@ -1,9 +1,9 @@
 ﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup>
-    <ProjectType Condition="'$(ProjectType)'=='' And ($(OutputType) == 'Exe' Or $(OutputType) == 'WinExe')">Exe</ProjectType>
-    <ProjectType Condition="'$(ProjectType)'=='' And $(OutputType) == 'Library' And $(ProjectConfigFileName) == 'Web.Config'">Web</ProjectType>
-    <ProjectType Condition="'$(ProjectType)'=='' And $(OutputType) == 'Library'">Library</ProjectType>
+    <ActualProjectType Condition="'$(ActualProjectType)'=='' And ($(OutputType) == 'Exe' Or $(OutputType) == 'WinExe')">Exe</ActualProjectType>
+    <ActualProjectType Condition="'$(ActualProjectType)'=='' And $(OutputType) == 'Library' And $(ProjectConfigFileName) == 'Web.Config'">Web</ActualProjectType>
+    <ActualProjectType Condition="'$(ActualProjectType)'=='' And $(OutputType) == 'Library'">Library</ActualProjectType>
 
     <ApplicationProjectOutputDirectory>$(OutDir)_PublishedApplications\$(MSBuildProjectName)</ApplicationProjectOutputDirectory>
     <LibraryProjectOutputDirectory>$(OutDir)_PublishedLibraries\$(MSBuildProjectName)</LibraryProjectOutputDirectory>
@@ -28,7 +28,7 @@
   to a folder other than ~\bin such as is the case with Team Build.
   ============================================================
   -->
-  <Target Name="CopyApplications" Condition="'$(OutDir)' != '$(OutputPath)' And '$(ProjectType)'=='Exe'" >
+  <Target Name="CopyApplications" Condition="'$(OutDir)' != '$(OutputPath)' And '$(ActualProjectType)'=='Exe'" >
     <!-- Log tasks -->
     <Message Text="Copying Application Project Files for $(MSBuildProjectName)" />
 
@@ -75,7 +75,7 @@
   to a folder other than ~\bin such as is the case with Team Build.
   ============================================================
   -->
-  <Target Name="CopyLibraries" Condition="'$(OutDir)' != '$(OutputPath)' And ('$(ProjectType)'=='Library' Or '$(ProjectType)'=='Web')" >
+  <Target Name="CopyLibraries" Condition="'$(OutDir)' != '$(OutputPath)' And ('$(ActualProjectType)'=='Library' Or '$(ActualProjectType)'=='Web')" >
     <!-- Log tasks -->
     <Message Text="Copying Library Project Files for $(MSBuildProjectName)" />
 

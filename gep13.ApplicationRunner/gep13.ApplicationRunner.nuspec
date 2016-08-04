@@ -10,6 +10,9 @@
     <description>This package will register the build targets for the console applications and class libraries in preparation for a build.</description>
     <tags>application runner build cake</tags>
 	<releaseNotes>
+## 0.1.2
+* Corrected issue ProjectType variable name
+
 ## 0.1.1
 * Corrected issue with missing parenthesis
 
