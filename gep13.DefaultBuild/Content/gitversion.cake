@@ -26,11 +26,11 @@ public class BuildVersion
 
         if (context.IsRunningOnWindows() && !parameters.SkipGitVersion)
         {
-            context.Information("Calculating Semantic Version");
+            context.Information("Calculating Semantic Version...");
             if (!parameters.IsLocalBuild || parameters.IsPublishBuild || parameters.IsReleaseBuild)
             {
                 context.GitVersion(new GitVersionSettings{
-                    UpdateAssemblyInfoFilePath = "./src/SolutionInfo.cs",
+                    UpdateAssemblyInfoFilePath = parameters.Paths.Files.SolutionInfoFilePath,
                     UpdateAssemblyInfo = true,
                     OutputType = GitVersionOutput.BuildServer
                 });
@@ -54,8 +54,8 @@ public class BuildVersion
 
         if (string.IsNullOrEmpty(version) || string.IsNullOrEmpty(semVersion))
         {
-            context.Information("Fetching verson from SolutionInfo");
-            var assemblyInfo = context.ParseAssemblyInfo("./src/SolutionInfo.cs");
+            context.Information("Fetching verson from SolutionInfo...");
+            var assemblyInfo = context.ParseAssemblyInfo(parameters.Paths.Files.SolutionInfoFilePath);
             version = assemblyInfo.AssemblyVersion;
             semVersion = assemblyInfo.AssemblyInformationalVersion;
             milestone = string.Concat("v", version);
