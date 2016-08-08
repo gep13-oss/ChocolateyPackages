@@ -4,10 +4,6 @@
 #addin Cake.Gitter
 
 ///////////////////////////////////////////////////////////////////////////////
-// TOOLS
-///////////////////////////////////////////////////////////////////////////////
-
-///////////////////////////////////////////////////////////////////////////////
 // Environment Variables
 ///////////////////////////////////////////////////////////////////////////////
 var gitterToken = EnvironmentVariable("GITTER_TOKEN");
@@ -19,16 +15,16 @@ var gitterWebHookUrl = EnvironmentVariable("GITTER_WEBHOOK_URL");
 ///////////////////////////////////////////////////////////////////////////////
 Task("Gitter-Room-Notification")
     .WithCriteria(!string.IsNullOrWhiteSpace(gitterToken) && !string.IsNullOrWhiteSpace(gitterRoomId))
-    .WithCriteria(() => !isLocalBuild)
+    .WithCriteria(() => !parameters.IsLocalBuild)
     .Does(() =>
 {
-    
+
 });
 
 Task("Gitter-WebHook-Notification")
     .WithCriteria(!string.IsNullOrWhiteSpace(gitterWebHookUrl))
-    .WithCriteria(() => !isLocalBuild)
+    .WithCriteria(() => !parameters.IsLocalBuild)
     .Does(() =>
 {
-    
+
 });

@@ -1,50 +1,23 @@
 ///////////////////////////////////////////////////////////////////////////////
-// ADDINS
-///////////////////////////////////////////////////////////////////////////////
-
-///////////////////////////////////////////////////////////////////////////////
 // TOOLS
 ///////////////////////////////////////////////////////////////////////////////
+
+#tool "nuget:?package=xunit.runner.console&version=2.1.0"
+#tool "nuget:?package=OpenCover&version=4.6.519"
+#tool "nuget:?package=ReportGenerator&version=2.4.5"
+#tool "nuget:?package=ReportUnit&version=1.2.1"
 
 ///////////////////////////////////////////////////////////////////////////////
 // GLOBAL VARIABLES
 ///////////////////////////////////////////////////////////////////////////////
-var isLocalBuild                   = !AppVeyor.IsRunningOnAppVeyor;
-var isPullRequest                  = AppVeyor.Environment.PullRequest.IsPullRequest;
-var isDevelopBranch                = AppVeyor.Environment.Repository.Branch == "develop";
-var isTag                          = AppVeyor.Environment.Repository.Tag.IsTag;
+
 GitVersion assertedVersions        = null;
-var resharperReportsDirectoryPath  = buildDirectoryPath + "/_ReSharperReports";
-var tempBuildDirectoryPath         = buildDirectoryPath + "/temp";
-var publishedNUnitTestsDirectory   = tempBuildDirectoryPath + "/_PublishedNUnitTests";
-var publishedxUnitTestsDirectory   = tempBuildDirectoryPath + "/_PublishedxUnitTests";
-var publishedMSTestTestsDirectory  = tempBuildDirectoryPath + "/_PublishedMSTestTests";
-var publishedWebsitesDirectory     = tempBuildDirectoryPath + "/_PublishedWebsites";
-var publishedApplicationsDirectory = tempBuildDirectoryPath + "/_PublishedApplications";
-var publishedLibrariesDirectory    = tempBuildDirectoryPath + "/_PublishedLibraries";
 
-var testResultsDirectory = buildDirectoryPath + "/TestResults";
-var NUnitTestResultsDirectory = testResultsDirectory + "/NUnit";
-var xUnitTestResultsDirectory = testResultsDirectory + "/xUnit";
-var MSTestTestResultsDirectory = testResultsDirectory + "/MSTest";
-
-var testCoverageDirectory = buildDirectoryPath + "/TestCoverage";
-var testCoverageReportPath = testCoverageDirectory + "/OpenCover.xml";
-
-var testCoverageFilter = "+[*]* -[xunit.*]* -[*.NUnitTests]* -[*.Tests]* -[*.xUnitTests]*";
+var testCoverageFilter = "+[*]* -[xunit.*]* -[*.Tests]* ";
 var testCoverageExcludeByAttribute = "*.ExcludeFromCodeCoverage*";
 var testCoverageExcludeByFile = "*/*Designer.cs;*/*.g.cs;*/*.g.i.cs";
-
-var packagesOutputDirectory = buildDirectoryPath + "/Packages";
-var librariesOutputDirectory = packagesOutputDirectory + "/Libraries";
-var applicationsOutputDirectory = packagesOutputDirectory + "/Applications";
-
-///////////////////////////////////////////////////////////////////////////////
-// Environment Variables
-///////////////////////////////////////////////////////////////////////////////
-
-BuildParameters parameters = BuildParameters.GetParameters(Context, BuildSystem);
-bool publishingError = false;
+var parameters = BuildParameters.GetParameters(Context, BuildSystem);
+var publishingError = false;
 
 ///////////////////////////////////////////////////////////////////////////////
 // SETUP / TEARDOWN
@@ -64,7 +37,15 @@ Setup(context =>
         )
     );
 
-    Information("Building version {0} of Cake.Twitter ({1}, {2}) using version {3} of Cake. (IsTagged: {4})",
+    parameters.SetBuildPaths(
+        BuildPaths.GetPaths(
+            context: Context,
+            configuration: parameters.Configuration,
+            semVersion: parameters.Version.SemVersion
+        )
+    );
+
+    Information("Building version {0} of " + title + " ({1}, {2}) using version {3} of Cake. (IsTagged: {4})",
         parameters.Version.SemVersion,
         parameters.Configuration,
         parameters.Target,
@@ -80,6 +61,7 @@ Teardown(context =>
 ///////////////////////////////////////////////////////////////////////////////
 // TASK DEFINITIONS
 ///////////////////////////////////////////////////////////////////////////////
+
 Task("Show-Info")
     .Does(() =>
 {
@@ -88,21 +70,16 @@ Task("Show-Info")
 
     Information("Solution FilePath: {0}", MakeAbsolute((FilePath)solutionFilePath));
     Information("Solution DirectoryPath: {0}", MakeAbsolute((DirectoryPath)solutionDirectoryPath));
-    Information("Source DirectoryPath: {0}", MakeAbsolute((DirectoryPath)sourceDirectoryPath));
-    Information("Build DirectoryPath: {0}", MakeAbsolute((DirectoryPath)buildDirectoryPath));
+    Information("Source DirectoryPath: {0}", MakeAbsolute(parameters.Paths.Directories.Source));
+    Information("Build DirectoryPath: {0}", MakeAbsolute(parameters.Paths.Directories.Build));
 });
 
 Task("Clean")
     .Does(() =>
 {
-    Information("Cleaning {0}...", solutionDirectoryPath);
+    Information("Cleaning...");
 
-    CleanDirectories(solutionDirectoryPath + "/**/bin/" + configuration);
-    CleanDirectories(solutionDirectoryPath + "/**/obj/" + configuration);
-
-    Information("Cleaning {0}...", buildDirectoryPath);
-
-    CleanDirectories(buildDirectoryPath);
+    CleanDirectories(parameters.Paths.Directories.ToClean);
 });
 
 Task("Restore")
@@ -118,7 +95,6 @@ Task("Build")
     .IsDependentOn("Print-AppVeyor-Environment-Variables")
     .IsDependentOn("Clean")
     .IsDependentOn("Restore")
-    .WithCriteria(Tasks.Any(x => x.Name == "Print-AppVeyor-Environment-Variables"))
     .Does(() =>
 {
     Information("Building {0}", solutionFilePath);
@@ -126,7 +102,7 @@ Task("Build")
     MSBuild(solutionFilePath, settings =>
         settings.SetPlatformTarget(PlatformTarget.MSIL)
             .WithProperty("TreatWarningsAsErrors","true")
-            .WithProperty("OutDir", MakeAbsolute((FilePath)buildDirectoryPath).FullPath)
+            .WithProperty("OutDir", MakeAbsolute(parameters.Paths.Directories.TempBuild).FullPath)
             .WithTarget("Build")
             .SetConfiguration(configuration));
 });
@@ -155,7 +131,7 @@ Task("Create-NuGet-Package")
                                 NoPackageAnalysis       = true,
                                 Files                   = nugetFiles,
                                 BasePath                = binDirectoryPath,
-                                OutputDirectory         = buildDirectoryPath
+                                OutputDirectory         = parameters.Paths.Directories.Build
                             };
 
     // NuGetPack(nuGetPackSettings);
@@ -163,18 +139,18 @@ Task("Create-NuGet-Package")
 
 Task("Publish-Nuget-Package")
     .IsDependentOn("Create-NuGet-Package")
-    .WithCriteria(() => !isLocalBuild)
-    .WithCriteria(() => !isPullRequest)
+    .WithCriteria(() => !parameters.IsLocalBuild)
+    .WithCriteria(() => !parameters.IsPullRequest)
     .Does(() =>
 {
     // Resolve the API key.
 	var apiKey = EnvironmentVariable("MYGET_DEVELOP_API_KEY");
-	if(!isDevelopBranch)
+	if(parameters.IsMasterBranch)
 	{
         apiKey = EnvironmentVariable("MYGET_MASTER_API_KEY");
 	}
 
-	if(isTag)
+	if(parameters.IsTagged)
     {
         apiKey = EnvironmentVariable("NUGET_API_KEY");
 	}
@@ -185,12 +161,12 @@ Task("Publish-Nuget-Package")
     }
 
     var source = EnvironmentVariable("MYGET_DEVELOP_SOURCE");
-    if(!isDevelopBranch)
+    if(parameters.IsMasterBranch)
     {
         source = EnvironmentVariable("MYGET_MASTER_SOURCE");
     }
 
-    if(isTag)
+    if(parameters.IsTagged)
     {
         source = EnvironmentVariable("NUGET_SOURCE");
     }
@@ -201,7 +177,7 @@ Task("Publish-Nuget-Package")
     }
 
     // Get the path to the package.
-    var package = buildDirectoryPath + "/" + product + "." + semVersion + ".nupkg";
+    var package = parameters.Paths.Directories.Build.CombineWithFilePath(product + "." + semVersion + ".nupkg");
 
     // Push the package.
     NuGetPush(package, new NuGetPushSettings {
@@ -209,36 +185,6 @@ Task("Publish-Nuget-Package")
         ApiKey = apiKey
     });
 });
-
-Task("Test-NUnit")
-    .WithCriteria(DirectoryExists(NUnitTestResultsDirectory))
-    .Does(() =>
-{
-});
-
-Task("Test-xUnit")
-    .WithCriteria(DirectoryExists(xUnitTestResultsDirectory))
-    .Does(() =>
-{
-});
-
-Task("Test-MSTest")
-    .WithCriteria(DirectoryExists(MSTestTestResultsDirectory))
-    .Does(() =>
-{
-});
-
-Task("Test")
-    .IsDependentOn("Test-NUnit")
-    .IsDependentOn("Test-xUnit")
-    .IsDependentOn("Test-MSTest")
-    .Does(() =>
-{
-});
-
-Task("Analyze")
-    .IsDependentOn("DupFinder")
-    .IsDependentOn("InspectCode");
 
 Task("Default")
     .IsDependentOn("Create-NuGet-Package");
