@@ -4,29 +4,39 @@
 #addin Cake.Slack
 
 ///////////////////////////////////////////////////////////////////////////////
-// Environment Variables
+// ENVIRONMENT VARIABLES
 ///////////////////////////////////////////////////////////////////////////////
 
 var slackToken = EnvironmentVariable("SLACK_TOKEN");
 var slackChannel = EnvironmentVariable("SLACK_CHANNEL");
-var slackWebHookUrl = EnvironmentVariable("SLACK_WEBHOOK_URL");
 
 ///////////////////////////////////////////////////////////////////////////////
-// TASK DEFINITIONS
+// HELPER METHODS
 ///////////////////////////////////////////////////////////////////////////////
 
-Task("Slack-Room-Notification")
-    .WithCriteria(!string.IsNullOrWhiteSpace(slackToken) && !string.IsNullOrWhiteSpace(slackChannel))
-    .WithCriteria(() => !parameters.IsLocalBuild)
-    .Does(() =>
+public void SendMessageToSlackChannel(string message)
 {
+    try
+    {
+        Information("Sending message to Slack...");
 
-});
+        var postMessageResult = Slack.Chat.PostMessage(
+                    token: slackToken,
+                    channel: slackChannel,
+                    text: message
+            );
 
-Task("Slack-WebHook-Notification")
-    .WithCriteria(!string.IsNullOrWhiteSpace(slackWebHookUrl))
-    .WithCriteria(() => !parameters.IsLocalBuild)
-    .Does(() =>
-{
-
-});
+        if (postMessageResult.Ok)
+        {
+            Information("Message {0} successfully sent", postMessageResult.TimeStamp);
+        }
+        else
+        {
+            Error("Failed to send message: {0}", postMessageResult.Error);
+        }
+    }
+    catch(Exception ex)
+    {
+        Error("{0}", ex);
+    }
+}

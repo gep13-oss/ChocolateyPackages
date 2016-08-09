@@ -11,8 +11,6 @@
 // GLOBAL VARIABLES
 ///////////////////////////////////////////////////////////////////////////////
 
-GitVersion assertedVersions        = null;
-
 var testCoverageFilter = "+[*]* -[xunit.*]* -[*.Tests]* ";
 var testCoverageExcludeByAttribute = "*.ExcludeFromCodeCoverage*";
 var testCoverageExcludeByFile = "*/*Designer.cs;*/*.g.cs;*/*.g.i.cs";
@@ -55,6 +53,29 @@ Setup(context =>
 
 Teardown(context =>
 {
+    if(context.Successful)
+    {
+        if(!parameters.IsLocalBuild && !parameters.IsPullRequest && parameters.IsMainRepository && parameters.IsMasterBranch && parameters.IsTagged)
+        {
+            if(sendMessageToTwitter)
+            {
+                SendMessageToTwitter("test");
+            }
+
+            if(sendMessageToGitterRoom)
+            {
+                SendMessageToGitterRoom("test");
+            }
+        }
+    }
+    else
+    {
+        if(sendMessageToSlackChannel)
+        {
+            SendMessageToSlackChannel("test");
+        }
+    }
+
     Information("Finished running tasks.");
 });
 
@@ -99,6 +120,7 @@ Task("Build")
 {
     Information("Building {0}", solutionFilePath);
 
+    // TODO: Need to have an XBuild step here as well
     MSBuild(solutionFilePath, settings =>
         settings.SetPlatformTarget(PlatformTarget.MSIL)
             .WithProperty("TreatWarningsAsErrors","true")
@@ -107,90 +129,13 @@ Task("Build")
             .SetConfiguration(configuration));
 });
 
-Task("Create-NuGet-Package")
-    .IsDependentOn("Analyze")
-    .IsDependentOn("Build")
-    .IsDependentOn("Test")
-    .Does(() =>
-{
-    var nuGetPackSettings   = new NuGetPackSettings {
-                                Id                      = product,
-                                Version                 = semVersion,
-                                Title                   = title,
-                                Authors                 = new[] {company},
-                                Owners                  = new[] {company},
-                                Description             = description,
-                                Summary                 = description,
-                                ProjectUrl              = projectUrl,
-                                LicenseUrl              = licenseUrl,
-                                Copyright               = copyright,
-                                ReleaseNotes            = releaseNotes,
-                                Tags                    = tags,
-                                RequireLicenseAcceptance= false,
-                                Symbols                 = false,
-                                NoPackageAnalysis       = true,
-                                Files                   = nugetFiles,
-                                BasePath                = binDirectoryPath,
-                                OutputDirectory         = parameters.Paths.Directories.Build
-                            };
-
-    // NuGetPack(nuGetPackSettings);
-});
-
-Task("Publish-Nuget-Package")
-    .IsDependentOn("Create-NuGet-Package")
-    .WithCriteria(() => !parameters.IsLocalBuild)
-    .WithCriteria(() => !parameters.IsPullRequest)
-    .Does(() =>
-{
-    // Resolve the API key.
-	var apiKey = EnvironmentVariable("MYGET_DEVELOP_API_KEY");
-	if(parameters.IsMasterBranch)
-	{
-        apiKey = EnvironmentVariable("MYGET_MASTER_API_KEY");
-	}
-
-	if(parameters.IsTagged)
-    {
-        apiKey = EnvironmentVariable("NUGET_API_KEY");
-	}
-
-    if(string.IsNullOrEmpty(apiKey))
-    {
-        throw new InvalidOperationException("Could not resolve MyGet/Nuget API key.");
-    }
-
-    var source = EnvironmentVariable("MYGET_DEVELOP_SOURCE");
-    if(parameters.IsMasterBranch)
-    {
-        source = EnvironmentVariable("MYGET_MASTER_SOURCE");
-    }
-
-    if(parameters.IsTagged)
-    {
-        source = EnvironmentVariable("NUGET_SOURCE");
-    }
-
-    if(string.IsNullOrEmpty(source))
-    {
-        throw new InvalidOperationException("Could not resolve MyGet/Nuget source.");
-    }
-
-    // Get the path to the package.
-    var package = parameters.Paths.Directories.Build.CombineWithFilePath(product + "." + semVersion + ".nupkg");
-
-    // Push the package.
-    NuGetPush(package, new NuGetPushSettings {
-        Source = source,
-        ApiKey = apiKey
-    });
-});
-
 Task("Default")
-    .IsDependentOn("Create-NuGet-Package");
+    .IsDependentOn("Create-NuGet-Packages")
+    .IsDependentOn("Create-Chocolatey-Packages");
 
 Task("AppVeyor")
-    .IsDependentOn("Publish-Nuget-Package");
+    .IsDependentOn("Publish-Chocolatey-Packages")
+    .IsDependentOn("Publish-Nuget-Packages");
 
 ///////////////////////////////////////////////////////////////////////////////
 // EXECUTION

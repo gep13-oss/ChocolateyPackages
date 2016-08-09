@@ -1,30 +1,42 @@
 ///////////////////////////////////////////////////////////////////////////////
 // ADDINS
 ///////////////////////////////////////////////////////////////////////////////
+
 #addin Cake.Gitter
 
 ///////////////////////////////////////////////////////////////////////////////
-// Environment Variables
+// ENVIRONMENT VARIABLES
 ///////////////////////////////////////////////////////////////////////////////
+
 var gitterToken = EnvironmentVariable("GITTER_TOKEN");
 var gitterRoomId = EnvironmentVariable("GITTER_ROOM_ID");
-var gitterWebHookUrl = EnvironmentVariable("GITTER_WEBHOOK_URL");
 
 ///////////////////////////////////////////////////////////////////////////////
-// TASK DEFINITIONS
+// HELPER METHODS
 ///////////////////////////////////////////////////////////////////////////////
-Task("Gitter-Room-Notification")
-    .WithCriteria(!string.IsNullOrWhiteSpace(gitterToken) && !string.IsNullOrWhiteSpace(gitterRoomId))
-    .WithCriteria(() => !parameters.IsLocalBuild)
-    .Does(() =>
+
+public void SendMessageToGitterRoom(string message)
 {
+    try
+    {
+        Information("Sending message to Gitter...");
 
-});
+        var postMessageResult = Gitter.Chat.PostMessage(
+                    message: message,
+                    messageSettings: new GitterChatMessageSettings { Token = gitterToken, RoomId = gitterRoomId}
+            );
 
-Task("Gitter-WebHook-Notification")
-    .WithCriteria(!string.IsNullOrWhiteSpace(gitterWebHookUrl))
-    .WithCriteria(() => !parameters.IsLocalBuild)
-    .Does(() =>
-{
-
-});
+        if (postMessageResult.Ok)
+        {
+            Information("Message {0} succcessfully sent", postMessageResult.TimeStamp);
+        }
+        else
+        {
+            Error("Failed to send message: {0}", postMessageResult.Error);
+        }
+    }
+    catch(Exception ex)
+    {
+        Error("{0}", ex);
+    }
+}

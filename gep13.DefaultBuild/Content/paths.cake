@@ -24,6 +24,7 @@ public class BuildPaths
             throw new ArgumentNullException("semVersion");
         }
 
+        // Directories
         var sourceDirectoryPath       = "./Source";
         var buildDirectoryPath        = "./.build";
         var tempBuildDirectoryPath         = buildDirectoryPath + "/temp";
@@ -33,6 +34,9 @@ public class BuildPaths
         var publishedWebsitesDirectory     = tempBuildDirectoryPath + "/_PublishedWebsites";
         var publishedApplicationsDirectory = tempBuildDirectoryPath + "/_PublishedApplications";
         var publishedLibrariesDirectory    = tempBuildDirectoryPath + "/_PublishedLibraries";
+
+        var nugetNuspecDirectory = "./nuspec/nuget";
+        var chocolateyNuspecDirectory = "./nuspec/chocolatey";
 
         var testResultsDirectory = buildDirectoryPath + "/TestResults";
         var inspectCodeResultsDirectory = testResultsDirectory + "/InspectCode";
@@ -44,9 +48,8 @@ public class BuildPaths
         var testCoverageDirectory = buildDirectoryPath + "/TestCoverage";
 
         var packagesOutputDirectory = buildDirectoryPath + "/Packages";
-        var librariesOutputDirectory = packagesOutputDirectory + "/Libraries";
-        var applicationsOutputDirectory = packagesOutputDirectory + "/Applications";
 
+        // Files
         var testCoverageOutputFilePath = ((DirectoryPath)testCoverageDirectory).CombineWithFilePath("OpenCover.xml");
         var solutionInfoFilePath = ((DirectoryPath)sourceDirectoryPath).CombineWithFilePath("SolutionInfo.cs");
 
@@ -65,6 +68,8 @@ public class BuildPaths
             publishedWebsitesDirectory,
             publishedApplicationsDirectory,
             publishedLibrariesDirectory,
+            nugetNuspecDirectory,
+            chocolateyNuspecDirectory,
             testResultsDirectory,
             inspectCodeResultsDirectory,
             dupFinderResultsDirectory,
@@ -72,9 +77,7 @@ public class BuildPaths
             xUnitTestResultsDirectory,
             MSTestTestResultsDirectory,
             testCoverageDirectory,
-            packagesOutputDirectory,
-            librariesOutputDirectory,
-            applicationsOutputDirectory
+            packagesOutputDirectory
             );
 
         var buildFiles = new BuildFiles(
@@ -137,6 +140,8 @@ public class BuildDirectories
     public DirectoryPath PublishedWebsites { get; private set; }
     public DirectoryPath PublishedApplications { get; private set; }
     public DirectoryPath PublishedLibraries { get; private set; }
+    public DirectoryPath NugetNuspecDirectory { get; private set; }
+    public DirectoryPath ChocolateyNuspecDirectory { get; private set; }
     public DirectoryPath TestResults { get; private set; }
     public DirectoryPath InspectCodeTestResults { get; private set; }
     public DirectoryPath DupFinderTestResults { get; private set; }
@@ -145,8 +150,6 @@ public class BuildDirectories
     public DirectoryPath MSTestTestResults { get; private set; }
     public DirectoryPath TestCoverage { get; private set; }
     public DirectoryPath Packages { get; private set; }
-    public DirectoryPath Libraries { get; private set; }
-    public DirectoryPath Applications { get; private set; }
     public ICollection<DirectoryPath> ToClean { get; private set; }
 
     public BuildDirectories(
@@ -159,6 +162,8 @@ public class BuildDirectories
         DirectoryPath publishedWebsites,
         DirectoryPath publishedApplications,
         DirectoryPath publishedLibraries,
+        DirectoryPath nugetNuspecDirectory,
+        DirectoryPath chocolateyNuspecDirectory,
         DirectoryPath testResults,
         DirectoryPath inspectCodeTestResults,
         DirectoryPath dupFinderTestResults,
@@ -166,9 +171,7 @@ public class BuildDirectories
         DirectoryPath xunitTestResults,
         DirectoryPath msTestTestResults,
         DirectoryPath testCoverage,
-        DirectoryPath packages,
-        DirectoryPath libraries,
-        DirectoryPath applications
+        DirectoryPath packages
         )
     {
         Source = source;
@@ -180,6 +183,8 @@ public class BuildDirectories
         PublishedWebsites = publishedWebsites;
         PublishedApplications = publishedApplications;
         PublishedLibraries = publishedLibraries;
+        NugetNuspecDirectory = nugetNuspecDirectory;
+        ChocolateyNuspecDirectory = chocolateyNuspecDirectory;
         TestResults = testResults;
         InspectCodeTestResults = inspectCodeTestResults;
         DupFinderTestResults = dupFinderTestResults;
@@ -188,14 +193,13 @@ public class BuildDirectories
         MSTestTestResults = msTestTestResults;
         TestCoverage = testCoverage;
         Packages = packages;
-        Libraries = libraries;
-        Applications = applications;
 
         ToClean = new[] {
             Build,
             TempBuild,
             TestResults,
-            TestCoverage
+            TestCoverage,
+            Packages
         };
     }
 }
