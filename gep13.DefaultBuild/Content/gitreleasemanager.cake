@@ -15,7 +15,7 @@ Task("Create-Release-Notes")
         Milestone         = parameters.Version.Milestone,
         Name              = parameters.Version.Milestone,
         Prerelease        = true,
-        TargetCommitish   = "main"
+        TargetCommitish   = "master"
     });
 });
 
