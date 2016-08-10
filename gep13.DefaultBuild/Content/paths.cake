@@ -26,7 +26,7 @@ public class BuildPaths
 
         // Directories
         var sourceDirectoryPath       = "./Source";
-        var buildDirectoryPath        = "./.build";
+        var buildDirectoryPath        = "./BuildArtifacts";
         var tempBuildDirectoryPath         = buildDirectoryPath + "/temp";
         var publishedNUnitTestsDirectory   = tempBuildDirectoryPath + "/_PublishedNUnitTests";
         var publishedxUnitTestsDirectory   = tempBuildDirectoryPath + "/_PublishedxUnitTests";
