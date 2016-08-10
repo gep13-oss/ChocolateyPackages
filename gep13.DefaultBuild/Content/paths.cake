@@ -4,24 +4,12 @@ public class BuildPaths
     public BuildDirectories Directories { get; private set; }
 
     public static BuildPaths GetPaths(
-        ICakeContext context,
-        string configuration,
-        string semVersion
+        ICakeContext context
         )
     {
         if (context == null)
         {
             throw new ArgumentNullException("context");
-        }
-
-        if (string.IsNullOrEmpty(configuration))
-        {
-            throw new ArgumentNullException("configuration");
-        }
-
-        if (string.IsNullOrEmpty(semVersion))
-        {
-            throw new ArgumentNullException("semVersion");
         }
 
         // Directories

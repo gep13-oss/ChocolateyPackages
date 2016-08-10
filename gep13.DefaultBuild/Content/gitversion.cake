@@ -55,7 +55,7 @@ public class BuildVersion
 
         if (string.IsNullOrEmpty(version) || string.IsNullOrEmpty(semVersion))
         {
-            context.Information("Fetching verson from SolutionInfo...");
+            context.Information("Fetching version from SolutionInfo...");
             var assemblyInfo = context.ParseAssemblyInfo(parameters.Paths.Files.SolutionInfoFilePath);
             version = assemblyInfo.AssemblyVersion;
             semVersion = assemblyInfo.AssemblyInformationalVersion;

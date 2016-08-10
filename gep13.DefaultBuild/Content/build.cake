@@ -19,18 +19,16 @@ Setup(context =>
         context.Log.Verbosity = Verbosity.Diagnostic;
     }
 
+    parameters.SetBuildPaths(
+        BuildPaths.GetPaths(
+            context: Context
+        )
+    );
+
     parameters.SetBuildVersion(
         BuildVersion.CalculatingSemanticVersion(
             context: Context,
             parameters: parameters
-        )
-    );
-
-    parameters.SetBuildPaths(
-        BuildPaths.GetPaths(
-            context: Context,
-            configuration: parameters.Configuration,
-            semVersion: parameters.Version.SemVersion
         )
     );
 
