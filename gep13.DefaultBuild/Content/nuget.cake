@@ -92,8 +92,8 @@ Task("Publish-Nuget-Packages")
     {
         // Push the package.
         NuGetPush(nupkgFile, new NuGetPushSettings {
-            Source = parameters.MyGet.SourceUrl,
-            ApiKey = parameters.MyGet.ApiKey
+            Source = parameters.NuGet.SourceUrl,
+            ApiKey = parameters.NuGet.ApiKey
         });
     }
 })
