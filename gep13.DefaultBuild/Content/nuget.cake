@@ -46,8 +46,8 @@ Task("Publish-MyGet-Packages")
     {
         // Push the package.
         NuGetPush(nupkgFile, new NuGetPushSettings {
-            Source = parameters.MyGet.ApiKey,
-            ApiKey = parameters.MyGet.SourceUrl
+            Source = parameters.MyGet.SourceUrl,
+            ApiKey = parameters.MyGet.ApiKey
         });
     }
 
@@ -57,8 +57,8 @@ Task("Publish-MyGet-Packages")
     {
         // Push the package.
         NuGetPush(nupkgFile, new NuGetPushSettings {
-            Source = parameters.MyGet.ApiKey,
-            ApiKey = parameters.MyGet.SourceUrl
+            Source = parameters.MyGet.SourceUrl,
+            ApiKey = parameters.MyGet.ApiKey
         });
     }
 })
@@ -92,8 +92,8 @@ Task("Publish-Nuget-Packages")
     {
         // Push the package.
         NuGetPush(nupkgFile, new NuGetPushSettings {
-            Source = parameters.MyGet.ApiKey,
-            ApiKey = parameters.MyGet.SourceUrl
+            Source = parameters.MyGet.SourceUrl,
+            ApiKey = parameters.MyGet.ApiKey
         });
     }
 })
