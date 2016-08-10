@@ -47,7 +47,8 @@ public class BuildPaths
 
         var testCoverageDirectory = buildDirectoryPath + "/TestCoverage";
 
-        var packagesOutputDirectory = buildDirectoryPath + "/Packages";
+        var nuGetPackagesOutputDirectory = buildDirectoryPath + "/Packages/NuGet";
+        var chocolateyPackagesOutputDirectory = buildDirectoryPath + "/Packages/Chocolatey";
 
         // Files
         var testCoverageOutputFilePath = ((DirectoryPath)testCoverageDirectory).CombineWithFilePath("OpenCover.xml");
@@ -77,7 +78,8 @@ public class BuildPaths
             xUnitTestResultsDirectory,
             MSTestTestResultsDirectory,
             testCoverageDirectory,
-            packagesOutputDirectory
+            nuGetPackagesOutputDirectory,
+            chocolateyPackagesOutputDirectory
             );
 
         var buildFiles = new BuildFiles(
@@ -149,7 +151,8 @@ public class BuildDirectories
     public DirectoryPath xUnitTestResults { get; private set; }
     public DirectoryPath MSTestTestResults { get; private set; }
     public DirectoryPath TestCoverage { get; private set; }
-    public DirectoryPath Packages { get; private set; }
+    public DirectoryPath NuGetPackages { get; private set; }
+    public DirectoryPath ChocolateyPackages { get; private set; }
     public ICollection<DirectoryPath> ToClean { get; private set; }
 
     public BuildDirectories(
@@ -171,7 +174,8 @@ public class BuildDirectories
         DirectoryPath xunitTestResults,
         DirectoryPath msTestTestResults,
         DirectoryPath testCoverage,
-        DirectoryPath packages
+        DirectoryPath nuGetPackages,
+        DirectoryPath chocolateyPackages
         )
     {
         Source = source;
@@ -192,14 +196,14 @@ public class BuildDirectories
         xUnitTestResults = xunitTestResults;
         MSTestTestResults = msTestTestResults;
         TestCoverage = testCoverage;
-        Packages = packages;
+        NuGetPackages = nuGetPackages;
+        ChocolateyPackages = chocolateyPackages;
 
         ToClean = new[] {
             Build,
             TempBuild,
             TestResults,
-            TestCoverage,
-            Packages
+            TestCoverage
         };
     }
 }

@@ -1,11 +1,11 @@
 Task("Create-NuGet-Packages")
-    .IsDependentOn("Analyze")
     .IsDependentOn("Build")
-    .IsDependentOn("Test")
     .WithCriteria(() => DirectoryExists(parameters.Paths.Directories.NugetNuspecDirectory))
     .Does(() =>
 {
     var nuspecFiles = GetFiles(parameters.Paths.Directories.NugetNuspecDirectory + "/**/*.nuspec");
+
+    EnsureDirectoryExists(parameters.Paths.Directories.NuGetPackages);
 
     foreach(var nuspecFile in nuspecFiles)
     {
@@ -16,9 +16,89 @@ Task("Create-NuGet-Packages")
         NuGetPack(nuspecFile, new NuGetPackSettings {
             Version = parameters.Version.SemVersion,
             BasePath = parameters.Paths.Directories.PublishedLibraries.Combine(nuspecFile.GetFilenameWithoutExtension().ToString()),
-            OutputDirectory = parameters.Paths.Directories.Packages,
+            OutputDirectory = parameters.Paths.Directories.NuGetPackages,
             Symbols = false,
             NoPackageAnalysis = true
         });
     }
+});
+
+Task("Publish-MyGet-Packages")
+    .IsDependentOn("Package")
+    .WithCriteria(() => !parameters.IsLocalBuild)
+    .WithCriteria(() => !parameters.IsPullRequest)
+    .WithCriteria(() => parameters.IsMainRepository)
+    .WithCriteria(() => parameters.IsTagged || !parameters.IsMasterBranch)
+    .WithCriteria(() => DirectoryExists(parameters.Paths.Directories.NuGetPackages) || DirectoryExists(parameters.Paths.Directories.ChocolateyPackages))
+    .Does(() =>
+{
+    if(string.IsNullOrEmpty(parameters.MyGet.ApiKey)) {
+        throw new InvalidOperationException("Could not resolve MyGet API key.");
+    }
+
+    if(string.IsNullOrEmpty(parameters.MyGet.SourceUrl)) {
+        throw new InvalidOperationException("Could not resolve MyGet API url.");
+    }
+
+    var nupkgFiles = GetFiles(parameters.Paths.Directories.NuGetPackages + "/**/*.nupkg");
+
+    foreach(var nupkgFile in nupkgFiles)
+    {
+        // Push the package.
+        NuGetPush(nupkgFile, new NuGetPushSettings {
+            Source = parameters.MyGet.ApiKey,
+            ApiKey = parameters.MyGet.SourceUrl
+        });
+    }
+
+    nupkgFiles = GetFiles(parameters.Paths.Directories.ChocolateyPackages + "/**/*.nupkg");
+
+    foreach(var nupkgFile in nupkgFiles)
+    {
+        // Push the package.
+        NuGetPush(nupkgFile, new NuGetPushSettings {
+            Source = parameters.MyGet.ApiKey,
+            ApiKey = parameters.MyGet.SourceUrl
+        });
+    }
+})
+.OnError(exception =>
+{
+    Information("Publish-MyGet-Packages Task failed, but continuing with next Task...");
+    publishingError = true;
+});
+
+Task("Publish-Nuget-Packages")
+    .IsDependentOn("Package")
+    .WithCriteria(() => !parameters.IsLocalBuild)
+    .WithCriteria(() => !parameters.IsPullRequest)
+    .WithCriteria(() => parameters.IsMainRepository)
+    .WithCriteria(() => parameters.IsMasterBranch)
+    .WithCriteria(() => parameters.IsTagged)
+    .WithCriteria(() => DirectoryExists(parameters.Paths.Directories.NuGetPackages))
+    .Does(() =>
+{
+    if(string.IsNullOrEmpty(parameters.NuGet.ApiKey)) {
+        throw new InvalidOperationException("Could not resolve NuGet API key.");
+    }
+
+    if(string.IsNullOrEmpty(parameters.NuGet.SourceUrl)) {
+        throw new InvalidOperationException("Could not resolve NuGet API url.");
+    }
+
+    var nupkgFiles = GetFiles(parameters.Paths.Directories.NuGetPackages + "/**/*.nupkg");
+
+    foreach(var nupkgFile in nupkgFiles)
+    {
+        // Push the package.
+        NuGetPush(nupkgFile, new NuGetPushSettings {
+            Source = parameters.MyGet.ApiKey,
+            ApiKey = parameters.MyGet.SourceUrl
+        });
+    }
+})
+.OnError(exception =>
+{
+    Information("Publish-Nuget-Packages Task failed, but continuing with next Task...");
+    publishingError = true;
 });

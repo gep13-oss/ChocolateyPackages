@@ -2,16 +2,7 @@
 // ADDINS
 ///////////////////////////////////////////////////////////////////////////////
 
-#addin Cake.Twitter
-
-///////////////////////////////////////////////////////////////////////////////
-// ENVIRONMENT VARIABLES
-///////////////////////////////////////////////////////////////////////////////
-
-var oAuthConsumerKey        = EnvironmentVariable("TWITTER_CONSUMER_KEY");
-var oAuthConsumerSecret     = EnvironmentVariable("TWITTER_CONSUMER_SECRET");
-var accessToken             = EnvironmentVariable("TWITTER_ACCESS_TOKEN");
-var accessTokenSecret       = EnvironmentVariable("TWITTER_ACCESS_TOKEN_SECRET");
+#addin nuget:?package=Cake.Twitter&version=0.1.0
 
 ///////////////////////////////////////////////////////////////////////////////
 // HELPER METHODS
@@ -23,7 +14,23 @@ public void SendMessageToTwitter(string message)
     {
         Information("Sending message to Twitter...");
 
-        TwitterSendTweet(oAuthConsumerKey, oAuthConsumerSecret, accessToken, accessTokenSecret, message);
+        if(string.IsNullOrEmpty(parameters.Twitter.ConsumerKey)) {
+            throw new InvalidOperationException("Could not resolve Twitter ConsumerKey.");
+        }
+
+        if(string.IsNullOrEmpty(parameters.Twitter.ConsumerSecret)) {
+            throw new InvalidOperationException("Could not resolve Twitter ConsumerSecret.");
+        }
+
+        if(string.IsNullOrEmpty(parameters.Twitter.AccessToken)) {
+            throw new InvalidOperationException("Could not resolve Twitter AccessToken.");
+        }
+
+        if(string.IsNullOrEmpty(parameters.Twitter.AccessTokenSecret)) {
+            throw new InvalidOperationException("Could not resolve Twitter AccessTokenSecret.");
+        }
+
+        TwitterSendTweet(parameters.Twitter.ConsumerKey, parameters.Twitter.ConsumerSecret, parameters.Twitter.AccessToken, parameters.Twitter.AccessTokenSecret, message);
 
         Information("Message succcessfully sent.");
     }

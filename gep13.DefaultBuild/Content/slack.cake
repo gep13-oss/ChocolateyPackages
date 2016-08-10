@@ -1,14 +1,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 // ADDINS
 ///////////////////////////////////////////////////////////////////////////////
-#addin Cake.Slack
 
-///////////////////////////////////////////////////////////////////////////////
-// ENVIRONMENT VARIABLES
-///////////////////////////////////////////////////////////////////////////////
-
-var slackToken = EnvironmentVariable("SLACK_TOKEN");
-var slackChannel = EnvironmentVariable("SLACK_CHANNEL");
+#addin nuget:?package=Cake.Slack&version=0.4.0
 
 ///////////////////////////////////////////////////////////////////////////////
 // HELPER METHODS
@@ -20,9 +14,17 @@ public void SendMessageToSlackChannel(string message)
     {
         Information("Sending message to Slack...");
 
+        if(string.IsNullOrEmpty(parameters.Slack.Token)) {
+            throw new InvalidOperationException("Could not resolve Slack Token.");
+        }
+
+        if(string.IsNullOrEmpty(parameters.Slack.Channel)) {
+            throw new InvalidOperationException("Could not resolve Slack Channel.");
+        }
+
         var postMessageResult = Slack.Chat.PostMessage(
-                    token: slackToken,
-                    channel: slackChannel,
+                    token: parameters.Slack.Token,
+                    channel: parameters.Slack.Channel,
                     text: message
             );
 

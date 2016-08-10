@@ -2,14 +2,7 @@
 // ADDINS
 ///////////////////////////////////////////////////////////////////////////////
 
-#addin Cake.Gitter
-
-///////////////////////////////////////////////////////////////////////////////
-// ENVIRONMENT VARIABLES
-///////////////////////////////////////////////////////////////////////////////
-
-var gitterToken = EnvironmentVariable("GITTER_TOKEN");
-var gitterRoomId = EnvironmentVariable("GITTER_ROOM_ID");
+#addin nuget:?package=Cake.Gitter&version=0.2.0
 
 ///////////////////////////////////////////////////////////////////////////////
 // HELPER METHODS
@@ -21,9 +14,17 @@ public void SendMessageToGitterRoom(string message)
     {
         Information("Sending message to Gitter...");
 
+        if(string.IsNullOrEmpty(parameters.Gitter.Token)) {
+            throw new InvalidOperationException("Could not resolve Gitter Token.");
+        }
+
+        if(string.IsNullOrEmpty(parameters.Gitter.RoomId)) {
+            throw new InvalidOperationException("Could not resolve Gitter Room Id.");
+        }
+
         var postMessageResult = Gitter.Chat.PostMessage(
                     message: message,
-                    messageSettings: new GitterChatMessageSettings { Token = gitterToken, RoomId = gitterRoomId}
+                    messageSettings: new GitterChatMessageSettings { Token = parameters.Gitter.Token, RoomId = parameters.Gitter.RoomId}
             );
 
         if (postMessageResult.Ok)

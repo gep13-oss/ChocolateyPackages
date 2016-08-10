@@ -12,11 +12,15 @@ public class BuildParameters
     public bool IsTagged { get; private set; }
     public bool IsPublishBuild { get; private set; }
     public bool IsReleaseBuild { get; private set; }
-    public bool SkipGitVersion { get; private set; }
-    public BuildCredentials GitHub { get; private set; }
+    public GitHubCredentials GitHub { get; private set; }
+    public GitterCredentials Gitter { get; private set; }
+    public SlackCredentials Slack { get; private set; }
+    public TwitterCredentials Twitter { get; private set; }
+    public MyGetCredentials MyGet { get; private set; }
+    public NuGetCredentials NuGet { get; private set; }
+    public ChocolateyCredentials Chocolatey { get; private set; }
     public BuildVersion Version { get; private set; }
     public BuildPaths Paths { get; private set; }
-    public BuildPackages Packages { get; private set; }
 
     public void SetBuildVersion(BuildVersion version)
     {
@@ -28,14 +32,11 @@ public class BuildParameters
         Paths  = paths;
     }
 
-    public void SetBuildPackages(BuildPackages packages)
-    {
-        Packages  = packages;
-    }
-
     public static BuildParameters GetParameters(
         ICakeContext context,
-        BuildSystem buildSystem
+        BuildSystem buildSystem,
+        string repositoryOwner,
+        string repositoryName
         )
     {
         if (context == null)
@@ -44,52 +45,40 @@ public class BuildParameters
         }
 
         var target = context.Argument("target", "Default");
-
+        var configuration = context.Argument("configuration", "Release");
         return new BuildParameters {
             Target = target,
-            Configuration = context.Argument("configuration", "Release"),
+            Configuration = configuration,
             IsLocalBuild = buildSystem.IsLocalBuild,
             IsRunningOnUnix = context.IsRunningOnUnix(),
             IsRunningOnWindows = context.IsRunningOnWindows(),
             IsRunningOnAppVeyor = buildSystem.AppVeyor.IsRunningOnAppVeyor,
             IsPullRequest = buildSystem.AppVeyor.Environment.PullRequest.IsPullRequest,
-            IsMainRepository = StringComparer.OrdinalIgnoreCase.Equals("cake-build/cake", buildSystem.AppVeyor.Environment.Repository.Name),
-            IsMasterBranch = StringComparer.OrdinalIgnoreCase.Equals("main", buildSystem.AppVeyor.Environment.Repository.Branch),
+            IsMainRepository = StringComparer.OrdinalIgnoreCase.Equals(string.Concat(repositoryOwner, "/", repositoryName), buildSystem.AppVeyor.Environment.Repository.Name),
+            IsMasterBranch = StringComparer.OrdinalIgnoreCase.Equals("master", buildSystem.AppVeyor.Environment.Repository.Branch),
             IsTagged = (
                 buildSystem.AppVeyor.Environment.Repository.Tag.IsTag &&
                 !string.IsNullOrWhiteSpace(buildSystem.AppVeyor.Environment.Repository.Tag.Name)
             ),
-            GitHub = new BuildCredentials (
-                userName: context.EnvironmentVariable(githubUserNameVariable),
-                password: context.EnvironmentVariable(githubPasswordVariable)
-            ),
+            GitHub = GetGitHubCredentials(context),
+            Gitter = GetGitterCredentials(context),
+            Slack = GetSlackCredentials(context),
+            Twitter = GetTwitterCredentials(context),
+            MyGet = GetMyGetCredentials(context),
+            NuGet = GetNuGetCredentials(context),
+            Chocolatey = GetChocolateyCredentials(context),
             IsPublishBuild = new [] {
                 "Create-Release-Notes"
             }.Any(
                 releaseTarget => StringComparer.OrdinalIgnoreCase.Equals(releaseTarget, target)
             ),
             IsReleaseBuild = new [] {
-                "Publish",
-                "Publish-NuGet",
-                "Publish-Chocolatey",
-                "Publish-HomeBrew",
+                "Publish-NuGet-Packages",
+                "Publish-Chocolatey-Packages",
                 "Publish-GitHub-Release"
             }.Any(
                 publishTarget => StringComparer.OrdinalIgnoreCase.Equals(publishTarget, target)
-            ),
-            SkipGitVersion = StringComparer.OrdinalIgnoreCase.Equals("True", context.EnvironmentVariable("CAKE_SKIP_GITVERSION"))
+            )
         };
-    }
-}
-
-public class BuildCredentials
-{
-    public string UserName { get; private set; }
-    public string Password { get; private set; }
-
-    public BuildCredentials(string userName, string password)
-    {
-        UserName = userName;
-        Password = password;
     }
 }

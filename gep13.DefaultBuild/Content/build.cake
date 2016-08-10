@@ -1,20 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
-// TOOLS
-///////////////////////////////////////////////////////////////////////////////
-
-#tool "nuget:?package=xunit.runner.console&version=2.1.0"
-#tool "nuget:?package=OpenCover&version=4.6.519"
-#tool "nuget:?package=ReportGenerator&version=2.4.5"
-#tool "nuget:?package=ReportUnit&version=1.2.1"
-
-///////////////////////////////////////////////////////////////////////////////
 // GLOBAL VARIABLES
 ///////////////////////////////////////////////////////////////////////////////
 
 var testCoverageFilter = "+[*]* -[xunit.*]* -[*.Tests]* ";
 var testCoverageExcludeByAttribute = "*.ExcludeFromCodeCoverage*";
 var testCoverageExcludeByFile = "*/*Designer.cs;*/*.g.cs;*/*.g.i.cs";
-var parameters = BuildParameters.GetParameters(Context, BuildSystem);
+var parameters = BuildParameters.GetParameters(Context, BuildSystem, repositoryOwner, repositoryName);
 var publishingError = false;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -59,20 +50,23 @@ Teardown(context =>
         {
             if(sendMessageToTwitter)
             {
-                SendMessageToTwitter("test");
+                SendMessageToTwitter("Version " + parameters.Version.SemVersion + " of " + title + " Addin has just been released, https://www.nuget.org/packages/" + title + ".");
             }
 
             if(sendMessageToGitterRoom)
             {
-                SendMessageToGitterRoom("test");
+                SendMessageToGitterRoom("@/all Version " + parameters.Version.SemVersion + " of the " + title + " Addin has just been released, https://www.nuget.org/packages/" + title + ".");
             }
         }
     }
     else
     {
-        if(sendMessageToSlackChannel)
+        if(!parameters.IsLocalBuild && parameters.IsMainRepository)
         {
-            SendMessageToSlackChannel("test");
+            if(sendMessageToSlackChannel)
+            {
+                SendMessageToSlackChannel("Continuous Integration Build of " + title + " just failed :-(");
+            }
         }
     }
 
@@ -86,8 +80,8 @@ Teardown(context =>
 Task("Show-Info")
     .Does(() =>
 {
-    Information("Target: {0}", target);
-    Information("Configuration: {0}", configuration);
+    Information("Target: {0}", parameters.Target);
+    Information("Configuration: {0}", parameters.Configuration);
 
     Information("Solution FilePath: {0}", MakeAbsolute((FilePath)solutionFilePath));
     Information("Solution DirectoryPath: {0}", MakeAbsolute((DirectoryPath)solutionDirectoryPath));
@@ -126,18 +120,37 @@ Task("Build")
             .WithProperty("TreatWarningsAsErrors","true")
             .WithProperty("OutDir", MakeAbsolute(parameters.Paths.Directories.TempBuild).FullPath)
             .WithTarget("Build")
-            .SetConfiguration(configuration));
+            .SetConfiguration(parameters.Configuration));
 });
 
-Task("Default")
+Task("Package")
     .IsDependentOn("Create-NuGet-Packages")
-    .IsDependentOn("Create-Chocolatey-Packages");
+    .IsDependentOn("Create-Chocolatey-Packages")
+    .IsDependentOn("Test")
+    .IsDependentOn("Analyze");
+
+Task("Default")
+    .IsDependentOn("Package");
 
 Task("AppVeyor")
+    .IsDependentOn("Upload-AppVeyor-Artifacts")
+    .IsDependentOn("Publish-MyGet-Packages")
     .IsDependentOn("Publish-Chocolatey-Packages")
-    .IsDependentOn("Publish-Nuget-Packages");
+    .IsDependentOn("Publish-Nuget-Packages")
+    .IsDependentOn("Publish-GitHub-Release")
+    .Finally(() =>
+{
+    if(publishingError)
+    {
+        throw new Exception("An error occurred during the publishing of " + title + ".  All publishing tasks have been attempted.");
+    }
+});
+
+Task("ReleaseNotes")
+  .IsDependentOn("Create-Release-Notes");
 
 ///////////////////////////////////////////////////////////////////////////////
 // EXECUTION
 ///////////////////////////////////////////////////////////////////////////////
-RunTarget(target);
+
+RunTarget(parameters.Target);

@@ -1,7 +1,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 // TOOLS
 ///////////////////////////////////////////////////////////////////////////////
-#tool GitVersion.CommandLine
+
+#tool nuget:?package=GitVersion.CommandLine&version=3.6.2
 
 public class BuildVersion
 {
@@ -24,7 +25,7 @@ public class BuildVersion
         string semVersion = null;
         string milestone = null;
 
-        if (context.IsRunningOnWindows() && !parameters.SkipGitVersion)
+        if (context.IsRunningOnWindows())
         {
             context.Information("Calculating Semantic Version...");
             if (!parameters.IsLocalBuild || parameters.IsPublishBuild || parameters.IsReleaseBuild)
