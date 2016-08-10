@@ -38,7 +38,7 @@ public class BuildVersion
 
                 version = context.EnvironmentVariable("GitVersion_MajorMinorPatch");
                 semVersion = context.EnvironmentVariable("GitVersion_LegacySemVerPadded");
-                milestone = string.Concat("v", version);
+                milestone = string.Concat(version);
             }
 
             GitVersion assertedVersions = context.GitVersion(new GitVersionSettings
@@ -48,7 +48,7 @@ public class BuildVersion
 
             version = assertedVersions.MajorMinorPatch;
             semVersion = assertedVersions.LegacySemVerPadded;
-            milestone = string.Concat("v", version);
+            milestone = string.Concat(version);
 
             context.Information("Calculated Semantic Version: {0}", semVersion);
         }
@@ -59,7 +59,7 @@ public class BuildVersion
             var assemblyInfo = context.ParseAssemblyInfo(parameters.Paths.Files.SolutionInfoFilePath);
             version = assemblyInfo.AssemblyVersion;
             semVersion = assemblyInfo.AssemblyInformationalVersion;
-            milestone = string.Concat("v", version);
+            milestone = string.Concat(version);
         }
 
         var cakeVersion = typeof(ICakeContext).Assembly.GetName().Version.ToString();
