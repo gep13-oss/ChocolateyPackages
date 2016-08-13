@@ -22,6 +22,7 @@ Task("DupFinder")
     DupFinder(solutionFilePath, new DupFinderSettings() {
         ShowStats = true,
         ShowText = true,
+        ExcludePattern = dupFinderExcludePattern,
         OutputFile = parameters.Paths.Directories.DupFinderTestResults.CombineWithFilePath("dupfinder.xml"),
         ThrowExceptionOnFindingDuplicates = true
     });
