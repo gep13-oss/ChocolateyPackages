@@ -28,6 +28,22 @@ Task("Publish-GitHub-Release")
     .WithCriteria(() => parameters.IsTagged)
     .Does(() =>
 {
+    if(DirectoryExists(parameters.Paths.Directories.NuGetPackages)
+    {
+        foreach(var package in GetFiles(parameters.Paths.Directories.NuGetPackages + "/*"))
+        {
+            GitReleaseManagerAddAssets(parameters.GitHub.UserName, parameters.GitHub.Password, repositoryOwner, repositoryName, parameters.Version.Milestone, package.ToString());
+        }
+    }
+
+    if(DirectoryExists(parameters.Paths.Directories.ChocolateyPackages)
+    {
+        foreach(var package in GetFiles(parameters.Paths.Directories.ChocolateyPackages + "/*"))
+        {
+            GitReleaseManagerAddAssets(parameters.GitHub.UserName, parameters.GitHub.Password, repositoryOwner, repositoryName, parameters.Version.Milestone, package.ToString());
+        }
+    }
+
     GitReleaseManagerClose(parameters.GitHub.UserName, parameters.GitHub.Password, repositoryOwner, repositoryName, parameters.Version.Milestone);
 })
 .OnError(exception =>
