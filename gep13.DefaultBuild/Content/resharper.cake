@@ -19,13 +19,19 @@ Task("DupFinder")
     .IsDependentOn("Clean")
     .Does(() =>
 {
-    DupFinder(solutionFilePath, new DupFinderSettings() {
+    var settings = new DupFinderSettings() {
         ShowStats = true,
         ShowText = true,
-        ExcludePattern = dupFinderExcludePattern,
         OutputFile = parameters.Paths.Directories.DupFinderTestResults.CombineWithFilePath("dupfinder.xml"),
         ThrowExceptionOnFindingDuplicates = true
-    });
+    };
+
+    if(dupFinderExcludePattern != null)
+    {
+        settings.ExcludePattern = dupFinderExcludePattern;
+    }
+
+    DupFinder(solutionFilePath, settings);
 })
 .ReportError(exception =>
 {
