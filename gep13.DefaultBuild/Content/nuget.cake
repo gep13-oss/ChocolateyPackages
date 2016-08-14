@@ -12,14 +12,29 @@ Task("Create-NuGet-Packages")
         // TODO: Addin the release notes
         // ReleaseNotes = parameters.ReleaseNotes.Notes.ToArray(),
 
-        // Create packages.
-        NuGetPack(nuspecFile, new NuGetPackSettings {
-            Version = parameters.Version.SemVersion,
-            BasePath = parameters.Paths.Directories.PublishedLibraries.Combine(nuspecFile.GetFilenameWithoutExtension().ToString()),
-            OutputDirectory = parameters.Paths.Directories.NuGetPackages,
-            Symbols = false,
-            NoPackageAnalysis = true
-        });
+        if(DirectoryExists(parameters.Paths.Directories.PublishedLibraries.Combine(nuspecFile.GetFilenameWithoutExtension().ToString())))
+        {
+            // Create packages.
+            NuGetPack(nuspecFile, new NuGetPackSettings {
+                Version = parameters.Version.SemVersion,
+                BasePath = parameters.Paths.Directories.PublishedLibraries.Combine(nuspecFile.GetFilenameWithoutExtension().ToString()),
+                OutputDirectory = parameters.Paths.Directories.NuGetPackages,
+                Symbols = false,
+                NoPackageAnalysis = true
+            });
+        }
+
+        if(DirectoryExists(parameters.Paths.Directories.PublishedApplications.Combine(nuspecFile.GetFilenameWithoutExtension().ToString())))
+        {
+            // Create packages.
+            NuGetPack(nuspecFile, new NuGetPackSettings {
+                Version = parameters.Version.SemVersion,
+                BasePath = parameters.Paths.Directories.PublishedApplications.Combine(nuspecFile.GetFilenameWithoutExtension().ToString()),
+                OutputDirectory = parameters.Paths.Directories.NuGetPackages,
+                Symbols = false,
+                NoPackageAnalysis = true
+            });
+        }
     }
 });
 

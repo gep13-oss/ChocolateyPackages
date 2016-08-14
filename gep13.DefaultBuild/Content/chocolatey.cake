@@ -15,7 +15,8 @@ Task("Create-Chocolatey-Packages")
         // Create package.
         ChocolateyPack(nuspecFile, new ChocolateyPackSettings {
             Version = parameters.Version.SemVersion,
-            OutputDirectory = parameters.Paths.Directories.ChocolateyPackages
+            OutputDirectory = parameters.Paths.Directories.ChocolateyPackages,
+            WorkingDirectory = parameters.Paths.Directories.PublishedApplications
         });
     }
 });
