@@ -28,7 +28,7 @@ Task("Publish-GitHub-Release")
     .WithCriteria(() => parameters.IsTagged)
     .Does(() =>
 {
-    if(DirectoryExists(parameters.Paths.Directories.NuGetPackages)
+    if(DirectoryExists(parameters.Paths.Directories.NuGetPackages))
     {
         foreach(var package in GetFiles(parameters.Paths.Directories.NuGetPackages + "/*"))
         {
@@ -36,7 +36,7 @@ Task("Publish-GitHub-Release")
         }
     }
 
-    if(DirectoryExists(parameters.Paths.Directories.ChocolateyPackages)
+    if(DirectoryExists(parameters.Paths.Directories.ChocolateyPackages))
     {
         foreach(var package in GetFiles(parameters.Paths.Directories.ChocolateyPackages + "/*"))
         {
