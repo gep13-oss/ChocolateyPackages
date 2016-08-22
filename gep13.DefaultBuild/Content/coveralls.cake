@@ -19,6 +19,7 @@ Task("Upload-Coverage-Report")
     .WithCriteria(() => !parameters.IsLocalBuild)
     .WithCriteria(() => !parameters.IsPullRequest)
     .WithCriteria(() => parameters.IsMainRepository)
+    .IsDependentOn("Test")
     .Does(() =>
 {
     CoverallsIo(parameters.Paths.Files.TestCoverageOutputFilePath, new CoverallsIoSettings()
