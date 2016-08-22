@@ -86,6 +86,16 @@ public class ChocolateyCredentials
     }
 }
 
+public class AppVeyorCredentials
+{
+    public string ApiToken { get; private set; }
+
+    public AppVeyorCredentials(string apiToken)
+    {
+        ApiToken = apiToken;
+    }
+}
+
 public static GitHubCredentials GetGitHubCredentials(ICakeContext context)
 {
     return new GitHubCredentials(
@@ -135,4 +145,10 @@ public static ChocolateyCredentials GetChocolateyCredentials(ICakeContext contex
     return new ChocolateyCredentials(
         context.EnvironmentVariable(chocolateyApiKeyVariable),
         context.EnvironmentVariable(chocolateySourceUrlVariable));
+}
+
+public static AppVeyorCredentials GetAppVeyorCredentials(ICakeContext context)
+{
+    return new AppVeyorCredentials(
+        context.EnvironmentVariable(appVeyorApiTokenVariable));
 }
