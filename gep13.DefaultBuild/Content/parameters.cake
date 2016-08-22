@@ -20,6 +20,7 @@ public class BuildParameters
     public NuGetCredentials NuGet { get; private set; }
     public ChocolateyCredentials Chocolatey { get; private set; }
     public AppVeyorCredentials AppVeyor { get; private set; }
+    public CoverallsCredentials Coveralls { get; private set; }
     public BuildVersion Version { get; private set; }
     public BuildPaths Paths { get; private set; }
 
@@ -69,6 +70,7 @@ public class BuildParameters
             NuGet = GetNuGetCredentials(context),
             Chocolatey = GetChocolateyCredentials(context),
             AppVeyor = GetAppVeyorCredentials(context),
+            Coveralls = GetCoverallsCredentials(context),
             IsPublishBuild = new [] {
                 "Create-Release-Notes"
             }.Any(

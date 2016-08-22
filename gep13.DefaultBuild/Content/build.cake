@@ -131,6 +131,7 @@ Task("Default")
     .IsDependentOn("Package");
 
 Task("AppVeyor")
+    .IsDependentOn("Upload-Coverage-Report")
     .IsDependentOn("Upload-AppVeyor-Artifacts")
     .IsDependentOn("Publish-MyGet-Packages")
     .IsDependentOn("Publish-Chocolatey-Packages")

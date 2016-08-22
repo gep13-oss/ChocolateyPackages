@@ -96,6 +96,16 @@ public class AppVeyorCredentials
     }
 }
 
+public class CoverallsCredentials
+{
+    public string RepoToken { get; private set; }
+
+    public CoverallsCredentials(string repoToken)
+    {
+        RepoToken = repoToken;
+    }
+}
+
 public static GitHubCredentials GetGitHubCredentials(ICakeContext context)
 {
     return new GitHubCredentials(
@@ -151,4 +161,10 @@ public static AppVeyorCredentials GetAppVeyorCredentials(ICakeContext context)
 {
     return new AppVeyorCredentials(
         context.EnvironmentVariable(appVeyorApiTokenVariable));
+}
+
+public static CoverallsCredentials GetCoverallsCredentials(ICakeContext context)
+{
+    return new CoverallsCredentials(
+        context.EnvironmentVariable(coverallsRepoTokenVariable));
 }
