@@ -3,6 +3,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #tool "nuget:?package=xunit.runner.console&version=2.1.0"
+#tool "nuget:?package=NUnit.ConsoleRunner&version=3.4.1"
 #tool "nuget:?package=OpenCover&version=4.6.519"
 #tool "nuget:?package=ReportGenerator&version=2.4.5"
 #tool "nuget:?package=ReportUnit&version=1.2.1"
