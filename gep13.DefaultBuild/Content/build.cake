@@ -2,9 +2,6 @@
 // GLOBAL VARIABLES
 ///////////////////////////////////////////////////////////////////////////////
 
-var testCoverageFilter = "+[*]* -[xunit.*]* -[Cake.Core]* -[Cake.Testing]* -[*.Tests]* ";
-var testCoverageExcludeByAttribute = "*.ExcludeFromCodeCoverage*";
-var testCoverageExcludeByFile = "*/*Designer.cs;*/*.g.cs;*/*.g.i.cs";
 var parameters = BuildParameters.GetParameters(Context, BuildSystem, repositoryOwner, repositoryName);
 var publishingError = false;
 
