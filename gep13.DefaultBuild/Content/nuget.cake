@@ -22,6 +22,8 @@ Task("Create-NuGet-Packages")
                 Symbols = false,
                 NoPackageAnalysis = true
             });
+
+            continue;
         }
 
         if(DirectoryExists(parameters.Paths.Directories.PublishedApplications.Combine(nuspecFile.GetFilenameWithoutExtension().ToString())))
@@ -34,7 +36,17 @@ Task("Create-NuGet-Packages")
                 Symbols = false,
                 NoPackageAnalysis = true
             });
+
+            continue;
         }
+
+            // Create packages.
+            NuGetPack(nuspecFile, new NuGetPackSettings {
+                Version = parameters.Version.SemVersion,
+                OutputDirectory = parameters.Paths.Directories.NuGetPackages,
+                Symbols = false,
+                NoPackageAnalysis = true
+            });
     }
 });
 
