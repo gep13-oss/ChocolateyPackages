@@ -18,10 +18,19 @@ Task("Test-NUnit")
 {
     EnsureDirectoryExists(parameters.Paths.Directories.NUnitTestResults);
 
-    // TODO: Need to add OpenCover here
-    NUnit3(GetFiles(parameters.Paths.Directories.PublishedNUnitTests + "/**/*.Tests.dll"), new NUnit3Settings {
-        NoResults = true
-    });
+    OpenCover(tool => {
+        tool.NUnit3(GetFiles(parameters.Paths.Directories.PublishedNUnitTests + "/**/*.Tests.dll"), new NUnit3Settings {
+            NoResults = true
+        });
+    },
+    parameters.Paths.Files.TestCoverageOutputFilePath,
+    new OpenCoverSettings { ReturnTargetCodeOffset = 0 }
+        .WithFilter(testCoverageFilter)
+        .ExcludeByAttribute(testCoverageExcludeByAttribute)
+        .ExcludeByFile(testCoverageExcludeByFile));
+
+    // TODO: Need to think about how to bring this out in a generic way for all Test Frameworks
+    ReportGenerator(parameters.Paths.Files.TestCoverageOutputFilePath, parameters.Paths.Directories.TestCoverage);
 });
 
 Task("Test-xUnit")
