@@ -3,7 +3,7 @@ public class BuildPaths
     public BuildFiles Files { get; private set; }
     public BuildDirectories Directories { get; private set; }
 
-    public static BuildPaths GetPaths(
+    public static BuildPaths GetPaths(DirectoryPath sourceDirectoryPath,
         ICakeContext context
         )
     {
@@ -13,8 +13,7 @@ public class BuildPaths
         }
 
         // Directories
-        var sourceDirectoryPath       = "./Source";
-        var buildDirectoryPath        = "./BuildArtifacts";
+        var buildDirectoryPath             = "./BuildArtifacts";
         var tempBuildDirectoryPath         = buildDirectoryPath + "/temp";
         var publishedNUnitTestsDirectory   = tempBuildDirectoryPath + "/_PublishedNUnitTests";
         var publishedxUnitTestsDirectory   = tempBuildDirectoryPath + "/_PublishedxUnitTests";

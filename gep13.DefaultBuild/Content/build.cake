@@ -17,7 +17,7 @@ Setup(context =>
     }
 
     parameters.SetBuildPaths(
-        BuildPaths.GetPaths(
+        BuildPaths.GetPaths(sourceDirectoryPath,
             context: Context
         )
     );
