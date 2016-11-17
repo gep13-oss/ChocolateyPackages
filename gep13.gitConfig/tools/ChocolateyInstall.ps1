@@ -4,18 +4,16 @@ try {
 
 	git config --global "push.default" "simple"
  
-	git config --global "diff.tool" "kdiff3"
+	git config --global "diff.tool" "vscode"
  
-	git config --global "difftool.kdiff3.path" "C:/Program Files (x86)/KDiff3/kdiff3.exe"
-	git config --global "difftool.kdiff3.keepBackup" "false"
-	git config --global "difftool.kdiff3.trustExitCode" "false"
+	git config --global "difftool.vscode.cmd" "code --wait --diff $LOCAL $REMOTE"
 
 	git config --global "merge.ff" "false"
 	git config --global "merge.log" "true"
 	git config --global "merge.renamelimit" "6500"
 	git config --global "merge.tool" "kdiff3"
 	
-	git config --global "mergetool.kdiff3.path" "C:/Program Files (x86)/KDiff3/kdiff3.exe"
+	git config --global "mergetool.kdiff3.path" "C:/Program Files/KDiff3/kdiff3.exe"
 	git config --global "mergetool.kdiff3.keepBackup" "false"
 	git config --global "mergetool.kdiff3.trustExitCode" "false"
 
@@ -23,15 +21,9 @@ try {
 	
 	git config --global "core.symlinks" "false"
 	git config --global "core.autocrlf" "false"
-	git config --global "core.editor" "npp.bat"
+	git config --global "core.editor" "code --wait"
 	
-	if(!(Test-Path "c:\Program Files (x86)\Git\bin\npp.bat")){
-		New-Item -Type File "c:\Program Files (x86)\Git\bin\npp.bat"
-		Add-Content "c:\Program Files (x86)\Git\bin\npp.bat" "#!/bin/sh`n"
-		Add-Content "c:\Program Files (x86)\Git\bin\npp.bat" '"c:/Program Files (x86)/Notepad++/notepad++.exe" -multiInst -notabbar -nosession -noPlugin "$*"'
-	}
-	
-    Write-ChocolateySuccess 'gep13.gitConfig'
+	Write-ChocolateySuccess 'gep13.gitConfig'
 } catch {
 	Write-ChocolateyFailure 'gep13.gitConfig' $($_.Exception.Message)
 	throw
