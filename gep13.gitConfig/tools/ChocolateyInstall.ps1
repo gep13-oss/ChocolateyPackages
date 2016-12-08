@@ -24,3 +24,4 @@ git config --global "core.editor" "code --wait"
 
 git config --global user.signingkey 5BE9DB14
 git config --global commit.gpgsign true
+git config --global "gpg.program" "C:/Prgram Files (x86)/GNU/GnuPG/pub/gpg.exe"
