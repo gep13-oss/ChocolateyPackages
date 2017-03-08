@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>gep13.gitConfig</id>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
     <authors>gep13</authors>
     <owners>gep13</owners>
     <description>Chocolatey package to configure the default settings for a Git install</description>
