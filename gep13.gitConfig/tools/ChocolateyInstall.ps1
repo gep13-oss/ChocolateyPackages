@@ -10,9 +10,16 @@ git config --global core.editor "code --wait"
 git config --global "merge.ff" "false"
 git config --global "merge.log" "true"
 git config --global "merge.renamelimit" "6500"
+
 git config --global "merge.tool" "kdiff3"
 
+# Windows
 git config --global "mergetool.kdiff3.path" "C:/Program Files/KDiff3/kdiff3.exe"
+
+# Mac
+git config --global "mergetool.kdiff.cmd" "/Applications/kdiff3.app/Contents/MacOS/kdiff3"
+git config --global "mergetool.kdiff.args" "$base $local $other -o $output"
+
 git config --global "mergetool.kdiff3.keepBackup" "false"
 git config --global "mergetool.kdiff3.trustExitCode" "false"
 
