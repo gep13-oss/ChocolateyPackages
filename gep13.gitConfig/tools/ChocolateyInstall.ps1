@@ -32,3 +32,6 @@ git config --global commit.gpgsign true
 
 # Windows
 git config --global "gpg.program" "C:/Program Files (x86)/GNU/GnuPG/pub/gpg.exe"
+
+# Mac
+# On a Mac, the path to the gpg program isn't required, as this is already on the path
