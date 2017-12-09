@@ -16,7 +16,7 @@ git config --global "merge.tool" "kdiff3"
 git config --global "mergetool.kdiff3.path" "C:/Program Files/KDiff3/kdiff3.exe"
 
 # Mac
-git config --global "mergetool.kdiff.cmd" "/Applications/kdiff3.app/Contents/MacOS/kdiff3"
+# git config --global "mergetool.kdiff.cmd" "/Applications/kdiff3.app/Contents/MacOS/kdiff3"
 
 git config --global "mergetool.kdiff3.keepBackup" "false"
 git config --global "mergetool.kdiff3.trustExitCode" "false"
@@ -29,4 +29,6 @@ git config --global "core.editor" "code --wait"
 
 git config --global user.signingkey 5BE9DB14
 git config --global commit.gpgsign true
+
+# Windows
 git config --global "gpg.program" "C:/Program Files (x86)/GNU/GnuPG/pub/gpg.exe"
