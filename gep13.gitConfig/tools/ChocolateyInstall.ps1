@@ -2,7 +2,7 @@ git config --global "user.name" "Gary Ewan Park"
 git config --global "user.email" "gep13@gep13.co.uk"
 git config --global user.signingkey 5BE9DB14
 
-git config --global "push.default" "matching"
+git config --global "push.default" "simple"
 
 git config --global "diff.tool" "vscode"
 git config --global "difftool.vscode.cmd" "code --wait --diff $LOCAL $REMOTE"
