@@ -15,9 +15,6 @@ git config --global "merge.tool" "kdiff3"
 # Windows
 git config --global "mergetool.kdiff3.path" "C:/Program Files/KDiff3/kdiff3.exe"
 
-# Mac
-# git config --global "mergetool.kdiff.cmd" "/Applications/kdiff3.app/Contents/MacOS/kdiff3"
-
 git config --global "mergetool.kdiff3.keepBackup" "false"
 git config --global "mergetool.kdiff3.trustExitCode" "false"
 
