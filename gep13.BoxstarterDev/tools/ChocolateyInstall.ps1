@@ -1,36 +1,36 @@
-cinst IIS-WebServerRole -source windowsfeatures
-cinst IIS-HttpCompressionDynamic -source windowsfeatures
-cinst TelnetClient -source windowsFeatures
+choco install IIS-WebServerRole -source windowsfeatures
+choco install IIS-HttpCompressionDynamic -source windowsfeatures
+choco install TelnetClient -source windowsFeatures
 
-cinst GoogleChrome
-cinst Firefox
-cinst dotPeek
-cinst filezilla
-cinst notepadplusplus
-cinst fiddler4
-cinst git-credential-winstore
-cinst git
-cinst poshgit
-cinst gitextensions 
-cinst NugetPackageExplorer
-cinst githubforwindows 
-cinst PowerGUI
-cinst powershell
-cinst kdiff3
-cinst markdownpad2
-cinst 7zip
-cinst 7zip.CommandLine
-cinst pester
-cinst psake -source http://packages.nuget.org/v1/FeedService.svc/
+choco install GoogleChrome
+choco install Firefox
+choco install dotPeek
+choco install filezilla
+choco install notepadplusplus
+choco install fiddler4
+choco install git-credential-winstore
+choco install git
+choco install poshgit
+choco install gitextensions 
+choco install NugetPackageExplorer
+choco install githubforwindows 
+choco install PowerGUI
+choco install powershell
+choco install kdiff3
+choco install markdownpad2
+choco install 7zip
+choco install 7zip.CommandLine
+choco install pester
+choco install psake -source http://packages.nuget.org/v1/FeedService.svc/
 
-cinst NetFx3 -source windowsfeatures
+choco install NetFx3 -source windowsfeatures
 
-cinst VisualStudio2013Premium -InstallArguments "Blend WebTools Win8SDK SilverLight_Developer_Kit WindowsPhone80"
-cinst VS2013.1 
+choco install VisualStudio2013Premium -InstallArguments "Blend WebTools Win8SDK SilverLight_Developer_Kit WindowsPhone80"
+choco install VS2013.1 
 
-cinst gep13.DefaultConfig -source https://www.myget.org/F/gep13
-cinst gep13.gitConfig -source https://www.myget.org/F/gep13
-cinst gep13.vs2013extensions -source https://www.myget.org/F/gep13
+choco install gep13.DefaultConfig -source https://www.myget.org/F/gep13
+choco install gep13.gitConfig -source https://www.myget.org/F/gep13
+choco install gep13.vs2013extensions -source https://www.myget.org/F/gep13
 
 # fix the "WARNING: Could not find ssh-agent" in PowerShell console as per here:
 # http://stackoverflow.com/questions/7470385/git-in-powershell-saying-could-not-find-ssh-agent
@@ -52,8 +52,8 @@ Install-ChocolateyPinnedTaskBarItem "C:\Program Files\Internet Explorer\iexplore
 Install-ChocolateyPinnedTaskBarItem "C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\devenv.exe"
 
 # Enable Nuget Package Restore
-cinst NuGetEnablePackageRestore -source https://www.nuget.org/api/v2/
+choco install NuGetEnablePackageRestore -source https://www.nuget.org/api/v2/
 
-cinst gep13.WindowsUpdate -source https://www.myget.org/F/gep13
+choco install gep13.WindowsUpdate -source https://www.myget.org/F/gep13
 
 Update-Help	

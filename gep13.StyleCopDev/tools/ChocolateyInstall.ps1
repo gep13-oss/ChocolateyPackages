@@ -1,11 +1,11 @@
-cinst DotNet3.5
-cinst notepadplusplus
-cinst fiddler4
-cinst hg
-cinst Posh-HG
-cinst tortoisehg
-cinst Wix35
-cinst resharper
+choco install DotNet3.5
+choco install notepadplusplus
+choco install fiddler4
+choco install hg
+choco install Posh-HG
+choco install tortoisehg
+choco install Wix35
+choco install resharper
 
 Install-ChocolateyPinnedTaskBarItem "C:\Program Files (x86)\Notepad++\notepad++.exe"
 Install-ChocolateyPinnedTaskBarItem "C:\Program Files\Internet Explorer\iexplore.exe"
