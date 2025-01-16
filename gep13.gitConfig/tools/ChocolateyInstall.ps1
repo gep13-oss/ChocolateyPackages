@@ -20,7 +20,7 @@ git config --global "merge.renamelimit" "6500"
 git config --global "merge.tool" "kdiff3"
 
 # Windows
-git config --global "mergetool.kdiff3.path" "C:/Program Files/KDiff3/kdiff3.exe"
+git config --global "mergetool.kdiff3.path" "C:/Program Files/KDiff3/bin/kdiff3.exe"
 
 git config --global "mergetool.kdiff3.keepBackup" "false"
 git config --global "mergetool.kdiff3.trustExitCode" "false"
